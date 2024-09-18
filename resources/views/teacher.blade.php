@@ -45,7 +45,35 @@
             <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulários Vistos</h1>
-        <!-- Adicione aqui os formulários vistos -->
+
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">data de inicio</th>
+                <th scope="col">data de termino</th>
+                <th scope="col">status</th>
+                <th scope="col">prioridade</th>
+                <th scope="col">problema</th>
+                <th scope="col">nome do solicitante</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($calleds as $called)
+                <tr>
+                <td>{{  $called->id }}</td>
+                <td>{{ $called->date_open}}</td>
+                <td>{{ $called->date_end}}</td>
+                <td>{{ $called->status}}</td>
+                <td>{{ $called->priority}}</td>
+                <td>{{ $called->type_problem}}</td>
+                <td>{{ $called->name}}</td>
+                </tr>                
+                @endforeach
+            </tbody>
+        </table>
+
+
     </div>
 
     <!-- Página de Histórico -->
@@ -63,7 +91,8 @@
             <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulários da Quadra</h1>
-        <!-- Adicione aqui os formulários da quadra -->
+        
+        
     </div>
 
     <script src="script.js"></script>
