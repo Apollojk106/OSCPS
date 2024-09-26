@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Centro Paul Souza</title>
+    <title>Centro Paula Souza</title>
 
     <link rel="stylesheet" href="/css/app.css">
     <script src="{{ asset('js/app.js') }}"></script>
@@ -13,7 +13,7 @@
 
     <!-- Página de Login -->
     <div id="login-page" class="login-container">
-        <h1>Centro Paul Souza</h1>
+        <h1>Centro Paula Souza</h1>
         <form action="javascript:void(0)">
             <button type="button" class="login-btn" onclick="showPage('student-login')">Aluno</button>
             <button type="button" class="login-btn" onclick="showPage('teacher-login')">Professor</button>

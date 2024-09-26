@@ -12,6 +12,18 @@ class calledController extends Controller
 
         $calleds = called::all();
 
-        return view('teacher', ['calleds' => $calleds]);
+        $pendenteCont = 0;
+         
+        foreach($calleds as $called)
+        {
+            if($called->id == 1)
+            {
+                $pendenteCont ++;
+            }                   
+        }
+     
+        return view('teacher', ['calleds' => $calleds, 'count' => $pendenteCont]);
     }
+
+    
 }

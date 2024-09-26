@@ -20,10 +20,9 @@
             </form>
         </div>
         <div class="hotbar">
-            <a href="javascript:void(0)" onclick="showPage('recent-forms')">Formulários Recentes</a>
-            <a href="javascript:void(0)" onclick="showPage('viewed-forms')">Formulários Vistos</a>
-            <a href="javascript:void(0)" onclick="showPage('history')">Histórico</a>
-            <a href="javascript:void(0)" onclick="showPage('sports-forms')">Formulários da Quadra</a>
+            <a href="javascript:void(0)" onclick="showPage('dashboard')">dashboard</a>
+            <a href="javascript:void(0)" onclick="showPage('viewed-forms')">Formulários Pendentes</a>
+            <a href="javascript:void(0)" onclick="showPage('history')">Histórico</a>            
         </div>
         <div class="dashboard-content">
             <!-- O conteúdo será gerado dinamicamente com base na seleção na hotbar -->
@@ -44,8 +43,46 @@
         <div class="header">
             <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
         </div>
-        <h1>Formulários Vistos</h1>
+        <h1>Formulários Pendentes</h1>
 
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">data de inicio</th>
+                <th scope="col">data de termino</th>
+                <th scope="col">status</th>
+                <th scope="col">prioridade</th>
+                <th scope="col">problema</th>
+                <th scope="col">nome do solicitante</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($calleds as $called)
+                @if($called->status == 1)
+                <tr>
+                <td>{{  $called->id }}</td>
+                <td>{{ $called->date_open}}</td>
+                <td>{{ $called->date_end}}</td>
+                <td>{{ $called->status}}</td>
+                <td>{{ $called->priority}}</td>
+                <td>{{ $called->type_problem}}</td>
+                <td>{{ $called->name}}</td>
+                </tr> 
+                @endif               
+                @endforeach
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <!-- Página de Histórico -->
+    <div id="history" class="dashboard-content" style="display: none;">
+        <div class="header">
+            <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
+        </div>
+        <h1>Histórico de Formulários</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -68,30 +105,21 @@
                 <td>{{ $called->priority}}</td>
                 <td>{{ $called->type_problem}}</td>
                 <td>{{ $called->name}}</td>
-                </tr>                
+                </tr>              
                 @endforeach
             </tbody>
         </table>
-
-
-    </div>
-
-    <!-- Página de Histórico -->
-    <div id="history" class="dashboard-content" style="display: none;">
-        <div class="header">
-            <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
-        </div>
-        <h1>Histórico de Formulários</h1>
-        <!-- Adicione aqui o histórico de formulários -->
     </div>
 
     <!-- Página dos Formulários da Quadra -->
-    <div id="sports-forms" class="dashboard-content" style="display: none;">
+    <div id="dashboard" class="dashboard-content" style="display: none;">
         <div class="header">
-            <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
+            <a href="javascript:void(0)" onclick="showPage('dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulários da Quadra</h1>
-        
+
+        <h1>Notificações Pendentes {{$count}}<h1>
+        <h1>Notificações Total {{count($calleds)}}<h1>
         
     </div>
 

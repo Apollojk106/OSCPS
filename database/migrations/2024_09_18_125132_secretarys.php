@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('secretarys', function (Blueprint $table) {
+        Schema::create('secretarie', function (Blueprint $table) {
             $table->string('name');
             $table->string('specialty');
             $table->string('contact')->primary();
