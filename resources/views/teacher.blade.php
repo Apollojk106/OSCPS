@@ -29,15 +29,6 @@
         </div>
     </div>
 
-    <!-- Página de Formulários Recentes -->
-    <div id="recent-forms" class="dashboard-content" style="display: none;">
-        <div class="header">
-            <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
-        </div>
-        <h1>Formulários Recentes</h1>
-        <!-- Adicione aqui os formulários recentes -->
-    </div>
-
     <!-- Página de Formulários Vistos -->
     <div id="viewed-forms" class="dashboard-content" style="display: none;">
         <div class="header">
@@ -59,7 +50,7 @@
             </thead>
             <tbody>
             @foreach($calleds as $called)
-                @if($called->status == 1)
+                @if($called->status == 'Pendente')
                 <tr>
                 <td>{{  $called->id }}</td>
                 <td>{{ $called->date_open}}</td>
@@ -106,7 +97,7 @@
                 <td>{{ $called->type_problem}}</td>
                 <td>{{ $called->name}}</td>
                 </tr>              
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </div>
@@ -114,12 +105,12 @@
     <!-- Página dos Formulários da Quadra -->
     <div id="dashboard" class="dashboard-content" style="display: none;">
         <div class="header">
-            <a href="javascript:void(0)" onclick="showPage('dashboard')" class="back-btn">Voltar</a>
+            <a href="javascript:void(0)" onclick="showPage('teacher-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulários da Quadra</h1>
 
-        <h1>Notificações Pendentes {{$count}}<h1>
-        <h1>Notificações Total {{count($calleds)}}<h1>
+        <h1>Notificações Pendentes {{ $count }}<h1>
+        <h1>Notificações Total {{ count($calleds) }}<h1>
         
     </div>
 
