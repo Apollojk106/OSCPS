@@ -44,14 +44,14 @@
             <label for="location">Localização:</label>
 
             <select id="location" name="location">
-                <option value="quadra">Quadra</option>
-                <option value="banheiro">Banheiro</option>
-                <option value="sala">Sala</option>
-                <option value="corredor">Corredor</option>
+            @foreach($dados as $dado)
+                <option value="{{ $dado->roof }}">{{$dado->roof }}</option>
+            @endforeach
             </select>
             <label for="floor">Andar:</label>
             <select id="floor" name="floor">
 
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -64,19 +64,34 @@
             <label for="issue">Tipo de Problema:</label>
             <select id="issue" name="issue">
 
-                <option value="hidraulico">Hidráulico</option>
-                <option value="infra">Infraestrutura</option>
-                <option value="higiene">Higiene</option>
-                <option value="informatica">Informátic
-a</option>
-
-                <option value="energia">Energia</option>
+                <option value="Elétricos ">Elétricos </option>
+                <option value="Hidráulicos ">Hidráulicos </option>
+                <option value="Prediais">Prediais</option>
+                <option value="Maquinário ( computadores)">Maquinário</option>
+                <option value="Contenção de acidentes ( piso molhado ) ">Contenção de acidentes</option>
+                <option value="infra">Manutenção preditiva </option>
+                <option value="higiene">Manutenção corretiva</option>            
             </select>
             <button type="submit">Enviar</button>
         </form>
+        <table class="table">
+        <thead>
+                <tr>
+                <th scope="col">roof</th>
+                </tr>
+        </thead>
+        @foreach($dados as $dado)
+        <tbody>  
+            <tr>
+            <td>{{$dado->roof}}</td>
+            </tr>        
+        </tbody>
+        @endforeach
+        </table>
 
         <div id="emergency-notification" class="notification">Formulário enviado com sucesso!</div>
     </div>
+    
 
     <!-- Página do Formulário da Quadra -->
     <div id="sports-form" class="form-container" style="display: none;">
@@ -97,8 +112,7 @@ a</option>
             </select>
             <label for="date">Data:</label>
             <input type="date" id="date" name="date">
-            <label for="participants">Participant
-es:</label>
+            <label for="participants">Participantes:</label>
             <input type="text" id="participants" name="participants">
 
             <button type="submit">Enviar</button>
@@ -115,4 +129,6 @@ es:</label>
         <h1>Informações da Secretaria</h1>
         <p><strong>Data e Horário de Funcionamento:</strong> Segunda a Sexta, das 8h às 17h</p>
         <p><strong>Telefone:</strong> (11) 1234-5678</p>
+
+        
     </div>
