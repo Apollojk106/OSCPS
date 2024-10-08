@@ -55,8 +55,8 @@
     <div id="forgot-password" class="login-container" style="display: none;">
         <h1>Redefinir Senha</h1>
         <form action="javascript:void(0)" onsubmit="sendResetCode()">
-            <label for="rm">RM:</label>
-            <input type="text" id="rm" name="rm" required>
+            <label for="user_name">RM:</label>
+            <input type="text" id="user_name" name="user_name" required>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             <button type="submit">Enviar Código</button>

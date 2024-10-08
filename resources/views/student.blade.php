@@ -41,15 +41,15 @@
         </div>
         <h1>Formulário de Emergência</h1>
         <form id="emergency-form">
-            <label for="location">Localização:</label>
+            <label for="andar">Andar:</label>
 
-            <select id="location" name="location">
+            <select id="andar" name="Andar:">
             @foreach($dados as $dado)
                 <option value="{{ $dado->roof }}">{{$dado->roof }}</option>
             @endforeach
             </select>
-            <label for="floor">Andar:</label>
-            <select id="floor" name="floor">
+            <label for="local">Localizção:</label>
+            <select id="local" name="local">
 
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -99,21 +99,14 @@
             <a href="javascript:void(0)" onclick="showPage('student-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulário de Reserva de Quadra</h1>
-        <form id="sports-form">
-            <label for="court">Quadra:</label>
-            <select id="court" name="court">
-                <option value="1a">1a</option>
-                <option value="1b">1b</option>
-                <option value="2a">2a</option>
-                <option value="2b">2b</option>
-                <option value="3a">3a</option>
-                <option value="3b">3b</option>
-
-            </select>
+        <p>{{ $userName ?? 'Nenhum nome salvo.' }}</p>
+        <form id="sports-form" action="/student/court">       
             <label for="date">Data:</label>
             <input type="date" id="date" name="date">
+            <label for="hora">Selecione uma hora:</label>
+            <input type="time" id="hora" name="hora" required>
             <label for="participants">Participantes:</label>
-            <input type="text" id="participants" name="participants">
+            <textarea id="participants" name="participants"></textarea>
 
             <button type="submit">Enviar</button>
         </form>

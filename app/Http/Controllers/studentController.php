@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\location;
+use Illuminate\Support\Facades\Cookie;
 
 
 class studentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $dados = location::all()->unique('roof');
 
@@ -20,6 +21,8 @@ class studentController extends Controller
             $string = $string . $andare;
         } 
         echo $string;*/
+        $minutes = 60; // Tempo de expiração do cookie (em minutos)
+        $cookie = cookie('user_name', $request->name, $minutes);
 
         return view('student', ['dados' => $dados]);
     }
