@@ -25,8 +25,8 @@
     <div id="student-login" class="login-container" style="display: none;">
         <h1>Login - Aluno</h1>
         <form action="/student">
-            <label for="student-rm">RM:</label>
-            <input type="text" id="student-rm" name="rm" required>
+            <label for="rm">RM:</label>
+            <input type="text" id="rm" name="rm" required>
             <label for="student-password">Senha:</label>
             <input type="password" id="student-password" name="password" required>
 

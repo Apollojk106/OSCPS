@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\location;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Controllers\cookieController;
 
 
 class studentController extends Controller
@@ -15,16 +16,9 @@ class studentController extends Controller
 
         $andares = $this->retornarAndares($dados);
 
-        /*$string = "";
-        foreach($andares as $andare)
-        {
-            $string = $string . $andare;
-        } 
-        echo $string;*/
-        $minutes = 60; // Tempo de expiração do cookie (em minutos)
-        $cookie = cookie('user_name', $request->name, $minutes);
+        $nome = $_POST('rm') ?? ''; 
 
-        return view('student', ['dados' => $dados]);
+        return view('student', ['dados' => $dados, 'userName' => $nome]);
     }
 
     public function retornarAndares($dados)
