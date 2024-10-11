@@ -24,8 +24,9 @@
     <!-- Página de Login do Aluno -->
     <div id="student-login" class="login-container" style="display: none;">
         <h1>Login - Aluno</h1>
-        <form action="/student">
-            <label for="rm">RM:</label>
+        <form method="GET" action="/student">
+            @csrf
+            <label for="Student-RM">RM:</label>
             <input type="text" id="rm" name="rm" required>
             <label for="student-password">Senha:</label>
             <input type="password" id="student-password" name="password" required>
@@ -39,9 +40,10 @@
     <!-- Página de Login do Professor -->
     <div id="teacher-login" class="login-container" style="display: none;">
         <h1>Login - Professor</h1>
-        <form action="/teacher">
-            <label for="teacher-rm">RM:</label>
-            <input type="text" id="teacher-rm" name="rm" required>
+        <form method="POST" action="/teacher">
+            @csrf
+            <label for="rm">RM:</label>
+            <input type="text" id="rm" name="rm" required>
             <label for="teacher-password">Senha:</label>
             <input type="password" id="teacher-password" name="password" required>
 
@@ -54,7 +56,8 @@
     <!-- Página de Esqueci a Senha -->
     <div id="forgot-password" class="login-container" style="display: none;">
         <h1>Redefinir Senha</h1>
-        <form action="javascript:void(0)" onsubmit="sendResetCode()">
+        <form method="POST" action="javascript:void(0)" onsubmit="sendResetCode()">
+            @csrf
             <label for="user_name">RM:</label>
             <input type="text" id="user_name" name="user_name" required>
             <label for="email">Email:</label>
@@ -67,7 +70,8 @@
     <!-- Página de Troca de Senha -->
     <div id="reset-password" class="login-container" style="display: none;">
         <h1>Trocar Senha</h1>
-        <form action="javascript:void(0)" onsubmit="changePassword()">
+        <form method="POST" action="javascript:void(0)" onsubmit="changePassword()">
+            @csrf
             <label for="new-password">Nova Senha:</label>
             <input type="password" id="new-password" name="new-password" required>
             <label for="confirm-password">Confirme a Senha:</label>

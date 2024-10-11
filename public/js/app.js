@@ -1,3 +1,15 @@
+function imprimirOpcaoSelecionada() {
+    const combobox = document.getElementById('Andar'); // Substitua 'meuComboBox' pelo ID do seu combobox
+  
+    combobox.addEventListener('change', function() {
+      const valorSelecionado = this.value;
+      alert('Você selecionou:', valorSelecionado);
+    });
+  }
+  
+  // Chame a função para iniciar a monitoração do combobox
+  imprimirOpcaoSelecionada();
+
 function showPage(pageId) {
     const pages = document.querySelectorAll('body > div');
     pages.forEach(page => {
@@ -63,3 +75,5 @@ function showNotification(notificationId) {
 function logout() {
     showPage('login-page');
 }
+
+var valorSelecionado = document.getElementById("minha-combo").value;1

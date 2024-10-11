@@ -7,7 +7,7 @@
     <title>Centro Paula Souza</title>
 
     <link rel="stylesheet" href="/css/app.css">
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"> </script>
 </head> 
        <!-- Página do Aluno -->
        <div id="student-dashboard" class="dashboard">
@@ -43,22 +43,20 @@
         <form id="emergency-form">
             <label for="andar">Andar:</label>
 
-            <select id="andar" name="Andar:">
+            <select  id="Andar" name="Andar:" onclick="imprimirOpcaoSelecionada()">
             @foreach($dados as $dado)
                 <option value="{{ $dado->roof }}">{{$dado->roof }}</option>
             @endforeach
             </select>
             <label for="local">Localizção:</label>
             <select id="local" name="local">
-
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-
-                <option value="corredor">Corredor</option>
-                <option value="banheiro_f">Banheiro Feminino</option>
-                <option value="banheiro_m">Banheiro Masculino</option>
+            @if(isset($locais))
+            @foreach($locais as $local)
+                <option value="{{$local}}">{{$local}}</option>
+            @endforeach
+            @else
+            <option value="nada">Selecione o andar</option>
+            @endif
             </select>
 
             <label for="issue">Tipo de Problema:</label>
@@ -99,7 +97,7 @@
             <a href="javascript:void(0)" onclick="showPage('student-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulário de Reserva de Quadra</h1>
-        <p>{{ $userName ?? 'Nenhum nome salvo.' }}</p>
+        <span>Paia</span>
         <form id="sports-form" action="/student/court">       
             <label for="date">Data:</label>
             <input type="date" id="date" name="date">

@@ -10,15 +10,13 @@ use App\Http\Controllers\cookieController;
 
 class studentController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $dados = location::all()->unique('roof');
 
         $andares = $this->retornarAndares($dados);
 
-        $nome = $_POST('rm') ?? ''; 
-
-        return view('student', ['dados' => $dados, 'userName' => $nome]);
+        return view('student', ['dados' => $dados]);
     }
 
     public function retornarAndares($dados)
@@ -35,4 +33,13 @@ class studentController extends Controller
         
         return $andares;
     }
+
+    public function retornarTelaAndares($andar){
+        $dados = location::all()->unique('roof');
+
+        $locais = location::where('roof', $andar)->pluck('environment');
+
+        return view('student', ['dados' => $dados, 'locais' => $locais]);
+    }
+
 }
