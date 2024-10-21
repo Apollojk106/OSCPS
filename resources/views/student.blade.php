@@ -40,7 +40,7 @@
             <a href="javascript:void(0)" onclick="showPage('student-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulário de Emergência</h1>
-        <form id="emergency-form">
+        <form id="emergency-floor">
             <label for="andar">Andar:</label>
 
             <select  id="Andar" name="Andar:" onclick="imprimirOpcaoSelecionada()">
@@ -48,6 +48,11 @@
                 <option value="{{ $dado->roof }}">{{$dado->roof }}</option>
             @endforeach
             </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <form id="emergency-form">
+
             <label for="local">Localizção:</label>
             <select id="local" name="local">
             @if(isset($locais))
