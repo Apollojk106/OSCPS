@@ -42,4 +42,12 @@ class studentController extends Controller
         return view('student', ['dados' => $dados, 'locais' => $locais]);
     }
 
+    public function show($id)
+    {
+        // Aqui você pode utilizar o valor de $id para realizar alguma ação,
+        // como buscar um estudante no banco de dados
+        echo $id;
+    }
 }
+
+

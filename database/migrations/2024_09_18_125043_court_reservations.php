@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_user');
             $table->text('description');
-            $table->dateTime('date_order');
+            $table->timestamps();
         });
     }
 

@@ -40,15 +40,14 @@
             <a href="javascript:void(0)" onclick="showPage('student-dashboard')" class="back-btn">Voltar</a>
         </div>
         <h1>Formulário de Emergência</h1>
-        <form id="emergency-floor">
+        <form id="emergency-floor" action="{{ route('student.floor', ['id' => $dado->roof]) }}">
+            @csrf
             <label for="andar">Andar:</label>
-
-            <select  id="Andar" name="Andar:" onclick="imprimirOpcaoSelecionada()">
+            <select  id="Andar" name="andar">
             @foreach($dados as $dado)
                 <option value="{{ $dado->roof }}">{{$dado->roof }}</option>
             @endforeach
             </select>
-
             <button type="submit">Enviar</button>
         </form>
         <form id="emergency-form">
