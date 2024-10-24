@@ -10,13 +10,33 @@ use App\Http\Controllers\cookieController;
 
 class studentController extends Controller
 {
-    public function index()
+    public function calledview()
     {
         $dados = location::all()->unique('roof');
 
         $andares = $this->retornarAndares($dados);
 
-        return view('student', ['dados' => $dados]);
+        return view('called', ['dados' => $dados]);
+    }
+
+    public function calledpost(){
+        //
+    }
+
+    public function dashboardview() {
+        return view('dashboard');
+    }
+
+    public function contactsview() {
+        return view('contacts');
+    }
+
+    public function courtresevertationsview() {
+        return view('courtresevertations');
+    }
+
+    public function courtreservationspost() {
+        //
     }
 
     public function retornarAndares($dados)

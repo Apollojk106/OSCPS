@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <form action="{{ route('Dashboard') }}" class="frame">
-        <div class="oscps">OSCps</div>
-        <div class="sign-up">
-            <div class="title">
-                
-                <div class="text">Log-in</div>
-            </div>
-            <div class="subtitle">
-                <div class="text">Use seu RM ou email corporativo.</div>
-            </div>
-            <div class="text-field-outlined">
-                <input type="text" class="input-text" placeholder="Usuário">
-            </div>
-            <div class="text-field-outlined-error">
-                <input type="password" class="input-text" placeholder="Senha">
-            </div>
-            <div class="contained-button">
-                <button type="submit" class="label">Entre no Site</button>
-                        <div class="administrativo-secretaria">Administrativo/Secretaria</div>
-
-            </div>
+    <!-- Header -->
+    <header class="header">
+        <span class="oscps">OSCps</span>
+        <div class="header-icons">
+            <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
+            <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
+            <i class="fas fa-sun toggle" title="Toggle Theme"></i>
+            
+            <i class="fas fa-sign-out-alt logout-icon" title="Logout"></i>
         </div>
-    </form>
+    </header>
+
+    <!-- Cards Section -->
+    <main class="cards-section">
+        <a href="/called" class="card maintenance">
+            <i class="fas fa-tools"></i>
+            <p>Aviso de Manutenção</p>
+        </a>
+        <a href="/courtresevertations" class="card sports">
+            <i class="fas fa-futbol"></i>
+            <p>Solicitação de Uso <br> Quadra Poliesportiva</p>
+        </a>
+        <a href="/contacts" class="card contact">
+            <i class="fas fa-phone"></i>
+            <p>Contatos</p>
+        </a>
+    </main>
+
+    <!-- JavaScript for Toggle and Zoom -->
     <script>
         const toggle = document.querySelector('.toggle');
         const body = document.body;
