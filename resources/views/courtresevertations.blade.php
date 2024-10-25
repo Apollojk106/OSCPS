@@ -64,17 +64,10 @@
     
 </head>
 <body>
-    <header class="header">
-        <span class="oscps">OSCps</span>
-        <div class="header-icons">
-            <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
-            <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
-            <i class="fas fa-sun toggle" title="Toggle Theme"></i>
-            <i class="fas fa-sign-out-alt logout-icon" title="Logout"></i>
-        </div>
-    </header>
+    <!-- Header -->
+    <x-header />
        
-    <h2>Solicitação de quadra poliesportiva</h2>
+    <h1>Solicitação de quadra poliesportiva</h1>
    
     <div class="form-container"> 
         <form>
@@ -119,7 +112,7 @@
         let zoomLevel = 1;
         const zoomInButton = document.getElementById('zoom-in');
         const zoomOutButton = document.getElementById('zoom-out');
-        const mainContent = document.querySelector('.cards-section');
+        const mainContent = document.querySelector('.max-w-lg');
 
         zoomInButton.addEventListener('click', () => {
             zoomLevel += 0.1;

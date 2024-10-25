@@ -4,52 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Formulário de Manutenção</title>
-    <style>
-        body.dark-mode {
-            background-color: #000000; /* Cor de fundo escura */
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 100px; /* Aumenta o padding para maior altura */
-            background: #842519;
-            color: white;
-            height: 100px; /* Altura do cabeçalho */
-        }
-        .oscps {
-            font-size: 4rem; /* Aumenta o tamanho do texto OSCps */
-        }
-        .header-icons i {
-            margin-left: 15px;
-            cursor: pointer;
-            font-size: 2rem; /* Aumenta o tamanho dos ícones */
-        }
-        .header-icons {
-            display: flex;
-            align-items: center;
-        }
-        .form-title {
-            font-size: 2rem; /* Aumenta o tamanho do título do formulário */
-        }
-    </style>
+    
 </head>
 <body class="bg-gray-100 p-0">
     <!-- Header -->
-    <header class="header">
-        <span class="oscps mx-auto">OSCps</span> <!-- Centraliza o OSCps -->
-        <div class="header-icons">
-            <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
-            <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
-            <i class="fas fa-sun toggle" title="Toggle Theme"></i>
-            <a href="/logout">
-                <i class="fas fa-sign-out-alt logout-icon" title="Logout"></i>
-            </a>
-        </div>
-    </header>
+    <x-header />
 
+    <div class="cards-section" >
     <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6 mt-5"> <!-- Adiciona margem superior -->
         <h2 class="form-title font-bold text-gray-800 text-center">Formulário de Manutenção</h2>
     <form method="POST" action="/called">   
@@ -91,6 +55,7 @@
             </button>
         </div>
     </form>
+    </div>
     </div>
 
     <!-- JavaScript for Toggle and Zoom -->

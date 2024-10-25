@@ -7,14 +7,21 @@ use App\Http\Controllers\studentCourtController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\userController;
 
+use App\Http\Controllers\Auth\LoginController;
+
 
 //rotas basicas
-Route::get('/login', function () {return view('login');});
-Route::get('/', function () {return view('login');});
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/logout', [userController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {return view('login');}); //rota do genshin pedo
 
 //rotas da sessão do aluno
+
+Route::post('/dashboard',[studentController::class, 'dashboardview'])->name("Dashboard");
+
 Route::get('/dashboard',[studentController::class, 'dashboardview'])->name("Dashboard");
 Route::get('/called',[studentController::class, 'calledview'])->name("Called");
 Route::get('/courtresevertations',[studentController::class, 'courtresevertationsview'])->name("Courtreservertations");

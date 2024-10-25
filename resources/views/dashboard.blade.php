@@ -9,16 +9,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <span class="oscps">OSCps</span>
-        <div class="header-icons">
-            <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
-            <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
-            <i class="fas fa-sun toggle" title="Toggle Theme"></i>
-            
-            <i class="fas fa-sign-out-alt logout-icon" title="Logout"></i>
-        </div>
-    </header>
+    <x-header />
 
     <!-- Cards Section -->
     <main class="cards-section">
@@ -40,6 +31,10 @@
     <script>
         const toggle = document.querySelector('.toggle');
         const body = document.body;
+
+        document.getElementById('logout-button').addEventListener('click', function() {
+            document.getElementById('logout-form').submit();
+        });
 
         toggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');

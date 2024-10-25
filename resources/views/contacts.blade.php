@@ -60,17 +60,10 @@
         }
         </style>
 </head>
-<body>
+<body >
    
-    <header class="header">
-        <span class="oscps">OSCps</span>
-        <div class="header-icons">
-            <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
-            <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
-            <i class="fas fa-sun toggle" title="Toggle Theme"></i>
-            <i class="fas fa-sign-out-alt logout-icon" title="Logout"></i>
-        </div>
-    </header>
+    <!-- Header -->
+    <x-header />
     
     <div class="card-contatos">
         <h3>Email</h3>
@@ -98,10 +91,11 @@
         });
 
         let zoomLevel = 1;
+        
         const zoomInButton = document.getElementById('zoom-in');
         const zoomOutButton = document.getElementById('zoom-out');
-        const mainContent = document.querySelector('.cards-section');
-
+        const mainContent = document.querySelector('.max-w-lg');
+        const cardContatos = document.querySelector('.card-contatos'); // Altera a referência para a div correta
         zoomInButton.addEventListener('click', () => {
             zoomLevel += 0.1;
             mainContent.style.transform = `scale(${zoomLevel})`;
