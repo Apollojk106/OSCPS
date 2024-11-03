@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\location;
-use Illuminate\Support\Facades\Cookie;
-use App\Http\Controllers\cookieController;
 
-
-class studentController extends Controller
+class StudentcalledController extends Controller
 {
-    public function calledview()
+    public function index()
     {
         $dados = location::all()->unique('roof');
 
         $andares = $this->retornarAndares($dados);
 
-        return view('called', ['dados' => $dados]);
+        return view('Student-called', ['dados' => $dados]);
     }
 
     public function retornarAndares($dados)
@@ -49,5 +46,3 @@ class studentController extends Controller
         echo $id;
     }
 }
-
-

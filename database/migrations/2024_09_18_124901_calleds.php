@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('calleds', function (Blueprint $table) {
             $table->id();
-            $table->timestamps(); // Adiciona created_at e updated_at
+            $table->timestamps(); 
             $table->enum('status', ['1','2','3']);
             $table->enum('priority', ['1','2','3']);
             $table->enum('type_problem', ['1','2','3','4','5','6','7']);

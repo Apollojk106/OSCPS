@@ -1,6 +1,6 @@
 <!-- resources/views/components/header.blade.php -->
 <header class="header">
-    <span class="oscps">OSCps</span>
+    <span class="oscps">OSCPS</span>
     <div class="header-icons" style="align-items: center;">
         <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
         <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>

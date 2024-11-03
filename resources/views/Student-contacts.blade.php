@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatos</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>Formulário de Manutenção</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -78,7 +80,7 @@
 
     </div>
     
-    <button onclick="document.location='/dashboard'">Retornar</button>
+    <button onclick="document.location='/Student/dashboard'">Retornar</button>
     
     <script>
         const toggle = document.querySelector('.toggle');

@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\called;
 use Illuminate\Http\Request;
 
-
-class calledController extends Controller
+class TeacherhistoryController extends Controller
 {
     public function index()
     {
@@ -24,7 +23,7 @@ class calledController extends Controller
             $called->type_problem = $this->WriteProblem($called->type_problem);
         }
 
-        return view('teacher', ['calleds' => $calleds, 'count' => $pendenteCont]);
+        return view('Teacher-history', ['calleds' => $calleds, 'count' => $pendenteCont]);
     }
 
     public function WriteStatus($Value)
@@ -85,12 +84,4 @@ class calledController extends Controller
 
 
     }
-
-    /**Elétricos 
-Hidráulicos 
-Prediais 
-Maquinário ( computadores) 
-Contenção de acidentes ( piso molhado ) 
-Manutenção preditiva 
-Manutenção corretiva */
 }
