@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CalledRequest;
 use Illuminate\Http\Request;
 use App\Models\location;
 
@@ -9,40 +10,27 @@ class StudentcalledController extends Controller
 {
     public function index()
     {
-        $dados = location::all()->unique('roof');
+        $andares = location::all()->unique('roof');
 
-        $andares = $this->retornarAndares($dados);
+        $locais = $this->retornalocais();
 
-        return view('Student-called', ['dados' => $dados]);
+        return view('Student-called', ['andares' => $andares], compact('locais'));
     }
 
-    public function retornarAndares($dados)
+    public function retornalocais()
     {
-        $andares = array();
+        // Obtem todas as localizações
+        $locations = Location::all();
 
-        foreach($dados as $dado)
-        {           
-            if(in_array($dado->roof, $andares))
-            {
-                array_push($andares, $dado->roof);
-            }
-        }
-        
-        return $andares;
+        $groupedLocations = $locations->groupBy('roof')->map(function ($group) {
+            return $group->pluck('environment')->toArray();
+        });
+
+        return $groupedLocations;
     }
 
-    public function retornarTelaAndares($andar){
-        $dados = location::all()->unique('roof');
-
-        $locais = location::where('roof', $andar)->pluck('environment');
-
-        return view('student', ['dados' => $dados, 'locais' => $locais]);
-    }
-
-    public function show($id)
+    public function enviarchamado(CalledRequest $request)
     {
-        // Aqui você pode utilizar o valor de $id para realizar alguma ação,
-        // como buscar um estudante no banco de dados
-        echo $id;
+        dd($request);
     }
 }

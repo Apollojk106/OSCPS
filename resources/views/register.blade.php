@@ -20,7 +20,19 @@
                 </div>
                 <div class="subtitle">
                     <div class="text">Preencha suas informações.</div>
+
                 </div>
+
+                @if ($errors->any())
+                <div class="bg-red-600" style="color: black; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;">
+                    <strong>Atenção!</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="text-field-outlined">
                     <input type="text" name="name" class="input-text" placeholder="Nome" required>
                 </div>
@@ -32,6 +44,9 @@
                 </div>
                 <div class="text-field-outlined">
                     <input type="password" name="password" class="input-text" placeholder="Senha" required>
+                </div>
+                <div class="text-field-outlined">
+                    <input type="password" name="password_confirmation" class="input-text" placeholder="Confirme a Senha" required>
                 </div>
                 <div class="contained-button">
                     <button type="submit" class="label">Cadastrar</button>

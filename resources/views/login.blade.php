@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body style="background-color: #842519; color: white;">
     <h1 class="oscps" style="color:white;">OSCPS</h1>
     <div class="container">
@@ -20,11 +22,21 @@
                 <div class="subtitle">
                     <div class="text">Use seu RM ou email corporativo.</div>
                 </div>
+                @if ($errors->any())
+                <div class="bg-red-600" style="color: black; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;">
+                    <strong>Atenção!</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="text-field-outlined">
-                    <input type="text" class="input-text" placeholder="Usuário" required>
+                    <input type="email" name="email" class="input-text" placeholder="Usuário" required>
                 </div>
                 <div class="text-field-outlined-error">
-                    <input type="password" class="input-text" placeholder="Senha" required>
+                    <input type="password" name="password" class="input-text" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
                     <button type="submit" class="label">Entre no Site</button>
@@ -43,6 +55,16 @@
                 <div class="subtitle">
                     <div class="text">Use seu email corporativo.</div>
                 </div>
+                @if ($errors->any())
+                <div class="bg-red-600" style="color: black; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;">
+                    <strong>Atenção!</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <div class="text-field-outlined">
                     <input type="text" class="input-text" placeholder="Usuário" required>
                 </div>
@@ -52,7 +74,7 @@
                 <div class="contained-button">
                     <button type="submit" class="label">Entre no Site</button>
                 </div>
-                
+
 
                 <a href="#" id="toggle-admin" class="administrativo-secretaria">Trocar para Administrativo/Secretaria</a>
             </div>
@@ -78,4 +100,5 @@
         });
     </script>
 </body>
+
 </html>

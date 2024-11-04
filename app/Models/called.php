@@ -10,11 +10,13 @@ class called extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date_open',
-        'date_end',
-        'status', 
-        'priority', 
+        'status',
+        'priority',
+        'recalled',
         'type_problem',
-        'name'
+        'name',
+        'email',
+        'local',
+        'environment',
     ];
 }

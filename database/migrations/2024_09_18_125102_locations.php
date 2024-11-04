@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('roof');
             $table->text('environment');
+            $table->timestamps();
         });
     }
 

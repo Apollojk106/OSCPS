@@ -66,13 +66,7 @@
             <label for="issue">Tipo de Problema:</label>
             <select id="issue" name="issue">
 
-                <option value="Elétricos ">Elétricos </option>
-                <option value="Hidráulicos ">Hidráulicos </option>
-                <option value="Prediais">Prediais</option>
-                <option value="Maquinário ( computadores)">Maquinário</option>
-                <option value="Contenção de acidentes ( piso molhado ) ">Contenção de acidentes</option>
-                <option value="infra">Manutenção preditiva </option>
-                <option value="higiene">Manutenção corretiva</option>            
+                           
             </select>
             <button type="submit">Enviar</button>
         </form>

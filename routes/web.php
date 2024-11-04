@@ -15,27 +15,36 @@ use App\Http\Controllers\TeachernotificationController;
 
 
 //rotas basicas
-Route::post('/login/student', [LoginController::class, 'Studentlogin'])->name('studentlogin');
-Route::post('/login/teacher', [LoginController::class, 'Teacherlogin'])->name('teacherlogin');
-Route::get('/login', [LoginController::class, 'Getlogin'])->name('login');
+Route::group(['middleware' => ['guest']], function () {
+    Route::post('/login/student', [LoginController::class, 'Studentlogin'])->name('studentlogin');
+    Route::post('/login/teacher', [LoginController::class, 'Teacherlogin'])->name('teacherlogin');
+    Route::get('/login', [LoginController::class, 'Getlogin'])->name('login');
+    Route::get('/', [LoginController::class, 'Getlogin'])->name('login');
 
-Route::get('/register', [LoginController::class, 'Getregister'])->name('register');
-Route::post('/register', [LoginController::class, 'StudentRegister'])->name('student.register');
+    Route::get('/register', [LoginController::class, 'Getregister'])->name('register');
+    Route::post('/register', [LoginController::class, 'StudentRegister'])->name('student.register');
+});
 
 // Rotas da sessão do aluno
-Route::get('/Student/dashboard', [StudentdashboardController::class, 'index'])->name('student.dashboard');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/Student/dashboard', [StudentdashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
 
-Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('student.called');
+    Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('student.called');
+    Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('post.student.called');
 
-Route::get('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'index'])->name('student.courtresevertations');
+    Route::get('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'index'])->name('student.courtresevertations');
 
-Route::get('/Student/contacts', [StudentcontactsController::class, 'index'])->name('student.contacts');
+    Route::get('/Student/contacts', [StudentcontactsController::class, 'index'])->name('student.contacts');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+});
 
 // Rotas do responsável
 Route::get('/Teacher/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+//Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
 
 Route::get('/Teacher/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
 
@@ -43,7 +52,3 @@ Route::get('/Teacher/notification', [TeachernotificationController::class, 'inde
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-
-
-
