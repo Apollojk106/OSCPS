@@ -21,10 +21,24 @@
             <h2 class="form-title font-bold text-gray-800 text-center">Formulário de Manutenção</h2>
             <form method="POST" action=" {{route('post.student.called')}}">
                 @csrf
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <div class="space-y-4">
                     <div class="flex flex-col">
-                        <label for="problema" class="font-semibold text-gray-800">Problema</label>
-                        <select id="problema" class="mt-1 p-2 border border-gray-300 rounded-md" required>
+                        <label for="type_problem" class="font-semibold text-gray-800">Problema</label>
+                        <select id="type_problem" name="type_problem" class="mt-1 p-2 border border-gray-300 rounded-md" required>
                             <option value="">Selecione um problema</option>
                             <option value="1">Elétricos </option>
                             <option value="2">Hidráulicos </option>
@@ -37,7 +51,7 @@
                     </div>
                     <div class="flex flex-col">
                         <label for="andar" class="font-semibold text-gray-800">Andar</label>
-                        <select id="andar" class="mt-1 p-2 border border-gray-300 rounded-md" required>
+                        <select id="roof" name="roof" class="mt-1 p-2 border border-gray-300 rounded-md" required>
                             <option value="">Selecione um andar</option>
                             @foreach($andares as $andar)
                             <option value="{{ $andar->roof }}">{{$andar->roof }}</option>
@@ -46,7 +60,7 @@
                     </div>
                     <div class="flex flex-col">
                         <label for="local" class="font-semibold text-gray-800">Local</label>
-                        <select id="local" class="mt-1 p-2 border border-gray-300 rounded-md" required>
+                        <select id="environment" name="environment" class="mt-1 p-2 border border-gray-300 rounded-md" required>
                             <option value="">Selecione um local</option>
                         </select>
                     </div>
@@ -90,8 +104,8 @@
             mainContent.style.transform = `scale(${zoomLevel})`;
         });
 
-        const andarSelect = document.getElementById('andar');
-        const localSelect = document.getElementById('local');
+        const andarSelect = document.getElementById('roof');
+        const localSelect = document.getElementById('environment');
 
         const localOptions = <?php echo json_encode($locais); ?>;
 

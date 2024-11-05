@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('court_reservations', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('name_user');
-            $table->text('description');
+            $table->string('name_email');
+            $table->string('class');             // Turma 
+            $table->date('date');                // Data da reserva
+            $table->time('time');                // Horário da reserva
+            $table->text('integrantes');         // Integrantes 
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('court_reservations');
+        Schema::drop('reservations');
     }
 };

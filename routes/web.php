@@ -31,9 +31,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
 
     Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('student.called');
-    Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('post.student.called');
+    Route::post('/Student/called', [StudentcalledController::class, 'store'])->name('post.student.called');
 
     Route::get('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'index'])->name('student.courtresevertations');
+    Route::post('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'store'])->name('post.student.courtresevertations');
 
     Route::get('/Student/contacts', [StudentcontactsController::class, 'index'])->name('student.contacts');
 

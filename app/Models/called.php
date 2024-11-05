@@ -16,7 +16,7 @@ class called extends Model
         'type_problem',
         'name',
         'email',
-        'local',
+        'roof',
         'environment',
     ];
 }

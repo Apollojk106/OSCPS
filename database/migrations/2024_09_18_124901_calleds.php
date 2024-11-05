@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type_problem', ['1','2','3','4','5','6','7']);
             $table->string('name');
             $table->string('email');
-            $table->string('local');
+            $table->string('roof');
             $table->string('environment');
         });
     }

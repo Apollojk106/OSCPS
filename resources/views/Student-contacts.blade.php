@@ -18,35 +18,51 @@
             align-items: center;
             height: 100vh;
         }
+
         .card-contatos {
             background-color: white;
             padding: 50px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 500px;
             margin: 10px;
 
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
         }
+
         h2 {
             text-align: center;
             border-radius: 4px;
             margin-bottom: 20px;
             background-color: #842519;
             color: #ffff;
-            
+
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             color: #4a5568;
         }
-        input, select, textarea {
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
             border: 1px solid #cbd5e0;
             border-radius: 4px;
         }
+
         button {
             width: 10%;
             padding: 10px;
@@ -55,33 +71,35 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            
+
         }
+
         button:hover {
             background-color: #701a0e;
         }
-        </style>
+    </style>
 </head>
-<body >
-   
+
+<body>
+
     <!-- Header -->
     <x-header />
     
     <div class="card-contatos">
-        <h3>Email</h3>
-        <p>email@gmail.com</p>
-        <br>
-        <h3>Telefone</h3>
-        <p>(11) 11111-1111</p>
-        <br>
-        <h3>Horário de funcionamento</h3>
-        <p>Seg á Sex das 07h ás 22h50</p>
-        <br>
+        <h3 class="form-title font-bold text-gray-800 text-center">Contatos</h3><br>
 
+        <h3>Horário de funcionamento</h3>
+        <p>Seg á Sex das 07h ás 22h50</p><br>
+
+        @foreach($administrators as $administrator)
+        <h3>Nome: {{$administrator->name}}</h3>
+        <h3>Email: {{$administrator->email}}</h3>
+        <br>
+        @endforeach
     </div>
-    
+
     <button onclick="document.location='/Student/dashboard'">Retornar</button>
-    
+
     <script>
         const toggle = document.querySelector('.toggle');
         const body = document.body;
@@ -93,7 +111,7 @@
         });
 
         let zoomLevel = 1;
-        
+
         const zoomInButton = document.getElementById('zoom-in');
         const zoomOutButton = document.getElementById('zoom-out');
         const mainContent = document.querySelector('.max-w-lg');
@@ -109,4 +127,5 @@
         });
     </script>
 </body>
+
 </html>

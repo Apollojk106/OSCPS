@@ -17,6 +17,7 @@
             align-items: center;
             height: 100vh;
         }
+
         .form-container {
             background-color: white;
             padding: 20px;
@@ -26,26 +27,32 @@
             padding: 50px;
 
         }
+
         h2 {
             text-align: center;
             border-radius: 4px;
             margin-bottom: 20px;
             background-color: #842519;
             color: #ffff;
-            
+
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             color: #4a5568;
         }
-        input, select, textarea {
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 15px;
             border: 1px solid #cbd5e0;
             border-radius: 4px;
         }
+
         button {
             width: 48%;
             padding: 10px;
@@ -55,25 +62,42 @@
             border-radius: 4px;
             cursor: pointer;
             margin: 10px;
-            
+
         }
+
         button:hover {
             background-color: #701a0e;
         }
     </style>
-    
+
 </head>
+
 <body>
     <!-- Header -->
     <x-header />
-       
+
     <h1>Solicitação de quadra poliesportiva</h1>
-   
-    <div class="form-container"> 
-        <form>
+
+    <div class="form-container">
+        <form action="{{route('post.student.courtresevertations')}}" method="POST">
+            @csrf
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             <div>
                 <label for="turma">Turma</label>
-                <select id="turma" required>
+                <select id="class" name="class" required>
                     <option value="">Selecione uma turma</option>
                     <option value="turma1">Turma 1</option>
                     <option value="turma2">Turma 2</option>
@@ -82,19 +106,19 @@
             </div>
             <div>
                 <label for="data">Data</label>
-                <input type="date" id="data" required>
+                <input type="date" id="date" name="date" required>
             </div>
             <div>
-                <label for="horario">Horário</label>
-                <input type="time" id="horario" required>
+                <label for="time">Horário</label>
+                <input type="time" id="time" name="time" required>
             </div>
             <div>
                 <label for="integrantes">Integrantes</label>
-                <textarea id="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required></textarea>
+                <textarea id="integrantes" name="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required></textarea>
             </div>
             <div class="flex justify-between">
-            <button onclick=" document.location='/Student/dashboard'">Retornar</button>
-            <button type="submit">Enviar</button>
+                <button onclick=" document.location='/Student/dashboard'">Retornar</button>
+                <button type="submit">Enviar</button>
             </div>
         </form>
     </div>
@@ -125,4 +149,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -22,21 +22,21 @@ class CalledRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'problema' => 'required|integer',
-            'andar' => 'required|string|exists:locations,roof',
-            'local' => 'required|string|exists:locations,environment',
+            'type_problem' => 'required|integer',
+            'roof' => 'required|string|exists:locations,roof',
+            'environment' => 'required|string|exists:locations,environment',
         ];
     }
 
     public function messages()
     {
         return [
-            'problema.required' => 'O campo problema é obrigatório.',
-            'problema.integer' => 'O campo problema deve ser um número inteiro.',
-            'andar.required' => 'O campo andar é obrigatório.',
-            'andar.string' => 'O campo andar deve ser uma string.',
-            'local.required' => 'O campo local é obrigatório.',
-            'local.string' => 'O campo local deve ser uma string.',
+            'type_problem.required' => 'O campo problema é obrigatório.',
+            'type_problem.integer' => 'O campo problema deve ser um número inteiro.',
+            'roof.required' => 'O campo andar é obrigatório.',
+            'roof.string' => 'O campo andar deve ser uma string.',
+            'environment.required' => 'O campo local é obrigatório.',
+            'environment.string' => 'O campo local deve ser uma string.',
         ];
     }
 }
