@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name_user');
             $table->string('name_email');
             $table->string('class');             // Turma 
-            $table->date('date');                // Data da reserva
-            $table->time('time');                // Horário da reserva
+            $table->datetime('date');            // Data da reserva
             $table->text('integrantes');         // Integrantes 
             $table->timestamps();
         });

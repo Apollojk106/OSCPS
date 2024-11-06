@@ -91,9 +91,10 @@
         <h3>Horário de funcionamento</h3>
         <p>Seg á Sex das 07h ás 22h50</p><br>
 
-        @foreach($administrators as $administrator)
-        <h3>Nome: {{$administrator->name}}</h3>
-        <h3>Email: {{$administrator->email}}</h3>
+        @foreach($secretaries as $secretary)
+        <h3>Nome: {{$secretary->name}}</h3>
+        <h3>Email: {{$secretary->email}}</h3>
+        <h3>Horario presente: {{ $secretary->entry_time }} ás {{ $secretary->exit_time }}</h3>
         <br>
         @endforeach
     </div>

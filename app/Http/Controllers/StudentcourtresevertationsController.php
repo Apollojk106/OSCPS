@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CourtresevertationsRequest;
 use App\Models\reservation;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class StudentcourtresevertationsController extends Controller
 {
@@ -20,22 +21,16 @@ class StudentcourtresevertationsController extends Controller
 
         try {
             $courtReservation = Reservation::create([
-                'name_user'   => $request->name_user,
-                'name_email'  => $request->name_email,
+                'name_user'   => $user->name,
+                'name_email'  => $user->email,
                 'class'       => $request->class,
-                'date'        => $request->date,
-                'time'        => $request->time,
-                'integrantes' => $request->integrantes,
+                'date'        => Carbon::parse($request->date . ' ' . $request->time),   
+                'integrantes' => $request->integrantes,  
             ]);
-
-            
-            
-            // Se a criação for bem-sucedida, você pode retornar uma resposta de sucesso
+                      
             return redirect()->back()->with('success', 'Reserva enviada com sucesso! Fique atento ao seu email.');
         } catch (\Exception $e) {
 
-            dd("data");
-            // Caso haja algum erro na criação
             return redirect()->back()->with('errors' , 'Ocorreu um erro ao criar a reserva.');
         }
 

@@ -17,9 +17,5 @@ class reservation extends Model
         'time',
         'integrantes',
     ];
-
-    protected $casts = [
-        'date' => 'date', // Cast para data
-        'time' => 'time', // Cast para hora
-    ];
+   
 }

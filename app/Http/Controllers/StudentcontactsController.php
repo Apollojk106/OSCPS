@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Administrator;
+use App\Models\secretary;
 
 class StudentcontactsController extends Controller
 {
     public function index()
     {
-        $administrators = Administrator::select('name', 'email')->get();
+        $secretaries = secretary::all(); 
 
-        return view('Student-contacts', ['administrators' => $administrators]);
+        return view('Student-contacts', ['secretaries' => $secretaries]);
     }
 }
