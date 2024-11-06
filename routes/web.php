@@ -13,7 +13,6 @@ use App\Http\Controllers\TeacherdashboardController;
 use App\Http\Controllers\TeacherhistoryController;
 use App\Http\Controllers\TeachernotificationController;
 
-
 //rotas basicas
 Route::group(['middleware' => ['guest']], function () {
     Route::post('/login/student', [LoginController::class, 'Studentlogin'])->name('studentlogin');

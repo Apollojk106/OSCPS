@@ -17,9 +17,9 @@ class StudentcourtresevertationsController extends Controller
     public function store(CourtresevertationsRequest $request)
     {
         $user = Auth::user();
-        
+
         try {
-            $courtReservation = reservation::create([
+            $courtReservation = Reservation::create([
                 'name_user'   => $request->name_user,
                 'name_email'  => $request->name_email,
                 'class'       => $request->class,
@@ -27,12 +27,16 @@ class StudentcourtresevertationsController extends Controller
                 'time'        => $request->time,
                 'integrantes' => $request->integrantes,
             ]);
+
+            
             
             // Se a criação for bem-sucedida, você pode retornar uma resposta de sucesso
             return redirect()->back()->with('success', 'Reserva enviada com sucesso! Fique atento ao seu email.');
         } catch (\Exception $e) {
+
+            dd("data");
             // Caso haja algum erro na criação
-            return redirect()->back()->with('error' , 'Ocorreu um erro ao criar a reserva.');
+            return redirect()->back()->with('errors' , 'Ocorreu um erro ao criar a reserva.');
         }
 
         
