@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentdashboardController;
 use App\Http\Controllers\TeacherdashboardController;
 use App\Http\Controllers\TeacherhistoryController;
 use App\Http\Controllers\TeachernotificationController;
+use Illuminate\Auth\Events\Login;
 
 //rotas basicas
 Route::group(['middleware' => ['guest']], function () {
@@ -42,13 +43,15 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-// Rotas do responsável
-Route::get('/Teacher/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
-//Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+//rotas  da sesão de admin
+//Route::group(['middleware' => ['auth:admin']], function () {
+    Route::get('/Teacher/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
 
-Route::get('/Teacher/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
+    Route::get('/Teacher/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
 
-Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
+    Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
+//}); 

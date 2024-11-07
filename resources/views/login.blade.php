@@ -66,10 +66,10 @@
                 </div>
                 @endif
                 <div class="text-field-outlined">
-                    <input type="text" class="input-text" placeholder="Usuário" required>
+                    <input type="email" name="email" id="email" class="input-text" placeholder="Usuário" required>
                 </div>
                 <div class="text-field-outlined-error">
-                    <input type="password" class="input-text" placeholder="Senha" required>
+                    <input type="password" name="password" id="password" class="input-text" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
                     <button type="submit" class="label">Entre no Site</button>

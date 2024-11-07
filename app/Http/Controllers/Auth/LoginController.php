@@ -33,12 +33,6 @@ class LoginController extends Controller
         ]);
     }
 
-    public function Teacherlogin(Request $request)
-    {
-
-        return redirect('/Teacher/dashboard');
-    }
-
     public function StudentRegister(StudentRegisterRequest $request)
     {   
         $user = User::create([
@@ -59,4 +53,26 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+
+    public function Teacherlogin(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/Teacher/dashboard');
+        }
+        
+        return back()->withErrors(['email' => 'Credenciais inválidas']);
+    }
+
+
+    public function Teacherlogout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('/admin/login');
+    }
+
 }
