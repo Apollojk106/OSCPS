@@ -16,12 +16,13 @@
     <x-menu />
 
     <div class="p-4">
+        
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Problema N°34 22/06/2024 às 20:30</span>
             <span class="block text-sm font-medium">Status: Resolvido dia 15/07/2024 às 20:31</span>
             <span class="block text-sm font-medium">Problema: Elétrico</span>
             <span class="block text-sm font-medium">LUGAR/ANDAR: LAB-2/2A</span>
-            <span class="block text-sm font-medium">RM Solicitante: 20232912344</span>
+            <span class="block text-sm font-medium">RM Solicitante: 20232912344 </span>
         </div>
 
         <div class="bg-gray-200 p-4 rounded shadow mb-4">

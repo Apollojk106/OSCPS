@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_user');
             $table->string('name_email');
+            $table->enum('status', ['1','2','3']);
             $table->string('class');             // Turma 
             $table->datetime('date');            // Data da reserva
             $table->text('integrantes');         // Integrantes 

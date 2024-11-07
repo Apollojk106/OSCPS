@@ -20,7 +20,7 @@
         <div class="grid grid-cols-2 gap-6">
             <div class="bg-gray-100 p-4 rounded shadow">
                 <h2 class="font-semibold text-lg">Notificações Pendentes</h2>
-                <p class="text-xl">01</p>
+                <p class="text-xl">{{$total}}</p>
             </div>
             <div class="bg-gray-100 p-4 rounded shadow">
                 <h2 class="font-semibold text-lg">Histórico Total</h2>

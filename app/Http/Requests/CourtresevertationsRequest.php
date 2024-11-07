@@ -23,7 +23,7 @@ class CourtresevertationsRequest extends FormRequest
     {
         return [
             'class' => 'required|string|max:255',
-            'date' => 'required|date',
+            'date' => 'required|date|after:now',
             'time' => 'required|date_format:H:i',
             'integrantes' => 'required|string',
         ];

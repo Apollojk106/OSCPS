@@ -23,6 +23,7 @@ class StudentcourtresevertationsController extends Controller
             $courtReservation = Reservation::create([
                 'name_user'   => $user->name,
                 'name_email'  => $user->email,
+                'status' => '1',
                 'class'       => $request->class,
                 'date'        => Carbon::parse($request->date . ' ' . $request->time),   
                 'integrantes' => $request->integrantes,  

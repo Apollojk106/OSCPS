@@ -9,7 +9,9 @@ class TeacherhistoryController extends Controller
 {
     public function index()
     {
-        $calleds = called::all();
+        $calleds = Called::where('status', '1')->get();
+
+        dd($calleds);
 
         $pendenteCont = 0;
 
@@ -23,7 +25,7 @@ class TeacherhistoryController extends Controller
             $called->type_problem = $this->WriteProblem($called->type_problem);
         }
 
-        return view('Teacher-history', ['calleds' => $calleds, 'count' => $pendenteCont]);
+        return view('Teacher-history', ['calleds' => $calleds]);
     }
 
     public function WriteStatus($Value)
