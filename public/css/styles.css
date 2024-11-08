@@ -126,7 +126,7 @@ body.dark-mode {
 /* Header */
 .header {
     width: 100%;
-    height: 120px;
+    height: 130px;
     background-color: #842519; /* Header background light */
     display: flex;
     align-items: center;
@@ -174,7 +174,7 @@ body.dark-mode .header-icons i {
     display: flex;
     gap: 30px;
     justify-content: center;
-    margin-top: 300px; /* Move cards further down */
+    margin-top: 200px; /* Move cards further down */
     transform-origin: center;
     transition: transform 0.2s ease;
 }
