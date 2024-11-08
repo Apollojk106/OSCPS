@@ -10,7 +10,7 @@ class reservation extends Model
     use HasFactory;
 
     protected $fillable = [   
-        'name_user',   
+        'RM',   
         'name_email',
         'status',
         'class',
@@ -18,5 +18,15 @@ class reservation extends Model
         'time',
         'integrantes',
     ];
+
+    const STATUS = [
+        '1' => 'Pendente',
+        '2' => 'Aceitado',
+        '3' => 'Negado',
+    ];
    
+    public function getStatusNameAttribute()
+    {
+        return self::STATUS[$this->status] ?? 'Desconhecido'; 
+    }
 }

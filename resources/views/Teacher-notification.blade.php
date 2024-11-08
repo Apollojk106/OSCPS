@@ -22,19 +22,9 @@
         <span class="block text-sm font-medium">Status: Pendente</span>
         <span class="block text-sm font-medium">Problema: {{ $called->type_problem_name }}</span>
         <span class="block text-sm font-medium">LUGAR/ANDAR: {{ $called->roof }}/{{ $called->environment }}</span>
-        <span class="block text-sm font-medium">RM Solicitante: {{ $called->email }}</span>
+        <span class="block text-sm font-medium">Email Solicitante: {{ $called->email }}</span>
     </div>
     @endforeach
-
-    <div class="bg-gray p-4 rounded shadow mb-4">
-        <span class="font-semibold">Notificação Pendente</span>
-        <p>Elétrica 13/07/2024 às 20:40</p>
-    </div>
-
-    <div class="bg-gray-200 p-4 rounded shadow mb-4 mx-auto">
-        <span class="font-semibold">Notificação Pendente</span>
-        <p>Elétrica 13/07/2024 às 20:40</p>
-    </div>
 
 </body>
 

@@ -11,12 +11,11 @@
 </head>
 
 <body>
-
     <!-- Menu -->
     <x-menu />
 
     <div class="p-4">
-        
+
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Problema N°34 22/06/2024 às 20:30</span>
             <span class="block text-sm font-medium">Status: Resolvido dia 15/07/2024 às 20:31</span>
@@ -25,15 +24,26 @@
             <span class="block text-sm font-medium">RM Solicitante: 20232912344 </span>
         </div>
 
+        @foreach($calleds as $called)
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
-            <span class="font-semibold text-lg">Quadra Poliesportiva N°3</span>
-            <span class="block text-sm font-medium"> Reserva para: 22/06/2024 às 20:30</span>
-            <span class="block text-sm font-medium">RM Solicitante: 20232912344</span>
+            <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>
+            <span class="block text-sm font-medium">Status: {{ $called->status }}</span>
+            <span class="block text-sm font-medium">Problema: {{ $called->type_problem }}</span>
+            <span class="block text-sm font-medium">LUGAR/ANDAR: {{ $called->roof }}/{{ $called->environment }}</span>
+            <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }}</span>
+        </div>
+        @endforeach
+
+        @foreach($reservations as $reservation)
+        <div class="bg-gray-200 p-4 rounded shadow mb-4">
+            <span class="font-semibold text-lg">Quadra Poliesportiva N°{{ $reservation->id }}</span>
+            <span class="block text-sm font-medium">Reserva para: {{ \Carbon\Carbon::parse($reservation->date)->format('d/m/Y \à\s H:i') }}</span>
+            <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->name_user }}</span>
             <div class="mt-4 flex space-x-4">
-                <a href="#" class="bg-red-500 text-white px-4 py-2 rounded">Recusar</a>
-                <a href="#" class="bg-green-500 text-white px-4 py-2 rounded">Aprovar</a>
+            <span class="block text-sm font-medium">integrantes: {{ $reservation->integrantes }}</span>
             </div>
         </div>
+        @endforeach
 
     </div>
 

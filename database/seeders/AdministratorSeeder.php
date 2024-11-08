@@ -93,7 +93,7 @@ class AdministratorSeeder extends Seeder
 
         // Criar 3 reservas de exemplo
         Reservation::create([
-            'name_user' => 'Carlos Souza',
+            'RM' => '12345678923',
             'name_email' => 'carlos@example.com',
             'status' => '1',
             'class' => 'Turma A',
@@ -102,7 +102,7 @@ class AdministratorSeeder extends Seeder
         ]);
 
         Reservation::create([
-            'name_user' => 'Ana Costa',
+            'RM' => '12345678968',
             'name_email' => 'ana@example.com',
             'status' => '2',
             'class' => 'Turma B',

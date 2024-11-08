@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('name_user');
+            $table->string('RM');
             $table->string('name_email');
             $table->enum('status', ['1','2','3']);
-            $table->string('class');             // Turma 
-            $table->datetime('date');            // Data da reserva
-            $table->text('integrantes');         // Integrantes 
+            $table->string('class');            
+            $table->datetime('date');            
+            $table->text('integrantes');         
             $table->timestamps();
         });
     }

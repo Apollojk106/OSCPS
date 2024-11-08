@@ -13,8 +13,8 @@ class called extends Model
         'status',
         'priority',
         'recalled',
-        'type_problem',
-        'name',
+        'type_problem', 
+        'RM',
         'email',
         'roof',
         'environment',
@@ -30,8 +30,19 @@ class called extends Model
         '7' => 'Manutenção corretiva',
     ];
 
+    const STATUS = [
+        '1' => 'Pendente',
+        '2' => 'Em Andamento',
+        '3' => 'Concluído',
+    ];
+
     public function getTypeProblemNameAttribute()
     {
         return self::TYPE_PROBLEM[$this->type_problem] ?? 'Desconhecido'; 
+    }
+
+    public function getStatusNameAttribute()
+    {
+        return self::STATUS[$this->status] ?? 'Desconhecido'; 
     }
 }

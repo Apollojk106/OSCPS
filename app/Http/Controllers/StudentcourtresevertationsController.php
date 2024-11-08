@@ -21,7 +21,7 @@ class StudentcourtresevertationsController extends Controller
 
         try {
             $courtReservation = Reservation::create([
-                'name_user'   => $user->name,
+                'RM'   => $user->RM,
                 'name_email'  => $user->email,
                 'status' => '1',
                 'class'       => $request->class,

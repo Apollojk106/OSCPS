@@ -54,4 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
     Route::post('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
+
+    //Route::post('/{reservation}/approve', [ReservationController::class, 'approve'])->name('reservations.approve');
+    //Route::post('/{reservation}/reject', [ReservationController::class, 'reject'])->name('reservations.reject');
 //}); 

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\called;
+use App\Models\reservation;
 use Illuminate\Http\Request;
 
 class TeacherhistoryController extends Controller
 {
     public function index()
     {
-        $calleds = Called::where('status', '1')->get();
+        $calleds = Called::orderByRaw("FIELD(status, '1', '2', '3')")->get();
+
+        $reservations = Reservation::where('status', '1')->get();
 
         dd($calleds);
 
@@ -25,7 +28,7 @@ class TeacherhistoryController extends Controller
             $called->type_problem = $this->WriteProblem($called->type_problem);
         }
 
-        return view('Teacher-history', ['calleds' => $calleds]);
+        return view('Teacher-history', ['calleds' => $calleds, 'reservations' => $reservations]);
     }
 
     public function WriteStatus($Value)
