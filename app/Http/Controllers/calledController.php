@@ -82,15 +82,5 @@ class calledController extends Controller
                 return 'Manutenção corretiva';
                 break;
         }
-
-
     }
-
-    /**Elétricos 
-Hidráulicos 
-Prediais 
-Maquinário ( computadores) 
-Contenção de acidentes ( piso molhado ) 
-Manutenção preditiva 
-Manutenção corretiva */
 }

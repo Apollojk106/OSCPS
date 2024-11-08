@@ -16,13 +16,16 @@
 
     <div class="p-4">
 
-        <div class="bg-gray-200 p-4 rounded shadow mb-4">
-            <span class="font-semibold text-lg">Problema N°34 22/06/2024 às 20:30</span>
-            <span class="block text-sm font-medium">Status: Resolvido dia 15/07/2024 às 20:31</span>
-            <span class="block text-sm font-medium">Problema: Elétrico</span>
-            <span class="block text-sm font-medium">LUGAR/ANDAR: LAB-2/2A</span>
-            <span class="block text-sm font-medium">RM Solicitante: 20232912344 </span>
-        </div>
+    <form method="GET" action="{{ route('teacher.history.filter') }}" class="mb-4">
+        <label for="status" class="block text-sm font-medium">Filtrar por Status</label>
+            <select name="status" id="status" class="mt-1 p-2 border rounded">
+                <option value="Todos">Todos</option>
+                <option value="1" {{ request('status') == 'Pendente' ? 'selected' : '' }}>Pendente</option>
+                <option value="2" {{ request('status') == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
+                <option value="3" {{ request('status') == 'Concluido' ? 'selected' : '' }}>Concluído</option>
+            </select>
+            <button type="submit" class="ml-2 p-2 bg-blue-500 text-white rounded">Filtrar</button>
+        </form>
 
         @foreach($calleds as $called)
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
@@ -38,7 +41,7 @@
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Quadra Poliesportiva N°{{ $reservation->id }}</span>
             <span class="block text-sm font-medium">Reserva para: {{ \Carbon\Carbon::parse($reservation->date)->format('d/m/Y \à\s H:i') }}</span>
-            <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->name_user }}</span>
+            <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->RM }}</span>
             <div class="mt-4 flex space-x-4">
             <span class="block text-sm font-medium">integrantes: {{ $reservation->integrantes }}</span>
             </div>

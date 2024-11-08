@@ -12,81 +12,73 @@ class TeacherhistoryController extends Controller
     {
         $calleds = Called::orderByRaw("FIELD(status, '1', '2', '3')")->get();
 
+        $calleds->filter(fn($called) => $called->status == 1)->count();
+        
         $reservations = Reservation::where('status', '1')->get();
 
-        dd($calleds);
+        return $this->RetornarDashboard($calleds, $reservations);
+    }
 
-        $pendenteCont = 0;
+    public function filter(Request $request)
+    {   
+        $statusFilter = $request->input('status'); 
 
-        foreach ($calleds as $called) {
-            if ($called->status == 1) {
-                $pendenteCont = $pendenteCont + 1;
-            }
+        $calledsQuery = Called::query(); 
 
-            $called->status = $this->WriteStatus($called->status);
-            $called->priority = $this->WritePriority($called->priority);
-            $called->type_problem = $this->WriteProblem($called->type_problem);
+        if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
+            $calledsQuery->where('status', $statusFilter);
+        }else{
+            $calledsQuery->orderBy('status');
         }
+    
+        $calleds = $calledsQuery->get();
+    
+        if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
+            $reservations = Reservation::where('status', $statusFilter)->get();
+        } else {
+            $reservations = Reservation::orderBy('status')->get();
+        }   
+
+        $calleds = $calledsQuery->get();
+
+        $reservations = Reservation::where('status', $statusFilter)->get();
+
+        return $this->RetornarDashboard($calleds, $reservations);
+    }
+
+    public function RetornarDashboard($calleds, $reservations) 
+    {
+        
+        $statusMap = [
+            1 => 'Pendente',
+            2 => 'Em Andamento',
+            3 => 'Concluido',
+        ];
+
+        $priorityMap = [
+            1 => 'Baixa',
+            2 => 'Media',
+            3 => 'Alta',
+        ];
+
+        $problemMap = [
+            1 => 'Elétricos',
+            2 => 'Hidráulicos',
+            3 => 'Prediais',
+            4 => 'Maquinário (computadores)',
+            5 => 'Contenção de acidentes (piso molhado)',
+            6 => 'Manutenção preditiva',
+            7 => 'Manutenção corretiva',
+        ];
+
+        $calleds->transform(function ($called) use ($statusMap, $priorityMap, $problemMap) {
+            $called->status = $statusMap[$called->status] ?? 'Desconhecido'; // Fallback
+            $called->priority = $priorityMap[$called->priority] ?? 'Desconhecida'; // Fallback
+            $called->type_problem = $problemMap[$called->type_problem] ?? 'Desconhecido'; // Fallback
+            return $called;
+        });
 
         return view('Teacher-history', ['calleds' => $calleds, 'reservations' => $reservations]);
     }
 
-    public function WriteStatus($Value)
-    {
-        switch ($Value) {
-            case '1':
-                return 'Pendente';
-                break;
-            case '2':
-                return 'Em Andamento';
-                break;
-            case '3':
-                return 'Concluido';
-                break;
-        }
-    }
-
-    public function WritePriority($Value)
-    {
-        switch ($Value) {
-            case '1':
-                return 'Baixa';
-                break;
-            case '2':
-                return 'Media';
-                break;
-            case '3':
-                return 'Alta';
-                break;
-        }
-    }
-
-    public function WriteProblem($Value)
-    {
-        switch ($Value) {
-            case '1':
-                return 'Elétricos';
-                break;
-            case '2':
-                return 'Hidráulicos';
-                break;
-            case '3':
-                return 'Prediais';
-                break;
-            case '4':
-                return 'Maquinário (computadores)';
-                break;
-            case '5':
-                return 'Contenção de acidentes (piso molhado)';
-                break;
-            case '6':
-                return 'Manutenção preditiva';
-                break;
-            case '7':
-                return 'Manutenção corretiva';
-                break;
-        }
-
-
-    }
 }
