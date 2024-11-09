@@ -23,8 +23,9 @@
                 <option value="1" {{ request('status') == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                 <option value="2" {{ request('status') == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
                 <option value="3" {{ request('status') == 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                <option value="3" {{ request('status') == 'Rechamado' ? 'selected' : '' }}>Rechamado</option>
             </select>
-            <button type="submit" class="ml-2 p-2 bg-blue-500 text-white rounded">Filtrar</button>
+            <button type="submit" class="ml-2 p-2 text-white rounded">Filtrar</button>
         </form>
 
         @foreach($calleds as $called)
@@ -32,8 +33,10 @@
             <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>
             <span class="block text-sm font-medium">Status: {{ $called->status }}</span>
             <span class="block text-sm font-medium">Problema: {{ $called->type_problem }}</span>
-            <span class="block text-sm font-medium">LUGAR/ANDAR: {{ $called->roof }}/{{ $called->environment }}</span>
-            <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }}</span>
+            <span class="block text-sm font-medium">LUGAR: {{ $called->roof }}</span>
+            <span class="block text-sm font-medium">ANDAR:{{ $called->environment }}</span>
+            <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }}     Rechamados {{ $called->recalled }}</span>
+
         </div>
         @endforeach
 

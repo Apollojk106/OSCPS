@@ -53,6 +53,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
 
+    Route::patch('/called/{called}/updateStatus', [TeachernotificationController::class, 'updateStatus'])->name('called.updateStatus');
+    Route::patch('/reservation/{reservation}/accept', [TeachernotificationController::class, 'accept'])->name('reservation.accept');
+    Route::patch('/reservation/{reservation}/reject', [TeachernotificationController::class, 'reject'])->name('reservation.reject');
+
+
     Route::get('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
     Route::post('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
 

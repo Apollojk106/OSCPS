@@ -10,10 +10,28 @@ class TeacherdashboardController extends Controller
 {
     public function index()
     {
-        $totalCalled = called::where('status', 1)->count();
+        $pendetCalled  = called::where('status', 1)->count();
+        $AndamentoCalled  = called::where('status', 2)->count();
+        $ConcluidoCalled  = called::where('status', 3)->count();
+       
+        $totalCalled = $pendetCalled + $AndamentoCalled + $ConcluidoCalled;   
 
-        $totalCourt  = reservation::where('status', 1)->count();
+        $pendentReservate = reservation::where('status', 1)->count();
+        $AndamentoReserve = reservation::where('status', 2)->count();
+        $ConcluidoReserve = reservation::where('status', 3)->count();
 
-        return view('Teacher-dashboard', ['total' => $totalCalled + $totalCourt]);
+        $totalReservate = $pendentReservate + $AndamentoReserve + $ConcluidoReserve;
+
+
+        return view('Teacher-dashboard', [     
+            'ConcluidoCalled' => $ConcluidoCalled,   
+            'AndamentoCalled' => $AndamentoCalled,
+            'pendetCalled' => $pendetCalled,
+            'totalCalled' => $totalCalled,
+            'pendetReserve' => $pendentReservate,
+            'AndamentoReserve' => $AndamentoReserve,
+            'ConcluidoReserve' => $ConcluidoReserve,
+            'totalReservate' => $totalReservate,
+        ]);
     }
 }

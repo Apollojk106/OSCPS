@@ -42,7 +42,7 @@ class StudentcalledController extends Controller
             ->first();
 
         // Se o chamado já existir
-        if ($called) {
+        if ($called && $called->status != '3') {
             // Aumenta o valor de recalled
             $called->recalled += 1;
 
@@ -67,7 +67,7 @@ class StudentcalledController extends Controller
             'priority' => '1', // Inicia com prioridade 1
             'recalled' => 1, // Inicia com 1 recall
             'type_problem' => $request->type_problem,
-            'name' => $user->name, // Nome do usuário autenticado
+            'RM' => $user->RM, // Nome do usuário autenticado
             'email' => $user->email, // E-mail do usuário autenticado
             'roof' => $request->roof, // Local
             'environment' => $request->environment, // Ambiente

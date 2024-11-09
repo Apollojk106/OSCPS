@@ -10,34 +10,39 @@ class TeacherhistoryController extends Controller
 {
     public function index()
     {
-        $calleds = Called::orderByRaw("FIELD(status, '1', '2', '3')")->get();
+        $calleds = Called::whereIn('status', ['1', '2', '3'])
+            ->orderByRaw("FIELD(status, '1', '2', '3')")
+            ->get();
 
         $calleds->filter(fn($called) => $called->status == 1)->count();
-        
-        $reservations = Reservation::where('status', '1')->get();
+
+        $reservations = Reservation::whereIn('status', ['1', '2', '3'])
+            ->orderByRaw("FIELD(status, '1', '2', '3')")
+            ->get();
 
         return $this->RetornarDashboard($calleds, $reservations);
     }
 
     public function filter(Request $request)
-    {   
-        $statusFilter = $request->input('status'); 
+    {
 
-        $calledsQuery = Called::query(); 
+        $statusFilter = $request->input('status');
+
+        $calledsQuery = Called::query();
 
         if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
             $calledsQuery->where('status', $statusFilter);
-        }else{
+        } else {
             $calledsQuery->orderBy('status');
         }
-    
-        $calleds = $calledsQuery->get();
-    
+
+        $calleds = $calledsQuery->orderBy('recalled', 'desc')->get();
+
         if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
             $reservations = Reservation::where('status', $statusFilter)->get();
         } else {
             $reservations = Reservation::orderBy('status')->get();
-        }   
+        }
 
         $calleds = $calledsQuery->get();
 
@@ -46,9 +51,9 @@ class TeacherhistoryController extends Controller
         return $this->RetornarDashboard($calleds, $reservations);
     }
 
-    public function RetornarDashboard($calleds, $reservations) 
+    public function RetornarDashboard($calleds, $reservations)
     {
-        
+
         $statusMap = [
             1 => 'Pendente',
             2 => 'Em Andamento',
@@ -80,5 +85,4 @@ class TeacherhistoryController extends Controller
 
         return view('Teacher-history', ['calleds' => $calleds, 'reservations' => $reservations]);
     }
-
 }
