@@ -9,6 +9,7 @@ use App\Models\called;
 use App\Models\location;
 use App\Models\reservation;
 use App\Models\secretary;
+use App\Models\Student;
 
 class AdministratorSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class AdministratorSeeder extends Seeder
             'name' => 'Administrador Exemplo',
             'RM' => '12345678910',
             'email' => 'adm@adm',
-            'password' => Hash::make('123'), 
+            'password' => Hash::make('123456789'), 
             'specialty' => 'Gestor',
         ]);
 
@@ -122,6 +123,24 @@ class AdministratorSeeder extends Seeder
             'email' => 'lucas@example.com',
             'entry_time' => '09:00:00',
             'exit_time' => '18:00:00',
+        ]);
+
+        Student::create([
+            'RM' => '12345',
+            'name' => 'João da Silva',
+            'class' => '1A',
+        ]);
+
+        Student::create([
+            'RM' => '12346',
+            'name' => 'Maria Oliveira',
+            'class' => '2B',
+        ]);
+
+        Student::create([
+            'RM' => '12347',
+            'name' => 'Carlos Souza',
+            'class' => '3C',
         ]);
     }
 }

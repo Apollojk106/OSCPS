@@ -115,6 +115,10 @@
             <span>Histórico</span>
             <img src="public/external/history-icon.svg" alt="History Icon" />
         </a>
+        <a href="/Teacher/config" class="flex items-center">
+            <span>Configurações</span>
+            <img src="public/external/history-icon.svg" alt="Config Icon" />
+        </a>
         <a href="/logout" class="flex items-center">
             <span>Logout</span>
             <img src="public/external/history-icon.svg" alt="Logout Icon" />

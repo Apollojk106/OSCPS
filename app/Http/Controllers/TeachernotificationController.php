@@ -11,7 +11,7 @@ class TeachernotificationController extends Controller
     public function index()
     {
         $calleds = Called::whereIn('status', ['1', '2'])
-            ->orderByRaw("FIELD(status, '1', '2')") // Ordena pelo status (1 primeiro, depois 2)
+            ->orderByRaw("FIELD(status, '1', '2')") 
             ->get();
         $reservations = reservation::where('status', '1')->get();
 

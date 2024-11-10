@@ -23,7 +23,6 @@
                 <option value="1" {{ request('status') == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                 <option value="2" {{ request('status') == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
                 <option value="3" {{ request('status') == 'Concluido' ? 'selected' : '' }}>Concluído</option>
-                <option value="3" {{ request('status') == 'Rechamado' ? 'selected' : '' }}>Rechamado</option>
             </select>
             <button type="submit" class="ml-2 p-2 text-white rounded">Filtrar</button>
         </form>

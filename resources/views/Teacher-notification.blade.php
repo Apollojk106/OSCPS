@@ -26,22 +26,22 @@
 
         <!-- Botão para mudar o status -->
         @if($called->status != '3') <!-- Não exibe botão se já estiver concluído -->
-            <form action="{{ route('called.updateStatus', $called->id) }}" method="POST" class="mt-4">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-                    Mudar Status
-                </button>
-            </form>
+        <form action="{{ route('called.updateStatus', $called->id) }}" method="POST" class="mt-4">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                Avançar Status
+            </button>
+        </form>
         @else
-            <span class="text-green-500 font-semibold">Chamado Concluído</span>
+        <span class="text-green-500 font-semibold">Chamado Concluído</span>
         @endif
     </div>
-@endforeach
+    @endforeach
 
 
-@foreach($reservations as $reservation)
-    <div class="bg-gray-200 p-4 rounded shadow mb-4">
+    @foreach($reservations as $reservation)
+    <div class="bg-gray-200 p-4 rounded shadow mb-4 ">
         <span class="font-semibold text-lg">Quadra Poliesportiva N°{{ $reservation->id }}</span>
         <span class="block text-sm font-medium">Reserva para: {{ \Carbon\Carbon::parse($reservation->date)->format('d/m/Y \à\s H:i') }}</span>
         <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->RM }}</span>
@@ -50,11 +50,11 @@
         </div>
 
         <!-- Botões para aceitar ou recusar -->
-        <div class="mt-4 flex space-x-4">
+        <div class="mt-4">
             <form action="{{ route('reservation.accept', $reservation->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <button type="submit" class="bg-green-500 text-white p-2 rounded hover:bg-green-600">
+                <button type="submit" class="px-2 py-3 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-300">
                     Aceitar
                 </button>
             </form>
@@ -62,14 +62,14 @@
             <form action="{{ route('reservation.reject', $reservation->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <button type="submit" class="bg-red-500 text-white p-2 rounded hover:bg-red-600">
+                <button type="submit" class="px-2 py-3 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">
                     Recusar
                 </button>
             </form>
         </div>
-    </div>
-@endforeach
-
+        </div>
+        @endforeach
+    
 
 </body>
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentdashboardController;
 use App\Http\Controllers\TeacherdashboardController;
 use App\Http\Controllers\TeacherhistoryController;
 use App\Http\Controllers\TeachernotificationController;
+use App\Http\Controllers\TeacherconfigController;
 use Illuminate\Auth\Events\Login;
 
 //rotas basicas
@@ -52,11 +53,22 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/Teacher/history/filter', [TeacherhistoryController::class, 'filter'])->name('teacher.history.filter');
 
     Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
-
     Route::patch('/called/{called}/updateStatus', [TeachernotificationController::class, 'updateStatus'])->name('called.updateStatus');
     Route::patch('/reservation/{reservation}/accept', [TeachernotificationController::class, 'accept'])->name('reservation.accept');
     Route::patch('/reservation/{reservation}/reject', [TeachernotificationController::class, 'reject'])->name('reservation.reject');
 
+    Route::get('/Teacher/config', [TeacherconfigController::class, 'index'])->name('teacher.config');
+
+    Route::post('/student/{id}/update', [TeacherconfigController::class, 'updateStudent'])->name('student.update');
+    Route::post('/location/{id}/update', [TeacherconfigController::class, 'updateLocation'])->name('location.update');
+    
+    Route::get('/student/{id}/delete', [TeacherconfigController::class, 'destroyStudent'])->name('student.destroy');
+    Route::get('/location/{id}/delete', [TeacherconfigController::class, 'destroyLocation'])->name('location.destroy');
+
+    Route::post('/student/store', [TeacherconfigController::class, 'storeStudent'])->name('students.store');
+    Route::post('/location/store', [TeacherconfigController::class, 'storeLocation'])->name('locations.store');
+
+    Route::post('/students/import', [TeacherconfigController::class, 'importStudents'])->name('import.students');
 
     Route::get('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
     Route::post('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
