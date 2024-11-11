@@ -15,7 +15,7 @@ class StudentRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'RM' => 'required|string|size:11|unique:users,RM',
+            'RM' => 'required|string|size:11|unique:users,RM|exists:students,RM',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ];
@@ -32,6 +32,8 @@ class StudentRegisterRequest extends FormRequest
             'RM.unique' => 'Este RM já está cadastrado.',
             'email.unique' => 'Este email já está cadastrado.',
             'password.confirmed' => 'As senhas não coincidem.',
+            'RM.unique' => 'Este RM já está associado a um usuário.',
+            'RM.exists' => 'Este RM já está associado a um usuário.',
         ];
     }
 }

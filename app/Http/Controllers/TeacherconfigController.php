@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\location;
+use App\Models\secretary;
 use App\Models\Student;
 
 class TeacherconfigController extends Controller
@@ -11,11 +12,60 @@ class TeacherconfigController extends Controller
 
     public function index()
     {
-        $students = Student::all();
+        $classes = Student::distinct()->pluck('class');
+
+        $students = Student::limit(3)->get();
+
         $locations = Location::all();
 
-        return view('Teacher-config', compact('students', 'locations'));
+        $secretaries = secretary::all();
+
+        return view('Teacher-config', compact('students', 'locations', 'classes', 'secretaries'));
     }
+
+    public function filter(Request $request)
+    {
+
+        $classes = Student::distinct()->pluck('class');
+        $students = Student::where('class', $request->class)->get();
+        $locations = Location::all();
+        $secretaries = secretary::all();
+
+        return view('Teacher-config', compact('students', 'locations', 'classes', 'secretaries'));
+    }
+
+    public function EditStudent(Request $request)
+    {
+        $Student = Student::find($request->id);
+
+        return view('Teacher-EditStudent', ['Student' => $Student]);
+    }
+
+    public function EditSecretary(Request $request)
+    {
+        $Secretary = Secretary::find($request->id);
+        return view('Teacher-EditSecretary', ['Secretary' => $Secretary]);
+    }
+
+    public function EditLocation(Request $request)
+    {
+        $Location = Location::find($request->id);
+        return view('Teacher-EditLocation', ['Location' => $Location]);
+    }
+
+    public function deleteClass(Request $request)
+    {
+        $class = $request->input('class');
+
+        if (!$class) {
+            return back()->with('error', 'Selecione uma classe para deletar.');
+        }
+
+        Student::where('class', $class)->delete();
+
+        return redirect()->route('teacher.config')->with('success', 'Classe apagada com sucesso!');
+    }
+
 
     public function storeStudent(Request $request)
     {
@@ -98,15 +148,22 @@ class TeacherconfigController extends Controller
 
     public function importStudents(Request $request)
     {
+        // Validação dos campos
         $request->validate([
             'class' => 'required|string|max:255',  // Valida o nome da turma
             'file' => 'required|file|mimes:txt',  // Valida o tipo de arquivo
         ]);
 
+        // Recupera o arquivo do request
         $file = $request->file('file');
 
         // Lê o conteúdo do arquivo
         $content = file_get_contents($file->getRealPath());
+
+
+        // Normaliza as quebras de linha (independente do sistema)
+        $content = str_replace("\r\n", "\n", $content);  // Para corrigir no Windows
+        $content = str_replace("\r", "\n", $content);   // Para corrigir no Windows também
 
         // Divide o conteúdo do arquivo em linhas
         $lines = explode("\n", $content);
@@ -121,10 +178,10 @@ class TeacherconfigController extends Controller
                 continue;
             }
 
-            $parts = preg_split('/\s{2,}/', $line);  // Usa dois ou mais espaços como delimitador
+            $parts = explode(' ', trim($line), 2);  
 
             if (count($parts) < 2) {
-                continue;  
+                continue;
             }
 
             $RM = $parts[0];
@@ -140,5 +197,55 @@ class TeacherconfigController extends Controller
         }
 
         return redirect()->route('teacher.config')->with('success', 'Estudantes importados com sucesso!');
+    }
+
+    public function storeSecretary(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:secretaries,email',
+            'entry_time' => 'required|date_format:H:i',
+            'exit_time' => 'required|date_format:H:i',
+        ]);
+
+        Secretary::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'entry_time' => $validated['entry_time'],
+            'exit_time' => $validated['exit_time'],
+        ]);
+
+        return redirect()->route('secretaries.index')->with('success', 'Secretária criada com sucesso!');
+    }
+
+    public function updateSecretary(Request $request, $id)
+    {
+        dd($request);
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:secretaries,email,' . $id, 
+            'entry_time' => 'required',
+            'exit_time' => 'required',
+        ]);
+
+        $secretary = Secretary::findOrFail($id);
+
+        $secretary->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'entry_time' => $validated['entry_time'],
+            'exit_time' => $validated['exit_time'],
+        ]);
+
+        return redirect()->route('secretaries.index')->with('success', 'Secretária atualizada com sucesso!');
+    }
+
+    public function destroySecretary($id)
+    {
+        $secretary = Secretary::findOrFail($id);
+
+        $secretary->delete();
+
+        return redirect()->route('secretaries.index')->with('success', 'Secretária excluída com sucesso!');
     }
 }

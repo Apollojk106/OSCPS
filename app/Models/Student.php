@@ -12,6 +12,7 @@ class Student extends Model
     protected $table = 'students';
 
     protected $fillable = [
+        'id',
         'RM', 
         'name', 
         'class'

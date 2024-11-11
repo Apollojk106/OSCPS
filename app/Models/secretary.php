@@ -16,6 +16,11 @@ class secretary extends Model
 
     protected $dates = ['entry_time', 'exit_time'];
 
+    protected $casts = [
+        'entry_time' => 'datetime:H:i',
+        'exit_time' => 'datetime:H:i',
+    ];
+
     public function getEntryTimeAttribute($value)
     {
         return Carbon::parse($value)->format('H:i'); // Formato 24h sem os segundos

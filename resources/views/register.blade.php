@@ -18,10 +18,6 @@
                 <div class="title">
                     <div class="text">Cadastro</div>
                 </div>
-                <div class="subtitle">
-                    <div class="text">Preencha suas informações.</div>
-
-                </div>
 
                 @if ($errors->any())
                 <div class="bg-red-600" style="color: black; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;">

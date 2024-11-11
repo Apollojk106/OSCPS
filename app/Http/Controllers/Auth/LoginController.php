@@ -72,7 +72,8 @@ class LoginController extends Controller
     public function Teacherlogout()
     {
         Auth::guard('admin')->logout();
-        return redirect('/admin/login');
+
+        return redirect('/login');
     }
 
 }
