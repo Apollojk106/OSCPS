@@ -3,25 +3,32 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Administrator;
 use App\Models\called;
 use App\Models\location;
 use App\Models\reservation;
 use App\Models\secretary;
 use App\Models\Student;
+use App\Models\User;
 
 class AdministratorSeeder extends Seeder
 {
     public function run()
     {
         // Cria um administrador com dados fictícios
-        Administrator::create([
-            'name' => 'Administrador Exemplo',
-            'RM' => '12345678910',
-            'email' => 'adm@adm',
-            'password' => Hash::make('123456789'), 
-            'specialty' => 'Gestor',
+        User::create([
+            'name' => 'Administrador',
+            'RM' => '123456789',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('123456789'),
+            'role' => 'admin',
+        ]);
+
+        User::create([
+            'name' => 'Aluno Teste',
+            'RM' => '987654321',
+            'email' => 'aluno@example.com',
+            'password' => bcrypt('123456789'),
+            'role' => 'user',
         ]);
 
         // Criar 5 chamados de exemplo

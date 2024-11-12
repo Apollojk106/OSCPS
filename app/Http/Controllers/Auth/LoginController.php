@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StudentRegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Student;
 
 class LoginController extends Controller
 {
@@ -24,7 +24,17 @@ class LoginController extends Controller
     public function Studentlogin(LoginRequest $request)
     {
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {           
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {     
+            
+            $user = Auth::user();
+            dd($$user);
+
+            if($user->role == 'admin')
+            {
+               
+                return redirect('/Teacher/dashboard');
+            }
+
             return redirect()->intended('/Student/dashboard');
         }
 
@@ -35,6 +45,10 @@ class LoginController extends Controller
 
     public function StudentRegister(StudentRegisterRequest $request)
     {   
+        if (Student::where('RM', $request->RM)->exists()) {
+            return back();
+        }
+
         $user = User::create([
             'name' => $request->name,
             'RM' => $request->RM,
@@ -61,19 +75,10 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        /*if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/Teacher/dashboard');
-        }
+        }*/
         
         return back()->withErrors(['email' => 'Credenciais inválidas']);
     }
-
-
-    public function Teacherlogout()
-    {
-        Auth::guard('admin')->logout();
-
-        return redirect('/login');
-    }
-
 }

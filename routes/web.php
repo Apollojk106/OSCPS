@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 //rotas novas
 use App\Http\Controllers\Auth\LoginController;
-
 use App\Http\Controllers\StudentcalledController;
 use App\Http\Controllers\StudentcontactsController;
 use App\Http\Controllers\StudentcourtresevertationsController;
@@ -27,7 +26,7 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 // Rotas da sessão do aluno
-Route::group(['middleware' => ['auth']], function () {
+Route::middleware(['role:user'])->group(function () {
     Route::get('/Student/dashboard', [StudentdashboardController::class, 'index'])->name('student.dashboard');
     Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
 
@@ -44,41 +43,39 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //rotas  da sesão de admin
-//Route::group(['middleware' => ['auth:admin']], function () {
-Route::get('/Teacher/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
-//Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/Teacher/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
 
-Route::get('/Teacher/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
-Route::get('/Teacher/history/filter', [TeacherhistoryController::class, 'filter'])->name('teacher.history.filter');
+    Route::get('/Teacher/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
+    Route::get('/Teacher/history/filter', [TeacherhistoryController::class, 'filter'])->name('teacher.history.filter');
 
-Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
-Route::patch('/called/{called}/updateStatus', [TeachernotificationController::class, 'updateStatus'])->name('called.updateStatus');
-Route::patch('/reservation/{reservation}/accept', [TeachernotificationController::class, 'accept'])->name('reservation.accept');
-Route::patch('/reservation/{reservation}/reject', [TeachernotificationController::class, 'reject'])->name('reservation.reject');
+    Route::get('/Teacher/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
+    Route::patch('/called/{called}/updateStatus', [TeachernotificationController::class, 'updateStatus'])->name('called.updateStatus');
+    Route::patch('/reservation/{reservation}/accept', [TeachernotificationController::class, 'accept'])->name('reservation.accept');
+    Route::patch('/reservation/{reservation}/reject', [TeachernotificationController::class, 'reject'])->name('reservation.reject');
 
-Route::post('/Student/Edit', [TeacherconfigController::class, 'EditStudent'])->name('Student.Edit');
-Route::post('/location/Edit', [TeacherconfigController::class, 'EditLocation'])->name('Location.Edit');
-Route::post('/secretary/Edit', [TeacherconfigController::class, 'EditSecretary'])->name('Secretary.Edit');
+    Route::post('/Student/Edit', [TeacherconfigController::class, 'EditStudent'])->name('Student.Edit');
+    Route::post('/location/Edit', [TeacherconfigController::class, 'EditLocation'])->name('Location.Edit');
+    Route::post('/secretary/Edit', [TeacherconfigController::class, 'EditSecretary'])->name('Secretary.Edit');
 
-Route::get('/Teacher/config', [TeacherconfigController::class, 'index'])->name('teacher.config');
-Route::post('/Teacher/config/filter', [TeacherconfigController::class, 'filter'])->name('teacher.config.filter');
-Route::post('/Teacher/config/delete-class', [TeacherconfigController::class, 'deleteClass'])->name('teacher.config.delete_class');
+    Route::get('/Teacher/config', [TeacherconfigController::class, 'index'])->name('teacher.config');
+    Route::post('/Teacher/config/filter', [TeacherconfigController::class, 'filter'])->name('teacher.config.filter');
+    Route::post('/Teacher/config/delete-class', [TeacherconfigController::class, 'deleteClass'])->name('teacher.config.delete_class');
 
-Route::post('/location/{id}/update', [TeacherconfigController::class, 'updateLocation'])->name('location.update');
-Route::get('/location/{id}/delete', [TeacherconfigController::class, 'destroyLocation'])->name('location.destroy');
-Route::post('/location/store', [TeacherconfigController::class, 'storeLocation'])->name('locations.store');
+    Route::post('/location/{id}/update', [TeacherconfigController::class, 'updateLocation'])->name('location.update');
+    Route::get('/location/{id}/delete', [TeacherconfigController::class, 'destroyLocation'])->name('location.destroy');
+    Route::post('/location/store', [TeacherconfigController::class, 'storeLocation'])->name('locations.store');
 
-Route::post('/student/{id}/update', [TeacherconfigController::class, 'updateStudent'])->name('student.update');
-Route::get('/student/{id}/delete', [TeacherconfigController::class, 'destroyStudent'])->name('student.destroy');
-Route::post('/student/store', [TeacherconfigController::class, 'storeStudent'])->name('students.store');
-Route::post('/students/import', [TeacherconfigController::class, 'importStudents'])->name('import.students');
+    Route::post('/student/{id}/update', [TeacherconfigController::class, 'updateStudent'])->name('student.update');
+    Route::get('/student/{id}/delete', [TeacherconfigController::class, 'destroyStudent'])->name('student.destroy');
+    Route::post('/student/store', [TeacherconfigController::class, 'storeStudent'])->name('students.store');
+    Route::post('/students/import', [TeacherconfigController::class, 'importStudents'])->name('import.students');
 
-Route::post('/secretary/{id}/update', [TeacherconfigController::class, 'updateSecretary'])->name('secretary.update');
-Route::get('/secretary/{id}/delete', [TeacherconfigController::class, 'destroySecretary'])->name('secretary.destroy');
-Route::post('/secretary/store', [TeacherconfigController::class, 'storeSecretary'])->name('secretaries.store');
-
+    Route::post('/secretary/{id}/update', [TeacherconfigController::class, 'updateSecretary'])->name('secretary.update');
+    Route::get('/secretary/{id}/delete', [TeacherconfigController::class, 'destroySecretary'])->name('secretary.destroy');
+    Route::post('/secretary/store', [TeacherconfigController::class, 'storeSecretary'])->name('secretaries.store');
 
     //Route::get('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
     //Route::post('/logout', [LoginController::class, 'Teacherlogout'])->name('logout');
-
-//}); 
+});

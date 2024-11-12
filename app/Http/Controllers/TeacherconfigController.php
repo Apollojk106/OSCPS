@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Smalot\PdfParser\Parser;
 use App\Models\location;
 use App\Models\secretary;
 use App\Models\Student;
@@ -151,15 +152,18 @@ class TeacherconfigController extends Controller
         // Validação dos campos
         $request->validate([
             'class' => 'required|string|max:255',  // Valida o nome da turma
-            'file' => 'required|file|mimes:txt',  // Valida o tipo de arquivo
+            'file' => 'required|file|mimes:pdf',  // Valida que o arquivo seja PDF
         ]);
 
         // Recupera o arquivo do request
         $file = $request->file('file');
 
-        // Lê o conteúdo do arquivo
-        $content = file_get_contents($file->getRealPath());
+        // Cria uma instância do parser do PDF
+        $parser = new Parser();
+        $pdf = $parser->parseFile($file->getRealPath());
 
+        // Obtém o texto do PDF
+        $content = $pdf->getText();
 
         // Normaliza as quebras de linha (independente do sistema)
         $content = str_replace("\r\n", "\n", $content);  // Para corrigir no Windows
@@ -178,21 +182,20 @@ class TeacherconfigController extends Controller
                 continue;
             }
 
-            $parts = explode(' ', trim($line), 2);  
+            // Usa a expressão regular para verificar se a linha contém um RM de 11 dígitos seguido de um nome
+            if (preg_match('/^\d{11}\s+(.+)$/', trim($line), $matches)) {
+                // Captura o RM e o nome
+                $RM = substr($line, 0, 11);  // RM são os primeiros 11 caracteres
+                $name = $matches[1];  // O nome do aluno é capturado pela expressão regular
 
-            if (count($parts) < 2) {
-                continue;
-            }
-
-            $RM = $parts[0];
-            $name = $parts[1];
-
-            if (!Student::where('RM', $RM)->exists()) {
-                Student::create([
-                    'RM' => $RM,
-                    'name' => $name,
-                    'class' => $className,
-                ]);
+                // Verifica se o RM já existe no banco e cria o aluno caso não exista
+                if (!Student::where('RM', $RM)->exists()) {
+                    Student::create([
+                        'RM' => $RM,
+                        'name' => $name,
+                        'class' => $className,  // O nome da turma pode ser extraído de alguma variável
+                    ]);
+                }
             }
         }
 
@@ -215,15 +218,14 @@ class TeacherconfigController extends Controller
             'exit_time' => $validated['exit_time'],
         ]);
 
-        return redirect()->route('secretaries.index')->with('success', 'Secretária criada com sucesso!');
+        return redirect()->route('teacher.config')->with('success', 'Secretária criada com sucesso!');
     }
 
     public function updateSecretary(Request $request, $id)
     {
-        dd($request);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:secretaries,email,' . $id, 
+            'email' => 'required|email|unique:secretaries,email,' . $id,
             'entry_time' => 'required',
             'exit_time' => 'required',
         ]);
@@ -237,7 +239,7 @@ class TeacherconfigController extends Controller
             'exit_time' => $validated['exit_time'],
         ]);
 
-        return redirect()->route('secretaries.index')->with('success', 'Secretária atualizada com sucesso!');
+        return redirect()->route('teacher.config')->with('success', 'Secretária atualizada com sucesso!');
     }
 
     public function destroySecretary($id)
@@ -246,6 +248,6 @@ class TeacherconfigController extends Controller
 
         $secretary->delete();
 
-        return redirect()->route('secretaries.index')->with('success', 'Secretária excluída com sucesso!');
+        return redirect()->route('teacher.config')->with('success', 'Secretária excluída com sucesso!');
     }
 }
