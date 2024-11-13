@@ -12,6 +12,7 @@
 
 <body class="bg-gray-100">
 
+
     <x-menu />
 
     <!-- Layout com Menu fixo à esquerda e conteúdo principal -->

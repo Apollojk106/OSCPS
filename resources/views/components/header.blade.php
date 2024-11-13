@@ -1,4 +1,4 @@
-<header class="header bg-gray-800 text-white p-6 min-h-[240px]">
+<header class="header bg-gray-800 text-white p-6 min-h-[240px] fixed top-0 left-0 w-full z-50">
   <div class="grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-4">
     <!-- Título -->
     <div class="title-container text-center md:text-left mb-6 md:mb-0">
