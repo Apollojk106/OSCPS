@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\called;
 use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherhistoryController extends Controller
 {
     public function index()
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $calleds = Called::whereIn('status', ['1', '2', '3'])
             ->orderByRaw("FIELD(status, '1', '2', '3')")
             ->get();
@@ -25,6 +30,9 @@ class TeacherhistoryController extends Controller
 
     public function filter(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
         $statusFilter = $request->input('status');
 
@@ -53,6 +61,9 @@ class TeacherhistoryController extends Controller
 
     public function RetornarDashboard($calleds, $reservations)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
         $statusMap = [
             1 => 'Pendente',
