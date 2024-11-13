@@ -7,12 +7,17 @@ use Smalot\PdfParser\Parser;
 use App\Models\location;
 use App\Models\secretary;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherconfigController extends Controller
 {
 
     public function index()
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $classes = Student::distinct()->pluck('class');
 
         $students = Student::limit(3)->get();
@@ -26,6 +31,9 @@ class TeacherconfigController extends Controller
 
     public function filter(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
         $classes = Student::distinct()->pluck('class');
         $students = Student::where('class', $request->class)->get();
@@ -37,25 +45,40 @@ class TeacherconfigController extends Controller
 
     public function EditStudent(Request $request)
     {
-        $Student = Student::find($request->id);
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
+        $Student = Student::find($request->id);
         return view('Teacher-EditStudent', ['Student' => $Student]);
     }
 
     public function EditSecretary(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $Secretary = Secretary::find($request->id);
         return view('Teacher-EditSecretary', ['Secretary' => $Secretary]);
     }
 
     public function EditLocation(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $Location = Location::find($request->id);
         return view('Teacher-EditLocation', ['Location' => $Location]);
     }
 
     public function deleteClass(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $class = $request->input('class');
 
         if (!$class) {
@@ -70,6 +93,10 @@ class TeacherconfigController extends Controller
 
     public function storeStudent(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $request->validate([
             'RM' => 'required|unique:students,RM|regex:/^\d{11}$/',
             'name' => 'required|string|max:255',
@@ -87,6 +114,10 @@ class TeacherconfigController extends Controller
 
     public function updateStudent(Request $request, $id)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $student = Student::findOrFail($id);
 
         $validated = $request->validate([
@@ -102,6 +133,10 @@ class TeacherconfigController extends Controller
 
     public function destroyStudent($id)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $student = Student::findOrFail($id);
 
         $student->delete();
@@ -111,6 +146,10 @@ class TeacherconfigController extends Controller
 
     public function storeLocation(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $request->validate([
             'roof' => 'required|string|max:255',
             'environment' => 'required|string|max:255',
@@ -126,6 +165,10 @@ class TeacherconfigController extends Controller
 
     public function updateLocation(Request $request, $id)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $location = Location::findOrFail($id);
 
         $validated = $request->validate([
@@ -140,8 +183,11 @@ class TeacherconfigController extends Controller
 
     public function destroyLocation($id)
     {
-        $location = Location::findOrFail($id);
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
+        $location = Location::findOrFail($id);
         $location->delete();
 
         return redirect()->route('teacher.config')->with('success', 'Localização excluída com sucesso!');
@@ -149,6 +195,10 @@ class TeacherconfigController extends Controller
 
     public function importStudents(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         // Validação dos campos
         $request->validate([
             'class' => 'required|string|max:255',  // Valida o nome da turma
@@ -204,6 +254,10 @@ class TeacherconfigController extends Controller
 
     public function storeSecretary(Request $request)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:secretaries,email',
@@ -223,6 +277,10 @@ class TeacherconfigController extends Controller
 
     public function updateSecretary(Request $request, $id)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:secretaries,email,' . $id,
@@ -244,8 +302,11 @@ class TeacherconfigController extends Controller
 
     public function destroySecretary($id)
     {
-        $secretary = Secretary::findOrFail($id);
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
 
+        $secretary = Secretary::findOrFail($id);
         $secretary->delete();
 
         return redirect()->route('teacher.config')->with('success', 'Secretária excluída com sucesso!');

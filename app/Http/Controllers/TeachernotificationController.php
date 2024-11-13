@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\called;
 use App\Models\reservation;
+use Illuminate\Support\Facades\Auth;
 
 class TeachernotificationController extends Controller
 {
     public function index()
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $calleds = Called::whereIn('status', ['1', '2'])
             ->orderByRaw("FIELD(status, '1', '2')") 
             ->get();
@@ -49,6 +54,10 @@ class TeachernotificationController extends Controller
 
     public function accept(Reservation $reservation)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $reservation->status = '2'; // Supondo que o status "accepted" indique que a reserva foi aceita
         $reservation->save();
 
@@ -57,6 +66,10 @@ class TeachernotificationController extends Controller
 
     public function reject(Reservation $reservation)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $reservation->status = '3'; // Supondo que o status "rejected" indica que a reserva foi recusada
         $reservation->save();
 
@@ -65,6 +78,10 @@ class TeachernotificationController extends Controller
 
     public function updateStatus(Called $called)
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         if ($called->status == '1') {
             $called->status = '2'; // Mudar para "Em Andamento"
         } elseif ($called->status == '2') {

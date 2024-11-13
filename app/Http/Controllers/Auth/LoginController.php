@@ -27,15 +27,16 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {     
             
             $user = Auth::user();
-            dd($$user);
 
-            if($user->role == 'admin')
+            if(strtolower($user->role) !== 'admin')
             {
-               
+                return redirect('/Student/dashboard');
+            }
+            else
+            {
                 return redirect('/Teacher/dashboard');
             }
 
-            return redirect()->intended('/Student/dashboard');
         }
 
         return back()->withErrors([
@@ -63,7 +64,10 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        if (Auth::check()) 
+        {
+            Auth::logout();
+        }
 
         return redirect('/login');
     }

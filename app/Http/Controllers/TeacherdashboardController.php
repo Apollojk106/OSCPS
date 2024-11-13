@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\called;
 use App\Models\reservation;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherdashboardController extends Controller
 {
     public function index()
     {
+        if (Auth::check() && Auth::user()->role !== 'admin') {
+            return redirect()->route('student.dashboard');
+        }
+
         $pendetCalled  = called::where('status', 1)->count();
         $AndamentoCalled  = called::where('status', 2)->count();
         $ConcluidoCalled  = called::where('status', 3)->count();
@@ -34,4 +39,5 @@ class TeacherdashboardController extends Controller
             'totalReservate' => $totalReservate,
         ]);
     }
+
 }
