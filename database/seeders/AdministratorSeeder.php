@@ -15,7 +15,7 @@ class AdministratorSeeder extends Seeder
     public function run()
     {
         // Cria um administrador com dados fictícios
-        /*User::create([
+        User::create([
             'name' => 'Administrador',
             'RM' => '123456789',
             'email' => 'admin@example.com',
@@ -29,7 +29,7 @@ class AdministratorSeeder extends Seeder
             'email' => 'aluno@example.com',
             'password' => bcrypt('123456789'),
             'role' => 'user',
-        ]);*/
+        ]);
 
         // Criar 5 chamados de exemplo
         Called::create([
