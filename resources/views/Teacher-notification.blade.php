@@ -15,6 +15,14 @@
     <!-- Menu -->
     <x-menu />
 
+
+    
+        @if(!empty($calleds))
+        <div class="bg-gray-200 p-4 rounded shadow mb-4">
+            <span class="text-green-500 font-semibold">Não tem Notificações</span>
+        </div>
+        @endif  
+    
     @foreach($calleds as $called)
     <div class="bg-gray-200 p-4 rounded shadow mb-4">
         <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>

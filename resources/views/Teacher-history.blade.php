@@ -27,6 +27,7 @@
             <button type="submit" class="ml-2 p-2 text-white rounded">Filtrar</button>
         </form>
 
+        
         @foreach($calleds as $called)
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>
