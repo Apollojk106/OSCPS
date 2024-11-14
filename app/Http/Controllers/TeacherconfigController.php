@@ -199,25 +199,15 @@ class TeacherconfigController extends Controller
             return redirect()->route('student.dashboard');
         }
 
-        // Validação dos campos
         $request->validate([
             'class' => 'required|string|max:255',  // Valida o nome da turma
-            'file' => 'required|file|mimes:pdf',  // Valida que o arquivo seja PDF
+            'file' => 'required|file|mimes:txt',  // Valida o tipo de arquivo
         ]);
 
-        // Recupera o arquivo do request
         $file = $request->file('file');
 
-        // Cria uma instância do parser do PDF
-        $parser = new Parser();
-        $pdf = $parser->parseFile($file->getRealPath());
-
-        // Obtém o texto do PDF
-        $content = $pdf->getText();
-
-        // Normaliza as quebras de linha (independente do sistema)
-        $content = str_replace("\r\n", "\n", $content);  // Para corrigir no Windows
-        $content = str_replace("\r", "\n", $content);   // Para corrigir no Windows também
+        // Lê o conteúdo do arquivo
+        $content = file_get_contents($file->getRealPath());
 
         // Divide o conteúdo do arquivo em linhas
         $lines = explode("\n", $content);
@@ -232,20 +222,21 @@ class TeacherconfigController extends Controller
                 continue;
             }
 
-            // Usa a expressão regular para verificar se a linha contém um RM de 11 dígitos seguido de um nome
-            if (preg_match('/^\d{11}\s+(.+)$/', trim($line), $matches)) {
-                // Captura o RM e o nome
-                $RM = substr($line, 0, 11);  // RM são os primeiros 11 caracteres
-                $name = $matches[1];  // O nome do aluno é capturado pela expressão regular
+            $parts = preg_split('/\s+/', $line, 2); 
 
-                // Verifica se o RM já existe no banco e cria o aluno caso não exista
-                if (!Student::where('RM', $RM)->exists()) {
-                    Student::create([
-                        'RM' => $RM,
-                        'name' => $name,
-                        'class' => $className,  // O nome da turma pode ser extraído de alguma variável
-                    ]);
-                }
+            if (count($parts) < 2) {
+                continue;
+            }
+
+            $RM = $parts[0];
+            $name = $parts[1];
+
+            if (!Student::where('RM', $RM)->exists()) {
+                Student::create([
+                    'RM' => $RM,
+                    'name' => $name,
+                    'class' => $className,
+                ]);
             }
         }
 
