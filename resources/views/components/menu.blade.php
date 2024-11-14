@@ -25,7 +25,7 @@
             left: 0;
             width: 250px;
             height: calc(100vh - 100px); /* Altura para não cobrir o cabeçalho */
-            background-color: #842519;
+            background-color: #701a0e;
             color: white;
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -64,7 +64,7 @@
 <body>
 
   <!-- Header Fixo no topo -->
-  <header class="bg-red-900 text-white p-6 min-h-[100px] fixed top-0 left-0 w-full z-50">
+  <header class="bg-[#701a0e] text-white p-6 min-h-[100px] fixed top-0 left-0 w-full z-50">
     <div class="grid grid-cols-1 md:grid-cols-2 items-center justify-between gap-4">
       <!-- Título -->
       <div class="title-container text-center md:text-left mb-6 md:mb-0">
