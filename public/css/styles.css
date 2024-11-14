@@ -20,6 +20,7 @@ body {
 .sign-up {
     width: 362px;
     padding: 16px;
+    margin-top: 130px;
     background-color: white;
     border-radius: 30px;
     display: flex;
@@ -101,7 +102,7 @@ body {
     font-size: 70px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 /* General Body Styling */
 body {

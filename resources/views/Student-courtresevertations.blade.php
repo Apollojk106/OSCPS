@@ -20,22 +20,15 @@
 
         .form-container {
             background-color: white;
-            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
-            padding: 50px;
+            padding: 20px;
+            margin-top: 50px;
 
         }
 
-        h2 {
-            text-align: center;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            background-color: #842519;
-            color: #ffff;
-
-        }
+       
 
         label {
             display: block;
@@ -72,55 +65,80 @@
 
 </head>
 
-<body>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
     <!-- Header -->
     <x-header />
 
-    <h1>Solicitação de quadra poliesportiva</h1>
+    <div class="min-h-screen bg-gray-100 flex justify-center items-start w-30">
+    <!-- Aumenta a largura do contêiner do formulário em 30% -->
+    <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 mt-40">
 
-    <div class="form-container">
-        <form action="{{route('post.student.courtresevertations')}}" method="POST">
+        <form action="{{ route('post.student.courtresevertations') }}" method="POST">
             @csrf
+
             {{-- Sucesso --}}
             @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mb-4 text-green-600 bg-green-100 p-2 rounded-md">
                 {{ session('success') }}
             </div>
             @endif
 
             {{-- Erro --}}
             @if(session('error'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger mb-4 text-red-600 bg-red-100 p-2 rounded-md">
                 {{ session('error') }}
             </div>
             @endif
-            <div>
-                <label for="turma">Turma</label>
-                <select id="class" name="class" required>
+
+            <!-- Turma -->
+            <div class="mb-4">
+                <label for="class" class="block text-gray-700 font-semibold mb-2">Turma</label>
+                <select id="class" name="class" required class="w-full p-3 border border-gray-300 rounded-md">
                     <option value="">Selecione uma turma</option>
                     <option value="turma1">Turma 1</option>
                     <option value="turma2">Turma 2</option>
                     <option value="turma3">Turma 3</option>
                 </select>
             </div>
-            <div>
-                <label for="data">Data</label>
-                <input type="date" id="date" name="date" required>
+
+            <!-- Data -->
+            <div class="mb-4">
+                <label for="date" class="block text-gray-700 font-semibold mb-2">Data</label>
+                <input type="date" id="date" name="date" required class="w-full p-3 border border-gray-300 rounded-md">
             </div>
-            <div>
-                <label for="time">Horário</label>
-                <input type="time" id="time" name="time" required>
+
+            <!-- Horário -->
+            <div class="mb-4">
+                <label for="time" class="block text-gray-700 font-semibold mb-2">Horário</label>
+                <input type="time" id="time" name="time" required class="w-full p-3 border border-gray-300 rounded-md">
             </div>
-            <div>
-                <label for="integrantes">Integrantes</label>
-                <textarea id="integrantes" name="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required></textarea>
+
+            <!-- Integrantes -->
+            <div class="mb-4">
+                <label for="integrantes" class="block text-gray-700 font-semibold mb-2">Integrantes</label>
+                <textarea id="integrantes" name="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required
+                    class="w-full p-3 border border-gray-300 rounded-md"></textarea>
             </div>
-            <div class="flex justify-between">
-                <button onclick=" document.location='/Student/dashboard'">Retornar</button>
-                <button type="submit">Enviar</button>
+
+            <!-- Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button type="button" onclick="window.location='/Student/dashboard'"
+                    class="w-full bg-gray-300 text-gray-700 p-3 rounded-md hover:bg-gray-400 transition duration-300">
+                    Retornar
+                </button>
+                <button type="submit"
+                    class="w-full bg-red-500 text-white p-3 rounded-md hover:bg-red-600 transition duration-300">
+                    Enviar
+                </button>
             </div>
+
         </form>
     </div>
+</div>
+
+
+
 
     <script>
         const toggle = document.querySelector('.toggle');
