@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<style>
+    button{
+        background-color: #701a0e
+    }
+</style>
 
 <body class="bg-gray-100">
 
@@ -40,7 +45,7 @@
                         </div>
 
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="text-white px-4 py-2 rounded-md">Importar Estudantes</button>
+                            <button type="submit" class="bg-[#701a0e] text-white px-4 py-2 rounded-md">Importar Estudantes</button>
                         </div>
                     </form>
                 </div>
@@ -60,7 +65,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="ml-4 text-white py-2 px-4 rounded-md">
+                            <button type="submit" class="ml-4 bg-[#701a0e] text-white py-2 px-4 rounded-md">
                                 Filtrar
                             </button>
                         </div>
@@ -79,7 +84,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="ml-4 text-white py-2 px-4 rounded-md">
+                            <button type="submit" class="ml-4 bg-[#701a0e] text-white py-2 px-4 rounded-md">
                                 Deletar Classe
                             </button>
                         </div>
@@ -119,7 +124,7 @@
                                     <!-- Botão Excluir -->
                                     <button
                                         type="button"
-                                        class="p-2 text-white rounded"
+                                        class="bg-[#701a0e] p-2 text-white rounded"
                                         onclick="openDeleteModal('student', '{{ $student->id }}')">
                                         Excluir
                                     </button>
@@ -179,7 +184,7 @@
                                     </button>
                                 </form>
 
-                                <button type="button" class="p-2 text-white rounded" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
+                                <button type="button" class="bg-[#701a0e] p-2 text-white rounded" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
                             </td>
                         </tr>
                         @endforeach
@@ -193,7 +198,7 @@
                                     <input type="text" name="environment" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                 </td>
                                 <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="p-2 text-white rounded">Adicionar</button>
+                                    <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
                                 </td>
                             </tr>
                         </form>
@@ -230,7 +235,7 @@
                                             Editar
                                         </button>
                                     </form>
-                                <button hr type="button" class="p-2 text-white rounded" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
+                                <button hr type="button" class="bg-[#701a0e] p-2 text-white rounded" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
                             </td>
                         </tr>
                         @endforeach
@@ -250,7 +255,7 @@
                                     <input type="time" name="exit_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                 </td>
                                 <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="p-2 text-white rounded">Adicionar</button>
+                                    <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
                                 </td>
                             </tr>
                         </form>

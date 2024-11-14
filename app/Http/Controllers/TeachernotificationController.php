@@ -15,8 +15,10 @@ class TeachernotificationController extends Controller
             return redirect()->route('student.dashboard');
         }
 
+        $messages = [];
+
         $calleds = Called::whereIn('status', ['1', '2'])
-            ->orderByRaw("FIELD(status, '1', '2')") 
+            ->orderByRaw("FIELD(status, '1', '2')")
             ->get();
         $reservations = reservation::where('status', '1')->get();
 
@@ -49,7 +51,15 @@ class TeachernotificationController extends Controller
             return $called;
         });
 
-        return view('Teacher-notification', compact('calleds', 'reservations'));
+        if ($calleds->isEmpty()) {
+            $messages[] = 'Nenhum chamado encontrada!';
+        }
+
+        if ($reservations->isEmpty()) {
+            $messages[] = 'Nenhuma reserva encontrada!';
+        }
+
+        return view('Teacher-notification', compact('calleds', 'reservations', 'messages'));
     }
 
     public function accept(Reservation $reservation)
@@ -76,16 +86,18 @@ class TeachernotificationController extends Controller
         return redirect()->back()->with('success', 'Reserva recusada!');
     }
 
-    public function updateStatus(Called $called)
+    public function updateStatus(Called $called, Request $request)
     {
         if (Auth::check() && Auth::user()->role !== 'admin') {
             return redirect()->route('student.dashboard');
         }
 
-        if ($called->status == '1') {
-            $called->status = '2'; // Mudar para "Em Andamento"
-        } elseif ($called->status == '2') {
-            $called->status = '3'; // Mudar para "Concluído"
+        $status = $request->input('status'); // Recebe o valor do status enviado pelo formulário
+
+        if ($status == 'Em andamento') {
+            $called->status = '2'; // Atualiza para "Em Andamento"
+        } elseif ($status == 'Concluído') {
+            $called->status = '3'; // Atualiza para "Concluído"
         }
 
         $called->save();

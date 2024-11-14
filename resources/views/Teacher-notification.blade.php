@@ -15,35 +15,51 @@
     <!-- Menu -->
     <x-menu />
 
+    @if(!empty($messages))
+    <br>
+    <div class="bg-gray-200 p-4 rounded shadow mb-4">
+        @foreach($messages as $message)
 
-    
-        @if(!empty($calleds))
-        <div class="bg-gray-200 p-4 rounded shadow mb-4">
-            <span class="text-green-500 font-semibold">Não tem Notificações</span>
+        <div class="alert alert-warning">
+            {{ $message }}
         </div>
-        @endif  
-    
+
+        <br>
+        @endforeach
+    </div>
+    @endif
+
     @foreach($calleds as $called)
     <div class="bg-gray-200 p-4 rounded shadow mb-4">
         <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>
-        <span class="block text-sm font-medium">Status: {{ $called->status }}</span>
+
+        <!-- Exibindo Status com cores dinâmicas -->
+        <span class="block text-sm font-medium 
+            @if($called->status == 'Pendente') text-red-500
+            @elseif($called->status == 'Em Andamento') text-orange-500  
+            @else text-gray-500 @endif">
+            Status: {{ $called->status }}
+        </span>
+
         <span class="block text-sm font-medium">Problema: {{ $called->type_problem }}</span>
         <span class="block text-sm font-medium">LUGAR: {{ $called->roof }}</span>
         <span class="block text-sm font-medium">ANDAR:{{ $called->environment }}</span>
         <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }} Rechamados {{ $called->recalled }}</span>
 
-        <!-- Botão para mudar o status -->
-        @if($called->status != '3') <!-- Não exibe botão se já estiver concluído -->
+        <!-- Botões para mudar o status -->
         <form action="{{ route('called.updateStatus', $called->id) }}" method="POST" class="mt-4">
             @csrf
             @method('PATCH')
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-                Avançar Status
+            <!-- Se o status for 'Pendente', exibe dois botões -->
+            @if($called->status == 'Pendente')
+            <button type="submit" name="status" value="Em andamento" class="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 mr-2">
+                Em andamento
+            </button>
+            @endif
+            <button type="submit" name="status" value="Concluído" class="bg-green-500 text-white p-2 rounded hover:bg-green-600">
+                Concluir
             </button>
         </form>
-        @else
-        <span class="text-green-500 font-semibold">Chamado Concluído</span>
-        @endif
     </div>
     @endforeach
 
@@ -75,9 +91,9 @@
                 </button>
             </form>
         </div>
-        </div>
-        @endforeach
-    
+    </div>
+    @endforeach
+
 
 </body>
 
