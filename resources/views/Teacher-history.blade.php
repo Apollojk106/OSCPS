@@ -28,7 +28,7 @@
                 <option value="2" {{ request('status') == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
                 <option value="3" {{ request('status') == 'Concluido' ? 'selected' : '' }}>Concluído</option>
             </select>
-            <button type="submit" class="ml-2 p-2 text-white rounded">Filtrar</button>
+            <button type="submit" class="bg-[#701a0e] ml-2 p-2 text-white rounded">Filtrar</button>
         </form>
 
         @foreach($calleds as $called)

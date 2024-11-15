@@ -52,13 +52,19 @@
             @method('PATCH')
             <!-- Se o status for 'Pendente', exibe dois botões -->
             @if($called->status == 'Pendente')
-            <button type="submit" name="status" value="Em andamento" class="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 mr-2">
-                Em andamento
-            </button>
-            @endif
+            <div class="flex">
+                <button type="submit" name="status" value="Em andamento" class="bg-orange-500 text-white p-2 rounded hover:bg-orange-600 mr-2">
+                    Em andamento
+                </button>
+                <button type="submit" name="status" value="Concluído" class="bg-green-500 text-white p-2 rounded hover:bg-green-600">
+                    Concluir
+                </button>
+            </div>
+            @else
             <button type="submit" name="status" value="Concluído" class="bg-green-500 text-white p-2 rounded hover:bg-green-600">
                 Concluir
             </button>
+            @endif
         </form>
     </div>
     @endforeach
@@ -74,11 +80,11 @@
         </div>
 
         <!-- Botões para aceitar ou recusar -->
-        <div class="mt-4">
+        <div class="mt-4 flex space-x-4">
             <form action="{{ route('reservation.accept', $reservation->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <button type="submit" class="px-2 py-3 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-300">
+                <button type="submit" class="px-6 py-3 w-auto bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-300">
                     Aceitar
                 </button>
             </form>
@@ -86,11 +92,13 @@
             <form action="{{ route('reservation.reject', $reservation->id) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <button type="submit" class="px-2 py-3 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">
+                <button type="submit" class="px-6 py-3 w-auto bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">
                     Recusar
                 </button>
             </form>
         </div>
+
+        
     </div>
     @endforeach
 
