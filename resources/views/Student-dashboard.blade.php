@@ -14,6 +14,18 @@
     <!-- Cabeçalho -->
     <x-header />
 
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                position: "center", // Centraliza o alerta na tela
+                icon: "success", // Tipo do ícone (sucesso)
+                title: "{{ session('success') }}", // Mensagem que vem da sessão
+                showConfirmButton: false, // Não mostra o botão de confirmação
+                timer: 1500 // O alerta desaparece após 1.5 segundos
+            });
+        </script>
+    @endif
+
     <!-- Seção de Cartões -->
     <main class="cards-section px-4 py-6">
         <!-- Grid de Cards Responsivos -->

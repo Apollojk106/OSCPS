@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
     button{
@@ -19,6 +20,30 @@
 
 
     <x-menu />
+
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center", // Centraliza o alerta na tela
+            icon: "success", // Tipo do ícone (sucesso)
+            title: "{{ session('success') }}", // Mensagem que vem da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+            timer: 1500 // O alerta desaparece após 1.5 segundos
+        });
+    </script>
+    @endif
+
+    @if(session('errors'))
+        <script>
+            Swal.fire({
+                position: "center", 
+                icon: 'error', // Define o ícone como "error"
+                title: 'Oops...', // Título da mensagem
+                text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
+                showConfirmButton: false, // Não mostra o botão de confirmação
+            });
+        </script>
+    @endif
 
     <!-- Layout com Menu fixo à esquerda e conteúdo principal -->
     <div class="flex min-h-screen">
@@ -145,7 +170,7 @@
                                         <input type="text" name="class" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                     </td>
                                     <td class="py-2 border flex justify-center items-center">
-                                        <button type="submit" class="p-2 text-white rounded">Adicionar</button>
+                                        <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
                                     </td>
                                 </tr>
                             </form>

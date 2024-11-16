@@ -73,6 +73,6 @@ class StudentcalledController extends Controller
             'environment' => $request->environment, // Ambiente
         ]);
 
-        return redirect()->back()->with('success', 'Chamado com sucesso!');
+        return redirect()->back()->with('success', 'Chamado criado com sucesso!');
     }
 }

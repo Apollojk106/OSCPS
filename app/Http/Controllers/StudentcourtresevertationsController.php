@@ -29,7 +29,7 @@ class StudentcourtresevertationsController extends Controller
                 'integrantes' => $request->integrantes,  
             ]);
                       
-            return redirect()->back()->with('success', 'Reserva enviada com sucesso! Fique atento ao seu email.');
+            return redirect()->back()->with('success', 'Reserva criada com sucesso!');
         } catch (\Exception $e) {
 
             return redirect()->back()->with('errors' , 'Ocorreu um erro ao criar a reserva.');

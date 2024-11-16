@@ -46,10 +46,7 @@ class LoginController extends Controller
 
     public function StudentRegister(StudentRegisterRequest $request)
     {   
-        if (Student::where('RM', $request->RM)->exists()) {
-            return back();
-        }
-
+ 
         $user = User::create([
             'name' => $request->name,
             'RM' => $request->RM,
@@ -59,12 +56,12 @@ class LoginController extends Controller
         
         Auth::login($user);
 
-        return redirect('/Student/dashboard');
+        return redirect('/Student/dashboard')->with('success', 'Cadastro realizada com sucesso!');
     }
 
     public function logout()
     {
-        if (Auth::check()) 
+        if (Auth::check())  
         {
             Auth::logout();
         }

@@ -133,19 +133,19 @@ class AdministratorSeeder extends Seeder
         ]);
 
         Student::create([
-            'RM' => '12345',
+            'RM' => '78965485462',
             'name' => 'João da Silva',
             'class' => '1A',
         ]);
 
         Student::create([
-            'RM' => '12346',
+            'RM' => '12385435978',
             'name' => 'Maria Oliveira',
             'class' => '2B',
         ]);
 
         Student::create([
-            'RM' => '12347',
+            'RM' => '76142853564',
             'name' => 'Carlos Souza',
             'class' => '3C',
         ]);

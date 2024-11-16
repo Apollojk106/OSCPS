@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,27 +71,36 @@
     <!-- Header -->
     <x-header />
 
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center", // Centraliza o alerta na tela
+            icon: "success", // Tipo do ícone (sucesso)
+            title: "{{ session('success') }}", // Mensagem que vem da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+            timer: 1500 // O alerta desaparece após 1.5 segundos
+        });
+    </script>
+    @endif
+
+    @if(session('errors'))
+        <script>
+            Swal.fire({
+                position: "center", 
+                icon: 'error', // Define o ícone como "error"
+                title: 'Oops...', // Título da mensagem
+                text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
+                showConfirmButton: false, // Não mostra o botão de confirmação
+            });
+        </script>
+    @endif
+
     <div class="min-h-screen bg-gray-100 flex justify-center items-start w-30">
     <!-- Aumenta a largura do contêiner do formulário em 30% -->
     <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 mt-40">
 
         <form action="{{ route('post.student.courtresevertations') }}" method="POST">
             @csrf
-
-            {{-- Sucesso --}}
-            @if(session('success'))
-            <div class="alert alert-success mb-4 text-green-600 bg-green-100 p-2 rounded-md">
-                {{ session('success') }}
-            </div>
-            @endif
-
-            {{-- Erro --}}
-            @if(session('error'))
-            <div class="alert alert-danger mb-4 text-red-600 bg-red-100 p-2 rounded-md">
-                {{ session('error') }}
-            </div>
-            @endif
-
             <!-- Turma -->
             <div class="mb-4">
                 <label for="class" class="block text-gray-700 font-semibold mb-2">Turma</label>

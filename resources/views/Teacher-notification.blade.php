@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -15,18 +16,28 @@
     <!-- Menu -->
     <x-menu />
 
-    @if(!empty($messages))
-    <br>
-    <div class="bg-gray-200 p-4 rounded shadow mb-4">
-        @foreach($messages as $message)
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center", // Centraliza o alerta na tela
+            icon: "success", // Tipo do ícone (sucesso)
+            title: "{{ session('success') }}", // Mensagem que vem da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+            timer: 2000 
+        });
+    </script>
+    @endif
 
-        <div class="alert alert-warning">
-            {{ $message }}
-        </div>
-
-        <br>
-        @endforeach
-    </div>
+    @if(session('errors'))
+        <script>
+            Swal.fire({
+                position: "center", 
+                icon: 'error', // Define o ícone como "error"
+                title: 'Oops...', // Título da mensagem
+                text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
+                showConfirmButton: false, // Não mostra o botão de confirmação
+            });
+        </script>
     @endif
 
     @foreach($calleds as $called)
