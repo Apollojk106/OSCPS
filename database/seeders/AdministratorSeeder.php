@@ -88,15 +88,104 @@ class AdministratorSeeder extends Seeder
         ]);
         
 
-        // Inserir 10 registros de exemplo
+        // Térreo
         Location::create([
-            'roof' => 'Telhado de metal',
-            'environment' => 'Ambiente fechado com luz natural',
+            'Roof' => 'Térreo',           // Pátio
+            'Environment' => 'Pátio',
         ]);
 
         Location::create([
-            'roof' => 'Telhado de telha',
-            'environment' => 'Ambiente com ventilação artificial',
+            'Roof' => 'Térreo',           // Secretaria
+            'Environment' => 'Secretaria',
+        ]);
+
+        Location::create([
+            'Roof' => 'Térreo',           // Banheiros
+            'Environment' => 'Banheiros',
+        ]);
+
+        Location::create([
+            'Roof' => 'Térreo',           // Cantina
+            'Environment' => 'Cantina',
+        ]);
+
+        // Andar 1
+        Location::create([
+            'Roof' => 'Andar 1',          // LAB 1
+            'Environment' => 'LAB 1',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 1',          // LAB 2
+            'Environment' => 'LAB 2',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 1',          // Sala dos Professores
+            'Environment' => 'Sala dos Professores',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 1',          // Banheiro
+            'Environment' => 'Banheiro',
+        ]);
+
+        // Andar 2
+        Location::create([
+            'Roof' => 'Andar 2',          // LAB 3
+            'Environment' => 'LAB 3',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 2',          // LAB 4
+            'Environment' => 'LAB 4',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 2',          // LAB 5
+            'Environment' => 'LAB 5',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 2',          // LAB 6
+            'Environment' => 'LAB 6',
+        ]);
+
+        // Andar 3
+        Location::create([
+            'Roof' => 'Andar 3',          // Sala Maker
+            'Environment' => 'Sala Maker',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 3',          // Biblioteca
+            'Environment' => 'Biblioteca',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 3',          // Banheiros
+            'Environment' => 'Banheiros',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 3',          // LAB 7
+            'Environment' => 'LAB 7',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 3',          // LAB 8
+            'Environment' => 'LAB 8',
+        ]);
+
+        // Andar 4
+        Location::create([
+            'Roof' => 'Andar 4',          // Quadra Poliesportiva
+            'Environment' => 'Quadra Poliesportiva',
+        ]);
+
+        Location::create([
+            'Roof' => 'Andar 4',          // Banheiros
+            'Environment' => 'Banheiros',
         ]);
 
         // Criar 3 reservas de exemplo
@@ -148,6 +237,12 @@ class AdministratorSeeder extends Seeder
             'RM' => '76142853564',
             'name' => 'Carlos Souza',
             'class' => '3C',
+        ]);
+
+        Student::create([
+            'RM' => '12345678912',
+            'name' => 'Usuario Teste',
+            'class' => 'Etim',
         ]);
     }
 }

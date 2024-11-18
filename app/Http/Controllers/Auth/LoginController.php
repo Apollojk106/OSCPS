@@ -76,9 +76,20 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        /*if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/Teacher/dashboard');
-        }*/
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {     
+            
+            $user = Auth::user();
+
+            if(strtolower($user->role) !== 'admin')
+            {
+                return redirect('/Student/dashboard');
+            }
+            else
+            {
+                return redirect('/Teacher/dashboard');
+            }
+
+        }
         
         return back()->withErrors(['email' => 'Credenciais inválidas']);
     }
