@@ -16,7 +16,7 @@
     <!-- Menu -->
     <x-menu />
 
-    <div class=" mx-auto p-6">
+    <div class=" mx-auto p-6 mt-20">
         <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
         <div class="grid grid-cols-2 gap-6">
             <div class="bg-gray-100 p-4 rounded shadow">

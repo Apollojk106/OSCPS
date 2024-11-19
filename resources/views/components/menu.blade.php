@@ -100,7 +100,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
         </svg>
 
-        <i class="fas fa-search-plus" id="zoom-in" title="Zoom In"></i>
+
+
+        
         <i class="fas fa-search-minus" id="zoom-out" title="Zoom Out"></i>
         <i class="fas fa-sun toggle" title="Toggle Theme"></i>
 
@@ -110,7 +112,7 @@
   </header>
 
   <!-- Botão para abrir/fechar a sidebar (aparece apenas em telas pequenas) -->
-  <button id="menu-toggle" class="md:hidden fixed top-4 left-[-70px]  z-50 text-white p-3">
+  <button id="menu-toggle" class="xl:hidden fixed top-4 left-[-70px]  z-50 text-white p-3">
     <i class="fas fa-bars"></i> <!-- Ícone de menu -->
   </button>
 

@@ -18,7 +18,6 @@
 
 <body class="bg-gray-100">
 
-
     <x-menu />
 
     @if(session('success'))
@@ -49,17 +48,17 @@
     <div class="flex min-h-screen">
 
         <!-- Conteúdo Principal -->
-        <div class="flex-1 p-6">
+        <div class="flex-1 p-6 ml-10 ">
 
             <!-- Seção de Estudantes -->
-            <div class="bg-gray-200 p-4 rounded shadow mb-4 ">
-                <h2 class="text-xl font-semibold ">Estudantes</h2>
+            <div class="bg-gray-200 p-4 rounded shadow mb-4">
+                <h2 class="text-xl font-semibold">Estudantes</h2>
 
                 <div class="bg-gray-200 p-4 rounded shadow mb-4">
                     <h2 class="text-xl font-semibold">Importar</h2>
-                    <form action="{{ route('import.students') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('import.students') }}" method="POST" enctype="multipart/form-data" class="ml-20 max-w-xl">
                         @csrf
-                        <div class="mb-4 ">
+                        <div class="mb-4">
                             <label for="class" class="block text-sm font-medium text-gray-700">Nome da Turma</label>
                             <input type="text" name="class" id="class" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
                         </div>
@@ -78,7 +77,7 @@
                 <div class="justify-center items-center">
 
                     <!-- Filtro de Classe -->
-                    <form action="{{ route('teacher.config.filter') }}" method="POST" class="mb-4">
+                    <form action="{{ route('teacher.config.filter') }}" method="POST" class="mb-4 ml-auto max-w-xl">
                         @csrf
                         <div class="flex items-center justify-center space-x-4">
                             <h2 class="text-xl font-semibold">Filtro de Classe:</h2>
@@ -97,7 +96,7 @@
                     </form>
 
                     <!-- Deletar Classe -->
-                    <form action="{{ route('teacher.config.delete_class') }}" method="POST" class="mb-4">
+                    <form action="{{ route('teacher.config.delete_class') }}" method="POST" class="mb-4 ml-auto max-w-xl">
                         @csrf
                         <div class="flex items-center justify-center space-x-4">
                             <h2 class="text-xl font-semibold">Deletar Classe:</h2>
@@ -117,8 +116,8 @@
 
                 </div>
 
+                <!-- Tabela de Estudantes -->
                 <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                    <div class="justify-center items-center"></div>
                     <table class="min-w-full table-auto mt-4">
                         <thead class="bg-white">
                             <tr>
@@ -129,14 +128,12 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-
                             @foreach($students as $student)
                             <tr>
                                 <td class="px-4 py-2 border">{{ $student->RM }}</td>
                                 <td class="px-4 py-2 border">{{ $student->name }}</td>
                                 <td class="px-4 py-2 border">{{ $student->class }}</td>
                                 <td class="px-4 py-2 border flex items-center justify-start">
-                                    <!-- Botão Editar -->
                                     <form action="{{ route('Student.Edit') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $student->id }}">
@@ -156,7 +153,6 @@
                                 </td>
                             </tr>
                             @endforeach
-
                             <form action="{{ route('students.store') }}" method="POST">
                                 @csrf
                                 <tr>
@@ -177,7 +173,6 @@
                         </tbody>
                     </table>
                 </div>
-
 
             </div>
 
@@ -231,61 +226,6 @@
                 </table>
             </div>
 
-            <!-- Seção de Secretaria -->
-            <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold">Secretaria</h2>
-                <table class="min-w-full table-auto mt-4 bg-white">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2 border">Nome</th>
-                            <th class="px-4 py-2 border">Email</th>
-                            <th class="px-4 py-2 border">Entrada</th>
-                            <th class="px-4 py-2 border">Saida</th>
-                            <th class="px-4 py-2 border">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @foreach($secretaries as $secretary)
-                        <tr>
-                            <td class="px-4 py-2 border">{{ $secretary->name }}</td>
-                            <td class="px-4 py-2 border">{{ $secretary->email }}</td>
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->entry_time)->format('H:i') }}</td>
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->exit_time)->format('H:i') }}</td>
-                            <td class="px-4 py-2 border flex items-center justify-start">
-                                <form action="{{ route('Secretary.Edit') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $secretary->id }}">
-
-                                        <button type="submit" class="bg-white text-blue-500 font-semibold px-4 py-2 rounded-md border border-blue-500 hover:bg-white">
-                                            Editar
-                                        </button>
-                                    </form>
-                                <button hr type="button" class="bg-[#701a0e] p-2 text-white rounded" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
-                            </td>
-                        </tr>
-                        @endforeach
-                        <form action="{{ route('secretaries.store') }}" method="POST">
-                            @csrf
-                            <tr>
-                                <td class="px-4 py-2 border">
-                                    <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="time" name="entry_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="time" name="exit_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-            </div>
             <br>
 
             <!-- Modal de Edição -->
@@ -313,6 +253,10 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+
 
             <script>
                 // Função para abrir o modal de edição de aluno

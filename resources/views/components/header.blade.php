@@ -21,3 +21,8 @@
     </div>
   </div>
 </header>
+
+<!-- Sidebar (agora oculto em todas as telas) -->
+<div class="sidebar hidden md:hidden lg:hidden xl:hidden 2xl:hidden">
+  <!-- Aqui vai o conteúdo da sidebar, mas ela será ocultada com a classe "hidden" -->
+</div>
