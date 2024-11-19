@@ -9,14 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();            
-            $table->string('RM')->unique();
-            $table->string('name');
-            $table->string('class');
-            $table->timestamps();   
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('students');
+        Schema::drop('password_resets');
     }
 };

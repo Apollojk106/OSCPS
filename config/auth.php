@@ -14,8 +14,16 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'), // O guard padrão, pode ser 'web' para usuários ou 'admin' para administradores
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => 'web',
+        'passwords' => 'users',
+    ],
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,  
+        ],
     ],
 
     /*

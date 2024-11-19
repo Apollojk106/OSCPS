@@ -66,7 +66,7 @@
                 </div>
                 <div class="subtitle">
                     <div class="text">Use seu RM ou email corporativo.</div>
-                </div>               
+                </div>
                 <div class="text-field-outlined">
                     <input type="email" name="email" class="input-text" placeholder="Usuário" required>
                 </div>
@@ -76,8 +76,11 @@
                 <div class="contained-button">
                     <button type="submit" class="label">Entre no Site</button>
                 </div>
-                <a href="/register" class="administrativo-secretaria">Cadastro</a>
-                <a href="#" id="toggle-teacher" class="administrativo-secretaria">Trocar para Educacional/Acadêmico</a>
+                
+                    <a href="/register" class="administrativo-secretaria">Cadastro</a>
+                    <a href="/forgot-password" class="administrativo-secretaria">Esqueceu a Senha</a>
+                    <a href="#" id="toggle-teacher" class="administrativo-secretaria">Trocar para Educacional/Acadêmico</a>
+                
             </div>
         </form>
 

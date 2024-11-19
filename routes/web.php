@@ -12,7 +12,7 @@ use App\Http\Controllers\TeacherdashboardController;
 use App\Http\Controllers\TeacherhistoryController;
 use App\Http\Controllers\TeachernotificationController;
 use App\Http\Controllers\TeacherconfigController;
-use Illuminate\Auth\Events\Login;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 //rotas basicas
 Route::group(['middleware' => ['guest']], function () {
@@ -23,6 +23,11 @@ Route::group(['middleware' => ['guest']], function () {
 
     Route::get('/register', [LoginController::class, 'Getregister'])->name('register');
     Route::post('/register', [LoginController::class, 'StudentRegister'])->name('student.register');
+
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showResetForm']);
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetFormToken']);
+    Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
 });
 
 // Rotas da sessão do aluno
