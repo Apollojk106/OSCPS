@@ -13,6 +13,18 @@
 
 <body style="background-color: #842519; color: white; overflow: hidden;">
 
+@if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center", // Centraliza o alerta na tela
+            icon: "success", // Tipo do ícone (sucesso)
+            title: "{{ session('success') }}", // Mensagem que vem da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+            timer: 1500 // O alerta desaparece após 1.5 segundos
+        });
+    </script>
+    @endif
+
 <div class="title text-center mb-6">
     <h1 class="oscps" style="color:white;">OSCPS</h1>
 </div>
