@@ -35,16 +35,7 @@
             <form method="POST" action=" {{route('post.student.called')}}">
 
                 @csrf
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
+                
                 <div class="space-y-4">
                     <div class="flex flex-col">
                         <label for="type_problem" class="font-semibold text-gray-800">Problema</label>
