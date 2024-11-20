@@ -29,4 +29,9 @@ class reservation extends Model
     {
         return self::STATUS[$this->status] ?? 'Desconhecido'; 
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

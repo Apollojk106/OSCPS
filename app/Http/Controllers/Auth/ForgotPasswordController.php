@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
 use App\Models\PasswordResetToken;
+use Carbon\Carbon;
 
 class ForgotPasswordController extends Controller
 {
@@ -23,22 +24,24 @@ class ForgotPasswordController extends Controller
 
         if (!User::where('email', $request->email)->exists()) {
             return back()->withErrors(['email' => 'Esse e-mail é inválido!']);
-        }        
+        }
+
+        $existingToken = PasswordResetToken::where('email', $request->email)
+            ->first();
+
+        if ($existingToken) {
+            // Se o token foi criado há mais de 1 hora, exclui-o para substituir
+            if ($existingToken->created_at < Carbon::now()->subHour()) {
+                $existingToken->delete(); // Deleta o token antigo
+            } else {
+                // Se o token ainda é válido (criado nos últimos 60 minutos), retorna um erro
+                return back()->withErrors(['email' => 'Já foi enviado um link de recuperação há menos de uma hora.']);
+            }
+        }
 
         $response = Password::sendResetLink($request->only('email'));
 
-
         if ($response == Password::RESET_LINK_SENT) {
-            // Aqui você pode armazenar o token manualmente, se necessário
-            // Isso é opcional, pois o Laravel já faz isso
-            $token = Str::random(60); // Gere um token aleatório
-
-            PasswordResetToken::create([
-                'email' => $request->email,
-                'token' => $token,
-                'created_at' => now(),
-            ]);
-
             return back()->with('success', 'Link de recuperação enviado!');
         } else {
             return back()->withErrors(['email' => 'Não conseguimos encontrar esse e-mail.']);
@@ -66,6 +69,4 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'Erro ao redefinir senha.']);
         }
     }
-
-    
 }
