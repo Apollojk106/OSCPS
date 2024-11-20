@@ -41,6 +41,18 @@
 <body style="background-color: #842519; color: white;">
     <h1 class="oscps" style="color:white;">OSCPS</h1>
 
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center", // Centraliza o alerta na tela
+            icon: "success", // Tipo do ícone (sucesso)
+            title: "{{ session('success') }}", // Mensagem que vem da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+            timer: 1500 // O alerta desaparece após 1.5 segundos
+        });
+    </script>
+    @endif
+
     @if($errors->any())
     <script>
         Swal.fire({

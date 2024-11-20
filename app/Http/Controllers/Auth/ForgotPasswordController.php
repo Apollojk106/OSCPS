@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetRequest;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
+use App\Models\PasswordResetToken;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,7 +22,7 @@ class ForgotPasswordController extends Controller
         $request->validate(['email' => 'required|email']);
 
         if (!User::where('email', $request->email)->exists()) {
-            return back()->withErrors(['email' => 'Esse e-mail não está cadastrado.']);
+            return back()->withErrors(['email' => 'Esse e-mail é inválido!']);
         }        
 
         $response = Password::sendResetLink($request->only('email'));
@@ -29,16 +32,15 @@ class ForgotPasswordController extends Controller
             // Aqui você pode armazenar o token manualmente, se necessário
             // Isso é opcional, pois o Laravel já faz isso
             $token = Str::random(60); // Gere um token aleatório
-            PasswordReset::create([
+
+            PasswordResetToken::create([
                 'email' => $request->email,
                 'token' => $token,
                 'created_at' => now(),
             ]);
 
-            return back()->with('status', 'Link de recuperação enviado!');
+            return back()->with('success', 'Link de recuperação enviado!');
         } else {
-
-            dd($response);
             return back()->withErrors(['email' => 'Não conseguimos encontrar esse e-mail.']);
         }
     }
@@ -48,14 +50,8 @@ class ForgotPasswordController extends Controller
         return view('Auth-passwords-reset', ['token' => $token]);
     }
 
-    public function reset(Request $request)
+    public function reset(ResetRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
-            'token' => 'required'
-        ]);
-
         $response = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -65,7 +61,7 @@ class ForgotPasswordController extends Controller
         );
 
         if ($response == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('status', 'Senha redefinida com sucesso!');
+            return redirect()->route('login')->with('success', 'Senha redefinida com sucesso!');
         } else {
             return back()->withErrors(['email' => 'Erro ao redefinir senha.']);
         }
