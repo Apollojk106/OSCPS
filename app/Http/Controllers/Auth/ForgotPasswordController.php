@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Password;
-use App\Http\Model\User;
+use App\Models\User;
 
 class ForgotPasswordController extends Controller
 {
@@ -18,13 +18,12 @@ class ForgotPasswordController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
-        /*if (!User ::where('email', $request->email)->exists()) {
+        if (!User::where('email', $request->email)->exists()) {
             return back()->withErrors(['email' => 'Esse e-mail não está cadastrado.']);
-        }*/
-
-        dd($request);
+        }        
 
         $response = Password::sendResetLink($request->only('email'));
+
 
         if ($response == Password::RESET_LINK_SENT) {
             // Aqui você pode armazenar o token manualmente, se necessário
@@ -38,6 +37,8 @@ class ForgotPasswordController extends Controller
 
             return back()->with('status', 'Link de recuperação enviado!');
         } else {
+
+            dd($response);
             return back()->withErrors(['email' => 'Não conseguimos encontrar esse e-mail.']);
         }
     }
