@@ -88,8 +88,8 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'Email não encontrado.']);
         }
 
-        $passwordResetToken = PasswordResetToken::where('email', $request->email)
-            ->where('token', $request->token);
+        $passwordResetToken = PasswordResetToken::where('email', $request->email)->first();
+
         if (!$passwordResetToken) {
             return back()->withErrors(['email' => 'Token inválido ou expirado.']);
         }
@@ -98,8 +98,7 @@ class ForgotPasswordController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        // Limpa o token após a redefinição
-        $passwordResetToken->delete(); 
+        PasswordResetToken::destroy($passwordResetToken->id);
 
         return redirect()->route('login')->with('success', 'Senha redefinida com sucesso!');
     }
