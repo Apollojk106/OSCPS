@@ -96,7 +96,7 @@
                         type="email"
                         name="email"
                         placeholder="Informe seu e-mail"
-                        class="w-full p-3 border border-gray-300 rounded-lg"
+                        class="text-black w-full p-3 border border-gray-300 rounded-lg"
                         required>
                 </div>
                 <div class="mb-4">
