@@ -76,22 +76,31 @@ class ForgotPasswordController extends Controller
 
     public function reset(ResetRequest $request)
     {
-        $response = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                // Check if the password is already hashed (using bcrypt)
-                if (! Hash::check($password, $user->password)) {
-                    // If the password is not hashed, hash it using bcrypt
-                    $user->password = Hash::make($password);
-                    $user->save();
-                }
-            }
-        );
+        // Valida o request
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|confirmed',
+            'token' => 'required|string',
+        ]);
 
-        if ($response == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('success', 'Senha redefinida com sucesso!');
-        } else {
-            return back()->withErrors(['email' => 'Erro ao redefinir senha.']);
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return back()->withErrors(['email' => 'Email não encontrado.']);
         }
+
+        $passwordResetToken = PasswordResetToken::where('email', $request->email)
+            ->where('token', $request->token);
+        if (!$passwordResetToken) {
+            return back()->withErrors(['email' => 'Token inválido ou expirado.']);
+        }
+
+        // Atualiza a senha do usuário
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        // Limpa o token após a redefinição
+        $passwordResetToken->delete(); 
+
+        return redirect()->route('login')->with('success', 'Senha redefinida com sucesso!');
     }
 }
