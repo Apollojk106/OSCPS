@@ -39,8 +39,7 @@
 </head>
 
 <body style="background-color: #B30000; color: white;">
-   
-    <h1 class="oscps" style="color:white;">OSCPS</h1>
+    <br>
 
     @if(session('success'))
     <script>
@@ -81,18 +80,18 @@
                     <div class="text">Use seu RM ou email corporativo.</div>
                 </div>
                 <div class="text-field-outlined">
-                    <input type="email" name="email" class="input-text" placeholder="Usuário" required>
+                    <input type="email" name="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
                 </div>
                 <div class="text-field-outlined-error">
-                    <input type="password" name="password" class="input-text" placeholder="Senha" required>
+                    <input type="password" name="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
-                    <button type="submit" class="label">Entre no Site</button>
+                    <button type="submit" class="label w-full p-3 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors duration-300">Entre no Site</button>
                 </div>
                 
-                    <a href="/register" class="administrativo-secretaria">Cadastro</a>
-                    <a href="/forgot-password" class="administrativo-secretaria">Esqueceu a Senha</a>
-                    <a href="#" id="toggle-teacher" class="administrativo-secretaria">Trocar para Educacional/Acadêmico</a>
+                <a href="/register" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Cadastro</a>
+                <a href="/forgot-password" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Esqueceu a Senha</a>
+                <a href="#" id="toggle-teacher" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Trocar para Educacional/Acadêmico</a>
                 
             </div>
         </form>
@@ -117,18 +116,18 @@
                 </div>
                 @endif
                 <div class="text-field-outlined">
-                    <input type="email" name="email" id="email" class="input-text" placeholder="Usuário" required>
+                    <input type="email" name="email" id="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
                 </div>
                 <div class="text-field-outlined-error">
-                    <input type="password" name="password" id="password" class="input-text" placeholder="Senha" required>
+                    <input type="password" name="password" id="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
-                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
-                        Entre no Site</button>
+                    <button type="submit" class="text-white w-full p-3 bg-red-700 rounded-md flex items-center justify-center cursor-pointer hover:bg-red-800 hover:text-white transition-colors duration-300">
+                        Entre no Site
+                    </button>
                 </div>
 
-
-                <a href="#" id="toggle-admin" class="administrativo-secretaria">Trocar para Administrativo/Secretaria</a>
+                <a href="#" id="toggle-admin" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Trocar para Administrativo/Secretaria</a>
             </div>
         </form>
     </div>
@@ -152,5 +151,7 @@
         });
     </script>
 </body>
+
+
 
 </html>

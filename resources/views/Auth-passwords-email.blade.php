@@ -41,50 +41,50 @@
 
 
 <body style="background-color: #B30000; color: white; overflow: hidden;">
+
     <br>
 
-@if(session('success'))
-    <script>
-        Swal.fire({
-            position: "center", // Centraliza o alerta na tela
-            icon: "success", // Tipo do ícone (sucesso)
-            title: "{{ session('success') }}", // Mensagem que vem da sessão
-            showConfirmButton: false, // Não mostra o botão de confirmação
-            timer: 1500 // O alerta desaparece após 1.5 segundos
-        });
-    </script>
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                position: "center", // Centraliza o alerta na tela
+                icon: "success", // Tipo do ícone (sucesso)
+                title: "{{ session('success') }}", // Mensagem que vem da sessão
+                showConfirmButton: false, // Não mostra o botão de confirmação
+                timer: 1500 // O alerta desaparece após 1.5 segundos
+            });
+        </script>
     @endif
 
     @if($errors->any())
-    <script>
-        Swal.fire({
-            position: "center", // Centraliza o alerta
-            icon: 'error', // Ícone de erro
-            title: 'Oops...', // Título do alerta
-            html: '<ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>', // Lista de erros
-            showConfirmButton: true, // Mostra o botão de confirmação
-            confirmButtonText: 'OK', // Texto do botão
-            customClass: {
-                confirmButton: 'swal-btn' // Classe customizada para o botão
-            }
-        });
-    </script>
+        <script>
+            Swal.fire({
+                position: "center", // Centraliza o alerta
+                icon: 'error', // Ícone de erro
+                title: 'Oops...', // Título do alerta
+                html: '<ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>', // Lista de erros
+                showConfirmButton: true, // Mostra o botão de confirmação
+                confirmButtonText: 'OK', // Texto do botão
+                customClass: {
+                    confirmButton: 'swal-btn' // Classe customizada para o botão
+                }
+            });
+        </script>
     @endif
 
     <br>
-<div class="title text-center mb-6">
-    <h1 class="oscps" style="color:white;">OSCPS</h1>
-</div>
 
-    <!-- Container para centralizar o formulário -->
-    <div class="container">
+    <div class="title text-center mb-6">
+        <h1 class="oscps" style="color:white;">OSCPS</h1>
+    </div>
 
-        <!-- Formulário com fundo branco e bordas arredondadas -->
-        <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96">
+    <!-- Container para centralizar o formulário e garantir margens -->
+    <div class="flex justify-center items-center min-h-screen  p-4">
 
+        <!-- Formulário com fundo branco, bordas arredondadas, responsivo e margem -->
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 mx-4">
 
             <div class="title text-center mb-6">
-
                 <div class="text">Solicitar Troca de Senha</div>
             </div>
 
@@ -96,25 +96,26 @@
                         type="email"
                         name="email"
                         placeholder="Informe seu e-mail"
-                        class="input-text"
+                        class="w-full p-3 border border-gray-300 rounded-lg"
                         required>
                 </div>
                 <div class="mb-4">
                     <button
                         type="submit"
-                        class="w-full p-3 text-white rounded-lg">
+                        class="w-full p-3 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none">
                         Enviar link
                     </button>
                 </div>
             </form>
 
-            <div class="text-center mt-4">      
-                <a href="/login" class="administrativo-secretaria">Voltar para o login</a>
+            <div class="text-center mt-4">
+                <a href="/login" class="text-red-700 hover:underline">Voltar para o login</a>
             </div>
         </div>
 
     </div>
 
 </body>
+
 
 </html>
