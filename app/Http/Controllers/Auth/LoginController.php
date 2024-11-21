@@ -34,7 +34,7 @@ class LoginController extends Controller
             }
             else
             {
-                return redirect('/Teacher/dashboard');
+                return redirect('/Adm/dashboard');
             }
 
         }
@@ -86,7 +86,7 @@ class LoginController extends Controller
             }
             else
             {
-                return redirect('/Teacher/dashboard');
+                return redirect('/Adm/dashboard');
             }
 
         }

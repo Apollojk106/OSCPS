@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <button onclick="window.location='{{ route('student.dashboard') }}';" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <button onclick="window.location='/Student/dashboard'" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Retornar</div>
                     </button>
 
