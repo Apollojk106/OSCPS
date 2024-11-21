@@ -12,6 +12,7 @@ use App\Mail\CustomPasswordReset;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
@@ -42,17 +43,18 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         $token = Str::random(60);
 
+        try {
+            Mail::to($request->email)->send(new CustomPasswordReset($token, $request->email));
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return back()->withErrors(['email' => 'Ocorreu um erro ao enviar o e-mail. Tente novamente mais tarde.']);
+        }
+
         PasswordResetToken::create([
             'email' => $user->email,
             'token' => $token,
             'created_at' => now(),
         ]);
-
-        try {
-            Mail::to($request->email)->send(new CustomPasswordReset($token, $request->email));
-        } catch (\Exception $e) {
-            return back()->withErrors(['email' => 'Ocorreu um erro ao enviar o e-mail. Tente novamente mais tarde.']);
-        }
 
         // Retorna sucesso
         return back()->with('success', 'Link de recuperação enviado!');
@@ -77,8 +79,12 @@ class ForgotPasswordController extends Controller
         $response = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
-                $user->password = bcrypt($password);
-                $user->save();
+                // Check if the password is already hashed (using bcrypt)
+                if (! Hash::check($password, $user->password)) {
+                    // If the password is not hashed, hash it using bcrypt
+                    $user->password = Hash::make($password);
+                    $user->save();
+                }
             }
         );
 

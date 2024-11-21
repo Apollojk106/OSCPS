@@ -39,7 +39,7 @@
 </head>
 
 <body style="background-color: #B30000; color: white;">
-    <br>
+   
     <h1 class="oscps" style="color:white;">OSCPS</h1>
 
     @if(session('success'))
@@ -123,7 +123,8 @@
                     <input type="password" name="password" id="password" class="input-text" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
-                    <button type="submit" class="label">Entre no Site</button>
+                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                        Entre no Site</button>
                 </div>
 
 

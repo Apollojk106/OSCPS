@@ -71,12 +71,13 @@
     @endif
 
 
+    <br>
 <div class="title text-center mb-6">
     <h1 class="oscps" style="color:white;">OSCPS</h1>
 </div>
 
     <!-- Container para centralizar o formulário -->
-    <div class="flex items-center justify-center min-h-screen">
+    <div class="container">
         
 
         <!-- Formulário com fundo branco e bordas arredondadas -->
@@ -125,7 +126,7 @@
                 <div>
                     <button
                         type="submit"
-                        class="w-full p-3 bg-red-900 text-white rounded-lg hover:bg-red-700 transition duration-300">
+                        class="w-full p-3 text-white rounded-lg">
                         Redefinir Senha
                     </button>
                 </div>

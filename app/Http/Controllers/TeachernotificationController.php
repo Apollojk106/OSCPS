@@ -74,7 +74,7 @@ class TeachernotificationController extends Controller
         $reservation->status = '2'; // Supondo que o status "accepted" indique que a reserva foi aceita
         $reservation->save();
 
-        //Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'aceita'));
+        Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'aceita'));
 
         return redirect()->back()->with('success', 'Reserva aceita com sucesso!');
     }
@@ -88,7 +88,7 @@ class TeachernotificationController extends Controller
         $reservation->status = '3'; // Supondo que o status "rejected" indica que a reserva foi recusada
         $reservation->save();
 
-        //Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'recusada'));
+        Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'recusada'));
 
         return redirect()->back()->with('success', 'Reserva recusada!');
     }
@@ -107,7 +107,7 @@ class TeachernotificationController extends Controller
             $called->status = '3'; // Atualiza para "Concluído"
         }
 
-        //Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado'));
+        Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado')); 
 
         $called->save();
 

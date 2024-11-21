@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body style="background-color: #842519; color: white;">
+<body style="background-color: #B30000; color: white;">
     <div class="title text-center mb-6">
         <h1 class="oscps" style="color:white;">OSCPS</h1>
     </div>
@@ -21,7 +21,7 @@
                 <br> Clique no link abaixo para criar uma nova senha:</div>
 
             <div class="flex justify-center items-center">
-                <form action="{{ $resetLink }}" method="get">
+                <form action="{{ $resetLink }}" method="get" target="_blank">
                     <div class="contained-button">
                         <button type="submit" class="label">Redefinir a senha</button>
                     </div>
