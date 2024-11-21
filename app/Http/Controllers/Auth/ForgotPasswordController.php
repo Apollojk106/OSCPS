@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetRequest;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
 use App\Models\PasswordResetToken;
+use App\Mail\CustomPasswordReset;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class ForgotPasswordController extends Controller
@@ -26,26 +28,43 @@ class ForgotPasswordController extends Controller
             return back()->withErrors(['email' => 'Esse e-mail é inválido!']);
         }
 
-        $existingToken = PasswordResetToken::where('email', $request->email)
-            ->first();
+        $existingToken = PasswordResetToken::where('email', $request->email)->first();
 
         if ($existingToken) {
             // Se o token foi criado há mais de 1 hora, exclui-o para substituir
             if ($existingToken->created_at < Carbon::now()->subHour()) {
-                $existingToken->delete(); // Deleta o token antigo
+                PasswordResetToken::where('email', $request->email)->delete();
             } else {
-                // Se o token ainda é válido (criado nos últimos 60 minutos), retorna um erro
                 return back()->withErrors(['email' => 'Já foi enviado um link de recuperação há menos de uma hora.']);
             }
         }
 
+        $user = User::where('email', $request->email)->first();
+        $token = Str::random(60);
+
+        PasswordResetToken::create([
+            'email' => $user->email,
+            'token' => $token,
+            'created_at' => now(),
+        ]);
+
+        try {
+            Mail::to($request->email)->send(new CustomPasswordReset($token, $request->email));
+        } catch (\Exception $e) {
+            return back()->withErrors(['email' => 'Ocorreu um erro ao enviar o e-mail. Tente novamente mais tarde.']);
+        }
+
+        // Retorna sucesso
+        return back()->with('success', 'Link de recuperação enviado!');
+
+        /*  
         $response = Password::sendResetLink($request->only('email'));
 
         if ($response == Password::RESET_LINK_SENT) {
             return back()->with('success', 'Link de recuperação enviado!');
         } else {
             return back()->withErrors(['email' => 'Não conseguimos encontrar esse e-mail.']);
-        }
+        }*/
     }
 
     public function showResetFormToken($token)
