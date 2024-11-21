@@ -50,7 +50,7 @@
         button {
             width: 48%;
             padding: 10px;
-            background-color: #842519;
+            background-color: #B30000;
             color: white;
             border: none;
             border-radius: 4px;
@@ -134,11 +134,11 @@
             <!-- Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button type="button" onclick="window.location='/Student/dashboard'"
-                    class="w-full bg-gray-300 text-gray-700 p-3 rounded-md hover:bg-gray-400 transition duration-300">
+                    class="w-full rounded-md transition duration-300">
                     Retornar
                 </button>
                 <button type="submit"
-                    class="w-full bg-red-500 text-white p-3 rounded-md hover:bg-red-600 transition duration-300">
+                    class="w-full rounded-md transition duration-300">
                     Enviar
                 </button>
             </div>

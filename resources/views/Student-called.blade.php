@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Formulário de Manutenção</title>
 
+
 </head>
 
 <body class="bg-gray-100 p-0">
@@ -35,7 +36,7 @@
             <form method="POST" action=" {{route('post.student.called')}}">
 
                 @csrf
-                
+
                 <div class="space-y-4">
                     <div class="flex flex-col">
                         <label for="type_problem" class="font-semibold text-gray-800">Problema</label>
@@ -70,10 +71,11 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <a href="{{route('student.dashboard')}}" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <button onclick="window.location='{{ route('student.dashboard') }}';" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Retornar</div>
-                    </a>
-                    <button type="submit" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    </button>
+
+                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Enviar</div>
                     </button>
                 </div>

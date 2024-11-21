@@ -63,20 +63,6 @@
             border-radius: 4px;
         }
 
-        button {
-            width: 10%;
-            padding: 10px;
-            background-color: #842519;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-
-        }
-
-        button:hover {
-            background-color: #701a0e;
-        }
     </style>
 </head>
 
@@ -99,7 +85,7 @@
         @endforeach
     </div>
 
-    <button onclick="document.location='/Student/dashboard'">Retornar</button>
+    <button class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer" onclick="document.location='/Student/dashboard'">Retornar</button>
 
     <script>
         const toggle = document.querySelector('.toggle');

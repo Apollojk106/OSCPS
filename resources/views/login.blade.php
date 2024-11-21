@@ -38,7 +38,8 @@
     </style>
 </head>
 
-<body style="background-color: #842519; color: white;">
+<body style="background-color: #B30000; color: white;">
+    <br>
     <h1 class="oscps" style="color:white;">OSCPS</h1>
 
     @if(session('success'))

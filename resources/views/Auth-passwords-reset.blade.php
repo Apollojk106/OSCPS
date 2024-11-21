@@ -39,7 +39,8 @@
     </style>
 </head>
 
-<body style="background-color: #842519; color: white; overflow: hidden;">
+<body style="background-color: #B30000; color: white; overflow: hidden;">
+    <br>
 
 @if(session('success'))
     <script>

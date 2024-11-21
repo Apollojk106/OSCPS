@@ -15,7 +15,7 @@
       <form class="a" action="{{ route('logout') }}" method="POST">
         @csrf
         <button class="fas fa-sign-out-alt logout-icon" title="Logout" id="logout-button"
-          style="background-color: #842519; color: white; cursor: pointer; transition: none;">
+          style="background-color: #B30000; color: white; cursor: pointer; transition: none;">
         </button>
       </form>
     </div>

@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #842519; /* Dark red background */
+    background-color: #B30000; /* Dark red background */
 }
 
 /* Main frame container */
@@ -73,7 +73,7 @@ body {
 
 .label {
     width: 100%;
-    background-color: #842519;
+    background-color: #B30000;
     color: white;
     padding: 12px;
     font-size: 14px;
@@ -87,14 +87,14 @@ body {
 }
 
 .label:hover {
-    background-color: #a02921;
+    background-color: #B30000;
 }
 
 /* Additional text styling */
 .administrativo-secretaria {
     margin-top: 12px;
     font-size: 12px;
-    color: #B3261E;
+    color: #830000;
     text-decoration: underline;
 }
 
@@ -129,7 +129,7 @@ body.dark-mode {
 .header {
     width: 100%;
     height: 130px;
-    background-color: #842519; /* Header background light */
+    background-color: #B30000; /* Header background light */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,7 +143,7 @@ body.dark-mode {
 }
 
 body.dark-mode .header {
-    background-color: #842519; /* Header background dark */
+    background-color: #B30000; /* Header background dark */
 }
 
 .oscps {
@@ -184,7 +184,7 @@ body.dark-mode .header-icons i {
 .card {
     width: 320px;
     height: 420px;
-    background-color: #842519; /* Card background light */
+    background-color: #B30000; /* Card background light */
     border-radius: 16px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     color: white; /* Text color light */
@@ -201,7 +201,7 @@ body.dark-mode .header-icons i {
 
 /* Dark mode cards */
 body.dark-mode .card {
-    background-color: #842519; /* Card background dark */
+    background-color: #B30000; /* Card background dark */
     color: white; /* Text color in dark mode */
 }
 
@@ -240,20 +240,23 @@ body.dark-mode .toggle {
 button {
     width: 48%;
     padding: 10px;
-    background-color: #842519;
-    color: #701a0e;
+    background-color: #B30000;
+    color: #B30000;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     
 }
+
 button:hover {
     background-color: #701a0e;
 }
 
+
 .bg-red-600 {
-    color: #701a0e; /* Darker text color */
+    color: #B30000; /* Darker text color */
 }
+
 
 /*  css do alarm  */
 

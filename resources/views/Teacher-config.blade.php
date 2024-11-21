@@ -10,11 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<style>
-    button{
-        background-color: #701a0e
-    }
-</style>
 
 <body class="bg-gray-100">
 
@@ -52,7 +47,7 @@
 
             <!-- Seção de Estudantes -->
             <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold">Estudantes</h2>
+                <h2 class="text-xl font-semibold text-center">Estudantes</h2>
 
                 <div class="bg-gray-200 p-4 rounded shadow mb-4">
                     <h2 class="text-xl font-semibold">Importar</h2>
@@ -69,7 +64,7 @@
                         </div>
 
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="bg-[#701a0e] text-white px-4 py-2 rounded-md">Importar Estudantes</button>
+                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Importar Estudantes</button>
                         </div>
                     </form>
                 </div>
@@ -89,7 +84,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="ml-4 bg-[#701a0e] text-white py-2 px-4 rounded-md">
+                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">
                                 Filtrar
                             </button>
                         </div>
@@ -108,7 +103,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="ml-4 bg-[#701a0e] text-white py-2 px-4 rounded-md">
+                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">
                                 Deletar Classe
                             </button>
                         </div>
@@ -146,7 +141,7 @@
                                     <!-- Botão Excluir -->
                                     <button
                                         type="button"
-                                        class="bg-[#701a0e] p-2 text-white rounded"
+                                        class="bg-[#B30000] text-white px-4 py-2 rounded-md"
                                         onclick="openDeleteModal('student', '{{ $student->id }}')">
                                         Excluir
                                     </button>
@@ -166,7 +161,7 @@
                                         <input type="text" name="class" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                     </td>
                                     <td class="py-2 border flex justify-center items-center">
-                                        <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
+                                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
                                     </td>
                                 </tr>
                             </form>
@@ -180,7 +175,7 @@
 
             <!-- Seção de Localizações -->
             <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold">Localizações</h2>
+                <h2 class="text-xl font-semibold text-center">Localizações</h2>
                 <table class="min-w-full table-auto mt-4 bg-white">
                     <thead>
                         <tr>
@@ -204,7 +199,7 @@
                                     </button>
                                 </form>
 
-                                <button type="button" class="bg-[#701a0e] p-2 text-white rounded" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
+                                <button type="button" class="bg-[#B30000] text-white px-4 py-2 rounded-md" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
                             </td>
                         </tr>
                         @endforeach
@@ -218,7 +213,7 @@
                                     <input type="text" name="environment" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                 </td>
                                 <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#701a0e] p-2 text-white rounded">Adicionar</button>
+                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
                                 </td>
                             </tr>
                         </form>
@@ -226,6 +221,63 @@
                 </table>
             </div>
 
+            <br>
+
+            <!-- Seção de Secretaria -->
+            <div class="bg-gray-200 p-4 rounded shadow mb-4">
+                <h2 class="text-xl font-semibold text-center">Secretaria</h2>
+                <table class="min-w-full table-auto mt-4 bg-white">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 border">Nome</th>
+                            <th class="px-4 py-2 border">Email</th>
+                            <th class="px-4 py-2 border">Entrada</th>
+                            <th class="px-4 py-2 border">Saida</th>
+                            <th class="px-4 py-2 border">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        @foreach($secretaries as $secretary)
+                        <tr>
+                            <td class="px-4 py-2 border">{{ $secretary->name }}</td>
+                            <td class="px-4 py-2 border">{{ $secretary->email }}</td>
+                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->entry_time)->format('H:i') }}</td>
+                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->exit_time)->format('H:i') }}</td>
+                            <td class="px-4 py-2 border flex items-center justify-start">
+                                <form action="{{ route('Secretary.Edit') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $secretary->id }}">
+
+                                        <button type="submit" class="bg-white text-blue-500 font-semibold px-4 py-2 rounded-md border border-blue-500 hover:bg-white">
+                                            Editar
+                                        </button>
+                                    </form>
+                                <button hr type="button" class="bg-[#B30000] text-white px-4 py-2 rounded-md" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        <form action="{{ route('secretaries.store') }}" method="POST">
+                            @csrf
+                            <tr>
+                                <td class="px-4 py-2 border">
+                                    <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="time" name="entry_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </td>
+                                <td class="px-4 py-2 border">
+                                    <input type="time" name="exit_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                </td>
+                                <td class="py-2 border flex justify-center items-center">
+                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                                </td>
+                            </tr>
+                        </form>
+                    </tbody>
+            </div>
             <br>
 
             <!-- Modal de Edição -->
