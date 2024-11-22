@@ -78,11 +78,12 @@
         <h1 class="oscps" style="color:white;">OSCPS</h1>
     </div>
 
+    
     <!-- Container para centralizar o formulário e garantir margens -->
-    <div class="flex justify-center items-center min-h-screen  p-4">
+    <div class="flex justify-center items-center p-4">
 
         <!-- Formulário com fundo branco, bordas arredondadas, responsivo e margem -->
-        <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 mx-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 mx-4 ">
 
             <div class="title text-center mb-6">
                 <div class="text">Solicitar Troca de Senha</div>
@@ -96,7 +97,7 @@
                         type="email"
                         name="email"
                         placeholder="Informe seu e-mail"
-                        class="w-full p-3 border border-gray-300 rounded-lg"
+                        class="text-black w-full p-3 border border-gray-300 rounded-lg"
                         required>
                 </div>
                 <div class="mb-4">

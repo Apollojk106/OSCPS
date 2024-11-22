@@ -40,7 +40,9 @@
 
 <body style="background-color: #B30000; color: white;">
     <br>
-    <h1 class="oscps" style="color:white;">OSCPS</h1>
+    <div class="title text-center mb-6">
+        <h1 class="oscps" style="color:white;">OSCPS</h1>
+    </div>
     <div class="container">
 
 

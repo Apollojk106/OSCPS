@@ -12,8 +12,6 @@
 </head>
 
 <body style="background-color: #B30000; color: white;">
-    <br>
-
     @if(session('success'))
     <script>
         Swal.fire({
@@ -41,6 +39,11 @@
         });
     </script>
     @endif
+
+    <br>
+    <div class="title text-center mb-6">
+        <h1 class="oscps" style="color:white;">OSCPS</h1>
+    </div>
 
     <div class="container">
         <form action="{{route('studentlogin')}}" class="form active" id="admin-form" method="POST">

@@ -76,7 +76,7 @@
     </div>
 
     <!-- Container para centralizar o formulário -->
-    <div class="flex justify-center items-center min-h-screen bg-red-700 p-4">
+    <div class="flex justify-center items-center p-4">
 
         <!-- Formulário com fundo branco, bordas arredondadas e responsivo -->
         <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 mx-4">
@@ -116,7 +116,7 @@
                         type="password"
                         name="password_confirmation"
                         placeholder="Confirmar Senha"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
+                        class="text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
                         required>
                 </div>
 
@@ -124,7 +124,7 @@
                 <div>
                     <button
                         type="submit"
-                        class="w-full p-3 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none transition duration-300">
+                        class="text-black w-full p-3 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none transition duration-300">
                         Redefinir Senha
                     </button>
                 </div>
