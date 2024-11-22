@@ -8,34 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        .swal-btn {
-            padding: 14px 40px !important;
-            /* Ajusta o tamanho do botão */
-            font-size: 18px !important;
-            /* Ajusta o tamanho da fonte */
-            border-radius: 8px !important;
-            /* Bordas arredondadas */
-            width: 100% !important;
-            /* Faz o botão ocupar 100% da largura do pop-up */
-            box-sizing: border-box !important;
-            /* Garantir que o padding seja incluído na largura */
-        }
-
-        /* Ajusta a largura do pop-up para que o conteúdo e o botão se ajustem */
-        .swal2-popup {
-            min-width: 300px !important;
-            /* Definindo uma largura mínima */
-            width: auto !important;
-            /* Ajuste a largura automaticamente */
-        }
-
-        /* Ajusta a largura do conteúdo para que o botão acompanhe */
-        .swal2-html-container {
-            max-width: 100% !important;
-            /* Ajusta a largura máxima do conteúdo */
-        }
-    </style>
+    
 </head>
 
 <body style="background-color: #B30000; color: white;">
@@ -97,39 +70,42 @@
         </form>
 
         <form action="{{route('teacherlogin')}}" class="form" id="teacher-form" method="POST" style="display:none;">
-            @csrf
-            <div class="sign-up">
-                <div class="title">
-                    <div class="text">Log-in Corpo Docente</div>
-                </div>
-                <div class="subtitle">
-                    <div class="text">Use seu email corporativo.</div>
-                </div>
-                @if ($errors->any())
-                <div class="bg-red-600" style="color: black; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;">
-                    <strong>Atenção!</strong>
-                    <ul style="margin-top: 0.5rem;">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                <div class="text-field-outlined">
-                    <input type="email" name="email" id="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
-                </div>
-                <div class="text-field-outlined-error">
-                    <input type="password" name="password" id="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
-                </div>
-                <div class="contained-button">
-                    <button type="submit" class="text-white w-full p-3 bg-red-700 rounded-md flex items-center justify-center cursor-pointer hover:bg-red-800 hover:text-white transition-colors duration-300">
-                        Entre no Site
-                    </button>
-                </div>
+    @csrf
+    <div class="sign-up">
+        <div class="title ">
+            <div class="text">Log-in Corpo Docente</div>
+        </div>
+        <div class="subtitle">
+            <div class="text">Use seu email corporativo.</div>
+        </div>
+        @if ($errors->any())
+        <div class="bg-red-600 text-black p-4 mb-4 rounded-md">
+            <strong>Atenção!</strong>
+            <ul class="mt-2">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <div class="text-field-outlined">
+            <input type="email" name="email" id="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
+        </div>
+        <div class="text-field-outlined-error">
+            <input type="password" name="password" id="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
+        </div>
+        <div class="contained-button">
+            <button type="submit" class="text-white w-full p-3  rounded-md flex items-center justify-center cursor-pointer hover:bg-red-800 hover:text-white transition-colors duration-300">
+                Entre no Site
+            </button>
+        </div>
 
-                <a href="#" id="toggle-admin" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Trocar para Administrativo/Secretaria</a>
-            </div>
-        </form>
+        <a href="#" id="toggle-admin" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300 mt-4 block text-center">
+            Trocar para Administrativo/Secretaria
+        </a>
+    </div>
+</form>
+
     </div>
 
     <script>

@@ -46,238 +46,221 @@
         <div class="flex-1 p-6 ml-10 ">
 
             <!-- Seção de Estudantes -->
-            <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold text-center">Estudantes</h2>
+<div class="bg-gray-200 p-3 rounded shadow mb-4 ml-[20%] max-w-full sm:max-w-xl">
+    <h2 class="text-lg font-medium text-center">Estudantes</h2>
 
-                <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                    <h2 class="text-xl font-semibold">Importar</h2>
-                    <form action="{{ route('import.students') }}" method="POST" enctype="multipart/form-data" class="ml-20 max-w-xl">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="class" class="block text-sm font-medium text-gray-700">Nome da Turma</label>
-                            <input type="text" name="class" id="class" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                        </div>
-
-                        <div class="mb-4 flex justify-center items-center">
-                            <label for="file" class="block text-sm font-medium text-gray-700">Selecione o Arquivo TXT</label>
-                            <input type="file" name="file" id="file" accept=".txt" class="mt-1 block w-full" required>
-                        </div>
-
-                        <div class="flex justify-center items-center">
-                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Importar Estudantes</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="justify-center items-center">
-
-                    <!-- Filtro de Classe -->
-                    <form action="{{ route('teacher.config.filter') }}" method="POST" class="mb-4 ml-auto max-w-xl">
-                        @csrf
-                        <div class="flex items-center justify-center space-x-4">
-                            <h2 class="text-xl font-semibold">Filtro de Classe:</h2>
-                            <select name="class" id="class" class="form-select rounded-md border-gray-300">
-                                <option value="">Selecione uma classe</option>
-                                @foreach($classes as $class)
-                                <option value="{{ $class }}">
-                                    {{ $class }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">
-                                Filtrar
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Deletar Classe -->
-                    <form action="{{ route('teacher.config.delete_class') }}" method="POST" class="mb-4 ml-auto max-w-xl">
-                        @csrf
-                        <div class="flex items-center justify-center space-x-4">
-                            <h2 class="text-xl font-semibold">Deletar Classe:</h2>
-                            <select name="class" id="class" class="form-select rounded-md border-gray-300">
-                                <option value="">Selecione uma classe</option>
-                                @foreach($classes as $class)
-                                <option value="{{ $class }}">
-                                    {{ $class }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">
-                                Deletar Classe
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
-
-                <!-- Tabela de Estudantes -->
-                <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                    <table class="min-w-full table-auto mt-4">
-                        <thead class="bg-white">
-                            <tr>
-                                <th class="px-4 py-2 border">RM</th>
-                                <th class="px-4 py-2 border">Nome</th>
-                                <th class="px-4 py-2 border">Turma</th>
-                                <th class="px-4 py-2 border">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            @foreach($students as $student)
-                            <tr>
-                                <td class="px-4 py-2 border">{{ $student->RM }}</td>
-                                <td class="px-4 py-2 border">{{ $student->name }}</td>
-                                <td class="px-4 py-2 border">{{ $student->class }}</td>
-                                <td class="px-4 py-2 border flex items-center justify-start">
-                                    <form action="{{ route('Student.Edit') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $student->id }}">
-
-                                        <button type="submit" class="bg-white text-blue-500 font-semibold px-4 py-2 rounded-md border border-blue-500 hover:bg-white">
-                                            Editar
-                                        </button>
-                                    </form>
-
-                                    <!-- Botão Excluir -->
-                                    <button
-                                        type="button"
-                                        class="bg-[#B30000] text-white px-4 py-2 rounded-md"
-                                        onclick="openDeleteModal('student', '{{ $student->id }}')">
-                                        Excluir
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                            <form action="{{ route('students.store') }}" method="POST">
-                                @csrf
-                                <tr>
-                                    <td class="px-4 py-2 border">
-                                        <input type="text" name="RM" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                    </td>
-                                    <td class="px-4 py-2 border">
-                                        <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                    </td>
-                                    <td class="px-4 py-2 border">
-                                        <input type="text" name="class" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                    </td>
-                                    <td class="py-2 border flex justify-center items-center">
-                                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
-                                    </td>
-                                </tr>
-                            </form>
-                        </tbody>
-                    </table>
-                </div>
-
+    <!-- Importar Formulário -->
+    <div class="bg-gray-200 p-3 rounded shadow mb-4">
+        <h2 class="text-lg font-medium">Importar</h2>
+        <form action="{{ route('import.students') }}" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto">
+            @csrf
+            <div class="mb-3">
+                <label for="class" class="block text-sm font-medium text-gray-700">Nome da Turma</label>
+                <input type="text" name="class" id="class" class="mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md" required>
             </div>
+
+            <div class="mb-3 flex flex-col">
+                <label for="file" class="block text-sm font-medium text-gray-700">Selecione o Arquivo TXT</label>
+                <input type="file" name="file" id="file" accept=".txt" class="mt-1 block w-full" required>
+            </div>
+
+            <div class="flex justify-center items-center">
+                <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Importar Estudantes</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Filtro de Classe -->
+    <form action="{{ route('teacher.config.filter') }}" method="POST" class="mb-4 ml-auto max-w-xl">
+        @csrf
+        <div class="flex items-center justify-between space-x-4">
+            <h2 class="text-lg font-medium">Filtro de Classe:</h2>
+            <select name="class" id="class" class="form-select text-sm rounded-md border-gray-300 px-2 py-1.5">
+                <option value="">Selecione uma classe</option>
+                @foreach($classes as $class)
+                <option value="{{ $class }}">{{ $class }}</option>
+                @endforeach
+            </select>
+            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Filtrar</button>
+        </div>
+    </form>
+
+    <!-- Deletar Classe -->
+    <form action="{{ route('teacher.config.delete_class') }}" method="POST" class="mb-4 ml-auto max-w-xl">
+        @csrf
+        <div class="flex items-center justify-between space-x-4">
+            <h2 class="text-lg font-medium">Deletar Classe:</h2>
+            <select name="class" id="class" class="form-select text-sm rounded-md border-gray-300 px-2 py-1.5">
+                <option value="">Selecione uma classe</option>
+                @foreach($classes as $class)
+                <option value="{{ $class }}">{{ $class }}</option>
+                @endforeach
+            </select>
+            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Deletar Classe</button>
+        </div>
+    </form>
+
+    <!-- Tabela de Estudantes -->
+    <div class="bg-gray-200 p-3 rounded shadow mb-4">
+        <table class="min-w-full table-auto mt-3">
+            <thead class="bg-white">
+                <tr>
+                    <th class="px-2 py-1.5 border">RM</th>
+                    <th class="px-2 py-1.5 border">Nome</th>
+                    <th class="px-2 py-1.5 border">Turma</th>
+                    <th class="px-2 py-1.5 border">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                @foreach($students as $student)
+                <tr>
+                    <td class="px-2 py-1.5 border">{{ $student->RM }}</td>
+                    <td class="px-2 py-1.5 border">{{ $student->name }}</td>
+                    <td class="px-2 py-1.5 border">{{ $student->class }}</td>
+                    <td class="px-2 py-1.5 border flex items-center justify-start">
+                        <form action="{{ route('Student.Edit') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $student->id }}">
+                            <button type="submit" class="bg-white text-blue-500 font-semibold px-3 py-1.5 rounded-md border border-blue-500 hover:bg-white">Editar</button>
+                        </form>
+                        <!-- Botão Excluir -->
+                        <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('student', '{{ $student->id }}')">Excluir</button>
+                    </td>
+                </tr>
+                @endforeach
+                <form action="{{ route('students.store') }}" method="POST">
+                    @csrf
+                    <tr>
+                        <td class="px-2 py-1.5 border">
+                            <input type="text" name="RM" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        </td>
+                        <td class="px-2 py-1.5 border">
+                            <input type="text" name="name" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        </td>
+                        <td class="px-2 py-1.5 border">
+                            <input type="text" name="class" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        </td>
+                        <td class="py-1.5 border flex justify-center items-center">
+                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
             <br>
 
             <!-- Seção de Localizações -->
-            <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold text-center">Localizações</h2>
-                <table class="min-w-full table-auto mt-4 bg-white">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2 border">Telhado</th>
-                            <th class="px-4 py-2 border">Ambiente</th>
-                            <th class="px-4 py-2 border">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @foreach($locations as $location)
-                        <tr>
-                            <td class="px-4 py-2 border">{{ $location->roof }}</td>
-                            <td class="px-4 py-2 border">{{ $location->environment }}</td>
-                            <td class="px-4 py-2 border flex items-center justify-start">
-                                <form action="{{ route('Location.Edit') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $location->id }}">
+            <div class="bg-gray-200 p-3 rounded shadow mb-4 ml-[20%] max-w-full sm:max-w-xl">
+    <h2 class="text-lg font-medium text-center">Localizações</h2>
 
-                                    <button type="submit" class="bg-white text-blue-500 font-semibold px-4 py-2 rounded-md border border-blue-500 hover:bg-white">
-                                        Editar
-                                    </button>
-                                </form>
+    <table class="min-w-full table-auto mt-3 bg-white">
+        <thead>
+            <tr>
+                <th class="px-3 py-1.5 border">Telhado</th>
+                <th class="px-3 py-1.5 border">Ambiente</th>
+                <th class="px-3 py-1.5 border">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white">
+            @foreach($locations as $location)
+            <tr>
+                <td class="px-3 py-1.5 border">{{ $location->roof }}</td>
+                <td class="px-3 py-1.5 border">{{ $location->environment }}</td>
+                <td class="px-3 py-1.5 border flex items-center justify-start">
+                    <form action="{{ route('Location.Edit') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $location->id }}">
+                        <button type="submit" class="bg-white text-blue-500 font-semibold px-3 py-1.5 rounded-md border border-blue-500 hover:bg-white">
+                            Editar
+                        </button>
+                    </form>
 
-                                <button type="button" class="bg-[#B30000] text-white px-4 py-2 rounded-md" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
-                            </td>
-                        </tr>
-                        @endforeach
-                        <form action="{{ route('locations.store') }}" method="POST">
-                            @csrf
-                            <tr>
-                                <td class="px-4 py-2 border">
-                                    <input type="text" name="roof" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="text" name="environment" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-                </table>
-            </div>
+                    <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
+                </td>
+            </tr>
+            @endforeach
+            <form action="{{ route('locations.store') }}" method="POST">
+                @csrf
+                <tr>
+                    <td class="px-3 py-1.5 border">
+                        <input type="text" name="roof" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="px-3 py-1.5 border">
+                        <input type="text" name="environment" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="py-1.5 border flex justify-center items-center">
+                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</div>
+
 
             <br>
 
             <!-- Seção de Secretaria -->
-            <div class="bg-gray-200 p-4 rounded shadow mb-4">
-                <h2 class="text-xl font-semibold text-center">Secretaria</h2>
-                <table class="min-w-full table-auto mt-4 bg-white">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2 border">Nome</th>
-                            <th class="px-4 py-2 border">Email</th>
-                            <th class="px-4 py-2 border">Entrada</th>
-                            <th class="px-4 py-2 border">Saida</th>
-                            <th class="px-4 py-2 border">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        @foreach($secretaries as $secretary)
-                        <tr>
-                            <td class="px-4 py-2 border">{{ $secretary->name }}</td>
-                            <td class="px-4 py-2 border">{{ $secretary->email }}</td>
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->entry_time)->format('H:i') }}</td>
-                            <td class="px-4 py-2 border">{{ \Carbon\Carbon::parse($secretary->exit_time)->format('H:i') }}</td>
-                            <td class="px-4 py-2 border flex items-center justify-start">
-                                <form action="{{ route('Secretary.Edit') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $secretary->id }}">
+<div class="bg-gray-200 p-3 rounded shadow mb-4 ml-[20%] max-w-full sm:max-w-xl">
+    <h2 class="text-lg font-medium text-center">Secretaria</h2>
 
-                                        <button type="submit" class="bg-white text-blue-500 font-semibold px-4 py-2 rounded-md border border-blue-500 hover:bg-white">
-                                            Editar
-                                        </button>
-                                    </form>
-                                <button hr type="button" class="bg-[#B30000] text-white px-4 py-2 rounded-md" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
-                            </td>
-                        </tr>
-                        @endforeach
-                        <form action="{{ route('secretaries.store') }}" method="POST">
-                            @csrf
-                            <tr>
-                                <td class="px-4 py-2 border">
-                                    <input type="text" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="time" name="entry_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="px-4 py-2 border">
-                                    <input type="time" name="exit_time" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                                </td>
-                                <td class="py-2 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-            </div>
+    <table class="min-w-full table-auto mt-3 bg-white">
+        <thead>
+            <tr>
+                <th class="px-3 py-1.5 border">Nome</th>
+                <th class="px-3 py-1.5 border">Email</th>
+                <th class="px-3 py-1.5 border">Entrada</th>
+                <th class="px-3 py-1.5 border">Saída</th>
+                <th class="px-3 py-1.5 border">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white">
+            @foreach($secretaries as $secretary)
+            <tr>
+                <td class="px-3 py-1.5 border">{{ $secretary->name }}</td>
+                <td class="px-3 py-1.5 border">{{ $secretary->email }}</td>
+                <td class="px-3 py-1.5 border">{{ \Carbon\Carbon::parse($secretary->entry_time)->format('H:i') }}</td>
+                <td class="px-3 py-1.5 border">{{ \Carbon\Carbon::parse($secretary->exit_time)->format('H:i') }}</td>
+                <td class="px-3 py-1.5 border flex items-center justify-start">
+                    <form action="{{ route('Secretary.Edit') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $secretary->id }}">
+                        <button type="submit" class="bg-white text-blue-500 font-semibold px-3 py-1.5 rounded-md border border-blue-500 hover:bg-white">
+                            Editar
+                        </button>
+                    </form>
+                    <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
+                </td>
+            </tr>
+            @endforeach
+            <form action="{{ route('secretaries.store') }}" method="POST">
+                @csrf
+                <tr>
+                    <td class="px-3 py-1.5 border">
+                        <input type="text" name="name" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="px-3 py-1.5 border">
+                        <input type="email" name="email" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="px-3 py-1.5 border">
+                        <input type="time" name="entry_time" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="px-3 py-1.5 border">
+                        <input type="time" name="exit_time" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    </td>
+                    <td class="py-1.5 border flex justify-center items-center">
+                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</div>
+
             <br>
 
             <!-- Modal de Edição -->
