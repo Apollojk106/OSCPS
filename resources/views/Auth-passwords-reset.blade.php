@@ -76,7 +76,7 @@
     </div>
 
     <!-- Container para centralizar o formulário -->
-    <div class="flex justify-center items-center min-h-screen  p-4">
+    <div class="flex justify-center items-center p-4">
 
         <!-- Formulário com fundo branco, bordas arredondadas e responsivo -->
         <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96 mx-4">
