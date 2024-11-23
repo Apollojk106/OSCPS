@@ -152,7 +152,7 @@
   </div>
 
   <!-- Conteúdo Principal -->
-  <div class="content">
+  <div class="mt-18">
     <!-- Seu conteúdo vai aqui -->
   </div>
 

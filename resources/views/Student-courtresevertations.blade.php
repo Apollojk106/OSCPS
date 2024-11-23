@@ -29,7 +29,7 @@
 
         }
 
-       
+
 
         label {
             display: block;
@@ -84,68 +84,74 @@
     @endif
 
     @if(session('errors'))
-        <script>
-            Swal.fire({
-                position: "center", 
-                icon: 'error', // Define o ícone como "error"
-                title: 'Oops...', // Título da mensagem
-                text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
-                showConfirmButton: false, // Não mostra o botão de confirmação
-            });
-        </script>
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: 'error', // Define o ícone como "error"
+            title: 'Oops...', // Título da mensagem
+            text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
+            showConfirmButton: false, // Não mostra o botão de confirmação
+        });
+    </script>
     @endif
 
     <div class="min-h-screen bg-gray-100 flex justify-center items-start w-30">
-    <!-- Aumenta a largura do contêiner do formulário em 30% -->
-    <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 mt-40">
+        <!-- Aumenta a largura do contêiner do formulário em 30% -->
+        <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 mt-40">
 
-        <form action="{{ route('post.student.courtresevertations') }}" method="POST">
-            @csrf
-            <!-- Turma -->
-            <div class="mb-4">
-                <label for="class" class="block text-gray-700 font-semibold mb-2">Turma</label>
-                <select id="class" name="class" required class="w-full p-3 border border-gray-300 rounded-md">
-                    <option value="">Selecione uma turma</option>
-                    <option value="turma1">Turma 1</option>
-                    <option value="turma2">Turma 2</option>
-                    <option value="turma3">Turma 3</option>
-                </select>
-            </div>
+            <form action="{{ route('post.student.courtresevertations') }}" method="POST">
+                @csrf
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <!-- Turma -->
+                    <div class="mb-4">
+                        <label for="class" class="block text-gray-700 font-semibold mb-2">Turma</label>
+                        <select id="class" name="class" required class="w-full p-3 border border-gray-300 rounded-md">
+                            <option value="">Selecione uma turma</option>
+                            <option value="turma1">Turma 1</option>
+                            <option value="turma2">Turma 2</option>
+                            <option value="turma3">Turma 3</option>
+                        </select>
+                    </div>
 
-            <!-- Data -->
-            <div class="mb-4">
-                <label for="date" class="block text-gray-700 font-semibold mb-2">Data</label>
-                <input type="date" id="date" name="date" required class="w-full p-3 border border-gray-300 rounded-md">
-            </div>
+                    <!-- Data -->
+                    <div class="mb-4">
+                        <label for="date" class="block text-gray-700 font-semibold mb-2">Data</label>
+                        <input type="date" id="date" name="date" required class="w-full p-3 border border-gray-300 rounded-md">
+                    </div>
 
-            <!-- Horário -->
-            <div class="mb-4">
-                <label for="time" class="block text-gray-700 font-semibold mb-2">Horário</label>
-                <input type="time" id="time" name="time" required class="w-full p-3 border border-gray-300 rounded-md">
-            </div>
+                    <!-- Integrantes -->
+                    <div class="mb-4">
+                        <label for="integrantes" class="block text-gray-700 font-semibold mb-2">Integrantes</label>
+                        <textarea id="integrantes" name="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required
+                            class="w-full p-3 border border-gray-300 rounded-md"></textarea>
+                    </div>
 
-            <!-- Integrantes -->
-            <div class="mb-4">
-                <label for="integrantes" class="block text-gray-700 font-semibold mb-2">Integrantes</label>
-                <textarea id="integrantes" name="integrantes" rows="4" placeholder="Insira os nomes dos integrantes..." required
-                    class="w-full p-3 border border-gray-300 rounded-md"></textarea>
-            </div>
+                    <!-- Horário -->
+                    <div class="mb-4">
+                        <label for="time" class="block text-gray-700 font-semibold mb-2">Horário</label>
+                        <input type="time" id="time" name="time" required class="w-full p-3 border border-gray-300 rounded-md">
+                    </div>
 
-            <!-- Buttons -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button type="button" onclick="window.location='/Student/dashboard'"
-                    class="w-full rounded-md transition duration-300">
-                    Retornar
-                </button>
-                <button type="submit"
-                    class="w-full rounded-md transition duration-300">
-                    Enviar
-                </button>
-            </div>
 
-        </form>
+
+                    <!-- Buttons -->
+
+                    <button type="submit"
+                        class="w-full rounded-md transition duration-300">
+                        Enviar
+                    </button>
+
+                    <button type="button" onclick="window.location='/Student/dashboard'"
+                        class="w-full rounded-md transition duration-300">
+                        Retornar
+                    </button>
+
+                    
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
 
 
 

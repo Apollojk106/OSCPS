@@ -257,6 +257,11 @@ button:hover {
     color: #B30000; /* Darker text color */
 }
 
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    padding-top: 0px;
+  }
 
 /*  css do alarm  */
 

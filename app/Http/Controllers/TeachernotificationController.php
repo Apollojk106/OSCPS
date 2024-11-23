@@ -54,15 +54,27 @@ class TeachernotificationController extends Controller
             return $called;
         });
 
-        if ($calleds->isEmpty()) {
-            $messages[] = 'Nenhum chamado encontrada!';
+        $calledsStatus1 = $calleds->where('status', 'Pendente'); // Status 1
+        $calledsStatus2 = $calleds->where('status', 'Em Andamento'); //Status 2
+
+        if ($calledsStatus1->isEmpty() && $calledsStatus2->isEmpty()) {
+            $messages[] = 'Nenhum chamado encontrado!';
         }
+        else{
+            if ($calledsStatus1->isEmpty()) {
+                $messages[] = 'Nenhum chamado pendente encontrado!';
+            }
+            if($calledsStatus2->isEmpty()){
+                $messages[] = 'Nenhum chamado Em Andamento encontrado!';
+            }
+        }
+
 
         if ($reservations->isEmpty()) {
             $messages[] = 'Nenhuma reserva encontrada!';
         }
 
-        return view('Teacher-notification', compact('calleds', 'reservations', 'messages'));
+        return view('Teacher-notification', compact('calledsStatus1', 'calledsStatus2', 'reservations', 'messages'));
     }
 
     public function accept(Reservation $reservation)
@@ -107,7 +119,7 @@ class TeachernotificationController extends Controller
             $called->status = '3'; // Atualiza para "Concluído"
         }
 
-        Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado')); 
+        Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado'));
 
         $called->save();
 

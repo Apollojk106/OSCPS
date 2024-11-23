@@ -18,7 +18,7 @@
     <!-- Menu -->
     <x-menu />
 
-    <div class="p-4">
+    <div class="p-4 mt-16">
 
         <form method="GET" action="{{ route('teacher.history.filter') }}" class="mb-4">
             <label for="status" class="block text-sm font-medium">Filtrar por Status</label>
