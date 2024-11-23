@@ -20,17 +20,21 @@
 
     <div class="p-4 mt-16">
 
-        <form method="GET" action="{{ route('teacher.history.filter') }}" class="mb-4">
-            <label for="status" class="block text-sm font-medium">Filtrar por Status</label>
+        <form method="GET" action="{{ route('teacher.history.filter') }}" class="mb-4 flex items-center space-x-2">
             <select name="status" id="status" class="mt-1 p-2 border rounded">
                 <option value="Todos">Todos</option>
                 <option value="1" {{ request('status') == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                 <option value="2" {{ request('status') == 'Em Andamento' ? 'selected' : '' }}>Em Andamento</option>
                 <option value="3" {{ request('status') == 'Concluido' ? 'selected' : '' }}>Concluído</option>
+                <option value="accepted" {{ request('status') == 'accepted' ? 'selected' : '' }}>Reserva Aceita</option>
+                <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Reserva Recusada</option>
             </select>
-            <button type="submit" class="bg-[#701a0e] ml-2 p-2 text-white rounded">Filtrar</button>
+            <button type="submit" class="bg-[#B30000] p-2 text-white rounded">Filtrar</button>
         </form>
 
+        @if($calleds->isNotEmpty())
+        <h2 class="font-semibold text-lg mb-4 text-center">Chamados</h2>
+        @endif
         @foreach($calleds as $called)
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Problema N°{{ $called->id }} {{ \Carbon\Carbon::parse($called->created_at)->format('d/m/Y ') }}</span>
@@ -49,6 +53,9 @@
         </div>
         @endforeach
 
+        @if($reservations->isNotEmpty())
+        <h2 class="font-semibold text-lg mb-4 text-center">Reservas</h2>
+        @endif
         @foreach($reservations as $reservation)
         <div class="bg-gray-200 p-4 rounded shadow mb-4">
             <span class="font-semibold text-lg">Quadra Poliesportiva N°{{ $reservation->id }}</span>
@@ -56,13 +63,13 @@
             <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->RM }}</span>
 
             @if($reservation->status == 1)
-                <span class="block text-sm font-medium text-yellow-500">Status: Pendente</span>
-            @elseif($reservation->status == 2)
-                <span class="block text-sm font-medium text-green-500">Status:Aceito</span> 
+            <span class="block text-sm font-medium text-yellow-500">Status: Pendente</span>
+            @elseif($reservation->status == "accepted")
+            <span class="block text-sm font-medium text-green-500">Status:Aceito</span>
             @else
-                <span class="block text-sm font-medium text-red-500">Status: Recusado</span>                
+            <span class="block text-sm font-medium text-red-500">Status: Recusado</span>
             @endif
-          
+
             <div class="mt-4 flex space-x-4">
                 <span class="block text-sm font-medium">integrantes: {{ $reservation->integrantes }}</span>
             </div>

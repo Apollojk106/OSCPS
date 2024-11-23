@@ -83,7 +83,7 @@ class TeachernotificationController extends Controller
             return redirect()->route('student.dashboard');
         }
 
-        $reservation->status = '2'; // Supondo que o status "accepted" indique que a reserva foi aceita
+        $reservation->status = 'accepted'; // Supondo que o status "accepted" indique que a reserva foi aceita
         $reservation->save();
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'aceita'));
@@ -97,7 +97,7 @@ class TeachernotificationController extends Controller
             return redirect()->route('student.dashboard');
         }
 
-        $reservation->status = '3'; // Supondo que o status "rejected" indica que a reserva foi recusada
+        $reservation->status = 'rejected'; // Supondo que o status "rejected" indica que a reserva foi recusada
         $reservation->save();
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'recusada'));

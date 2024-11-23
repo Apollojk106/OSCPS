@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('RM');
             $table->string('name_email');
-            $table->enum('status', ['1','2','3']);
+            $table->enum('status', ['1','accepted','rejected']);
             $table->string('class');            
             $table->datetime('date');            
             $table->text('integrantes');         

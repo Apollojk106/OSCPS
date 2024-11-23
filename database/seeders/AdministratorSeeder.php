@@ -201,7 +201,7 @@ class AdministratorSeeder extends Seeder
         Reservation::create([
             'RM' => '12345678968',
             'name_email' => 'ana@example.com',
-            'status' => '2',
+            'status' => '1',
             'class' => 'Turma B',
             'date' => now()->addDays(1),
             'integrantes' => 'Ana Costa, Júlio Silva, Beatriz Ribeiro',

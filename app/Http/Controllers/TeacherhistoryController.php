@@ -21,8 +21,8 @@ class TeacherhistoryController extends Controller
 
         $calleds->filter(fn($called) => $called->status == 1)->count();
 
-        $reservations = Reservation::whereIn('status', ['1', '2', '3'])
-            ->orderByRaw("FIELD(status, '1', '2', '3')")
+        $reservations = Reservation::whereIn('status', ['1', 'accepted', 'rejected']) //'accepted','rejected'
+            ->orderByRaw("FIELD(status, '1', 'accepted', 'rejected')")
             ->get();
 
         return $this->RetornarDashboard($calleds, $reservations);
@@ -36,23 +36,19 @@ class TeacherhistoryController extends Controller
 
         $statusFilter = $request->input('status');
 
+        if($statusFilter == "Todos"){
+            return $this->index();
+        }
+
         $calledsQuery = Called::query();
 
         if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
             $calledsQuery->where('status', $statusFilter);
         } else {
-            $calledsQuery->orderBy('status');
+            $calledsQuery->whereRaw('1 = 0'); // Um filtro que nunca será verdadeiro, ou seja, não retorna nada
         }
 
         $calleds = $calledsQuery->orderBy('recalled', 'desc')->get();
-
-        if ($statusFilter && in_array($statusFilter, [1, 2, 3])) {
-            $reservations = Reservation::where('status', $statusFilter)->get();
-        } else {
-            $reservations = Reservation::orderBy('status')->get();
-        }
-
-        $calleds = $calledsQuery->get();
 
         $reservations = Reservation::where('status', $statusFilter)->get();
 
