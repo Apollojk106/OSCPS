@@ -17,7 +17,8 @@
 <body>
     <!-- Menu -->
     <x-menu />
-
+    <a class="p-4 mt-6"></a>
+    
     <div class="p-4 mt-16">
 
         <form method="GET" action="{{ route('teacher.history.filter') }}" class="mb-4 flex items-center space-x-2">

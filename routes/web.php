@@ -33,7 +33,8 @@ Route::group(['middleware' => ['guest']], function () {
 // Rotas da sessão do aluno
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/Student/dashboard', [StudentdashboardController::class, 'index'])->name('student.dashboard');
-    //Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/Student', [StudentdashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
 
     Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('student.called');
     Route::post('/Student/called', [StudentcalledController::class, 'store'])->name('post.student.called');
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
 //rotas  da sesão de admin
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/Adm/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/Adm', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
     Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
 
     Route::get('/Adm/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
