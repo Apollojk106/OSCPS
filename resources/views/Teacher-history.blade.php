@@ -31,7 +31,7 @@
                 <option value="accepted" {{ request('status') == 'accepted' ? 'selected' : '' }}>Reserva Aceita</option>
                 <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Reserva Recusada</option>
             </select>
-            <button type="submit" class="bg-[#B30000] p-2 text-white rounded">Filtrar</button>
+            <button type="submit" class="bg-[#FF161F] p-2 text-white rounded">Filtrar</button>
         </form>
 
         <div class="flex justify-center itens ">

@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="flex justify-center items-center">
-                            <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Importar Estudantes</button>
+                            <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Importar Estudantes</button>
                         </div>
                     </form>
                 </div>
@@ -83,7 +83,7 @@
                             <option value="{{ $class }}">{{ $class }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Filtrar</button>
+                        <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Filtrar</button>
                     </div>
                 </form>
 
@@ -98,7 +98,7 @@
                             <option value="{{ $class }}">{{ $class }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Deletar Classe</button>
+                        <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md hover:bg-red-800 transition-colors duration-300">Deletar Classe</button>
                     </div>
                 </form>
 
@@ -126,7 +126,7 @@
                                         <button type="submit" class="bg-white text-blue-500 font-semibold px-3 py-1.5 rounded-md border border-blue-500 hover:bg-white">Editar</button>
                                     </form>
                                     <!-- Botão Excluir -->
-                                    <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('student', '{{ $student->id }}')">Excluir</button>
+                                    <button type="button" class="bg-[#FF161F] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('student', '{{ $student->id }}')">Excluir</button>
                                 </td>
                             </tr>
                             @endforeach
@@ -143,7 +143,7 @@
                                         <input type="text" name="class" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                     </td>
                                     <td class="py-1.5 border flex justify-center items-center">
-                                        <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                                        <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md">Adicionar</button>
                                     </td>
                                 </tr>
                             </form>
@@ -181,7 +181,7 @@
                                     </button>
                                 </form>
 
-                                <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
+                                <button type="button" class="bg-[#FF161F] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('location', '{{ $location->id }}')">Excluir</button>
                             </td>
                         </tr>
                         @endforeach
@@ -195,7 +195,7 @@
                                     <input type="text" name="environment" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                 </td>
                                 <td class="py-1.5 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                                    <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md">Adicionar</button>
                                 </td>
                             </tr>
                         </form>
@@ -235,7 +235,7 @@
                                         Editar
                                     </button>
                                 </form>
-                                <button type="button" class="bg-[#B30000] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
+                                <button type="button" class="bg-[#FF161F] text-white px-3 py-1.5 rounded-md" onclick="openDeleteModal('secretary', '{{ $secretary->id }}')">Excluir</button>
                             </td>
                         </tr>
                         @endforeach
@@ -255,7 +255,7 @@
                                     <input type="time" name="exit_time" class="w-full px-2 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                                 </td>
                                 <td class="py-1.5 border flex justify-center items-center">
-                                    <button type="submit" class="bg-[#B30000] text-white px-4 py-2 rounded-md">Adicionar</button>
+                                    <button type="submit" class="bg-[#FF161F] text-white px-4 py-2 rounded-md">Adicionar</button>
                                 </td>
                             </tr>
                         </form>
