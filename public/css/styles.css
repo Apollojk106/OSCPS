@@ -7,7 +7,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #B30000; /* Dark red background */
+    background-color: #B30000;
+    /* Dark red background */
 }
 
 /* Main frame container */
@@ -47,7 +48,8 @@ body {
 }
 
 /* Text field styling */
-.text-field-outlined, .text-field-outlined-error {
+.text-field-outlined,
+.text-field-outlined-error {
     width: 330px;
     position: relative;
 }
@@ -105,31 +107,37 @@ body {
     font-weight: 400;
     margin-top: 0px;
 }
+
 /* General Body Styling */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff; /* Background light */
+    background-color: #ffffff;
+    /* Background light */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme changes */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition for theme changes */
 }
 
 /* Dark Mode */
 body.dark-mode {
-    background-color: #121212; /* Background dark */
-    color: white; /* Text color white */
+    background-color: #121212;
+    /* Background dark */
+    color: white;
+    /* Text color white */
 }
 
 /* Header */
 .header {
     width: 100%;
     height: 130px;
-    background-color: #B30000; /* Header background light */
+    background-color: #B30000;
+    /* Header background light */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,11 +147,13 @@ body.dark-mode {
     left: 0;
     z-index: 10;
     box-sizing: border-box;
-    transition: background-color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s;
+    /* Smooth transition */
 }
 
 body.dark-mode .header {
-    background-color: #B30000; /* Header background dark */
+    background-color: #B30000;
+    /* Header background dark */
 }
 
 .oscps {
@@ -162,13 +172,15 @@ body.dark-mode .header {
 
 .header-icons i {
     font-size: 1.8rem;
-    color: white; /* Icon color light */
+    color: white;
+    /* Icon color light */
     cursor: pointer;
 }
 
 /* Dark mode icons */
 body.dark-mode .header-icons i {
-    color: white; /* Icon color dark */
+    color: white;
+    /* Icon color dark */
 }
 
 /* Cards Section */
@@ -176,7 +188,8 @@ body.dark-mode .header-icons i {
     display: flex;
     gap: 30px;
     justify-content: center;
-    margin-top: 200px; /* Move cards further down */
+    margin-top: 200px;
+    /* Move cards further down */
     transform-origin: center;
     transition: transform 0.2s ease;
 }
@@ -184,10 +197,12 @@ body.dark-mode .header-icons i {
 .card {
     width: 320px;
     height: 420px;
-    background-color: #B30000; /* Card background light */
+    background-color: #B30000;
+    /* Card background light */
     border-radius: 16px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    color: white; /* Text color light */
+    color: white;
+    /* Text color light */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -195,27 +210,34 @@ body.dark-mode .header-icons i {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    transition: background-color 0.3s; /* Smooth transition */
-    text-decoration: none; /* Remove underline from links */
+    transition: background-color 0.3s;
+    /* Smooth transition */
+    text-decoration: none;
+    /* Remove underline from links */
 }
 
 /* Dark mode cards */
 body.dark-mode .card {
-    background-color: #B30000; /* Card background dark */
-    color: white; /* Text color in dark mode */
+    background-color: #B30000;
+    /* Card background dark */
+    color: white;
+    /* Text color in dark mode */
 }
 
 /* Icons in cards */
 .card i {
     font-size: 4rem;
     margin-bottom: 15px;
-    color: white; /* Ensure icon color is white */
+    color: white;
+    /* Ensure icon color is white */
 }
 
 /* Hover Effect */
 .card:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Add a slight background on hover */
-    cursor: pointer; /* Change cursor to pointer */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Add a slight background on hover */
+    cursor: pointer;
+    /* Change cursor to pointer */
 }
 
 /* Zoom Buttons in Header */
@@ -230,11 +252,13 @@ body.dark-mode .card {
 
 /* Dark mode logout icon */
 body.dark-mode .logout-icon {
-    color: white; /* Logout icon color white */
+    color: white;
+    /* Logout icon color white */
 }
 
 body.dark-mode .toggle {
-    color: white; /* Toggle icon color white */
+    color: white;
+    /* Toggle icon color white */
 }
 
 button {
@@ -245,7 +269,7 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    
+
 }
 
 button:hover {
@@ -254,14 +278,20 @@ button:hover {
 
 
 .bg-red-600 {
-    color: #B30000; /* Darker text color */
+    color: #B30000;
+    /* Darker text color */
 }
 
 .content {
     margin-left: 250px;
     padding: 20px;
     padding-top: 0px;
-  }
+}
+
+.sidebar-a {
+    background-color: #701a0e; /* Cor de fundo destacada */
+    color: white; /* Cor do texto para o item ativo */
+    font-weight: bold; /* Destaca o item ativo com negrito */
+}
 
 /*  css do alarm  */
-

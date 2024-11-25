@@ -30,7 +30,7 @@
                 </div>
                 <div class="mt-4">
                     <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Salvar</button>
-                    <button type="button" class="ml-2 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600" onclick="window.location.href='/Teacher/config'">Cancelar</button>
+                    <button type="button" class="ml-2 bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-600" onclick="window.location.href='/Adm/config'">Cancelar</button>
                 </div>
             </form>
         </div>
