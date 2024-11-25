@@ -50,7 +50,11 @@ class TeacherhistoryController extends Controller
 
         $calleds = $calledsQuery->orderBy('recalled', 'desc')->get();
 
-        $reservations = Reservation::where('status', $statusFilter)->get();
+        if($statusFilter == "3"){
+            $reservations = Reservation::whereIn('status', ['rejected','accepted'])->get();
+        }else{
+            $reservations = Reservation::where('status', $statusFilter)->get();
+        }
 
         return $this->RetornarDashboard($calleds, $reservations);
     }

@@ -38,7 +38,7 @@
     </style>
 </head>
 
-<body style="background-color: #B30000; color: white;">
+<body style="background-color: #FF161F; color: white;">
     <br>
     <div class="title text-center mb-6">
         <h1 class="oscps" style="color:white;">OSCPS</h1>

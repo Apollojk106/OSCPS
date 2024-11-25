@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="bg-gray-100">
+<body>
 
     <x-menu />
 
@@ -40,13 +40,15 @@
     @endif
 
     <!-- Layout com Menu fixo à esquerda e conteúdo principal -->
-    <div class="flex min-h-screen">
 
-        <!-- Conteúdo Principal -->
-        <div class="flex-1 p-6 ml-10 mt-16">
+
+    <!-- Conteúdo Principal -->
+    <div class="flex-1 p-6 ml-10 mt-16 ">
+
+        <div class="flex-container flex flex-col items-center gap-4">
 
             <!-- Seção de Estudantes -->
-            <div class="bg-gray-200 p-3 rounded shadow mb-4 ml-[20%] max-w-full sm:max-w-xl">
+            <div class="bg-gray-200 p-3 rounded shadow mb-4 ml-[20%] max-w-full sm:max-w-xl ">
                 <h2 class="text-lg font-medium text-center">Estudantes</h2>
 
                 <!-- Importar Formulário -->
@@ -288,9 +290,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
 
 
     <script>

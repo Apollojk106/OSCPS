@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body style="background-color: #B30000; color: white;">
+<body style="background-color: #FF161F; color: white;">
     <div class="title text-center mb-6">
         <h1 class="oscps" style="color:white;">OSCPS</h1>
     </div>

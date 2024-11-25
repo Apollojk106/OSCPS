@@ -22,8 +22,8 @@ class TeacherdashboardController extends Controller
         $totalCalled = $pendetCalled + $AndamentoCalled + $ConcluidoCalled;   
 
         $pendentReservate = reservation::where('status', 1)->count();
-        $AndamentoReserve = reservation::where('status', 2)->count();
-        $ConcluidoReserve = reservation::where('status', 3)->count();
+        $AndamentoReserve = reservation::where('status', "accepted")->count();
+        $ConcluidoReserve = reservation::where('status', "rejected")->count();
 
         $totalReservate = $pendentReservate + $AndamentoReserve + $ConcluidoReserve;
 

@@ -96,8 +96,7 @@
                 </div>
 
                 <a href="/register" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Cadastro</a>
-                <a href="/forgot-password" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Esqueceu a Senha</a>
-                <a href="#" id="toggle-teacher" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Trocar para Educacional/Acadêmico</a>
+                <a href="/forgot-password" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300">Esqueceu a Senha</a>           
 
             </div>
         </form>
@@ -128,7 +127,7 @@
                     <input type="password" name="password" id="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
                 </div>
                 <div class="contained-button">
-                    <button type="submit" class="text-white w-full p-3  rounded-md flex items-center justify-center cursor-pointer hover:bg-red-800 hover:text-white transition-colors duration-300">
+                    <button type="submit" class="text-white w-full p-3  rounded-md flex items-center justify-center cursor-pointer hover:text-white transition-colors duration-300">
                         Entre no Site
                     </button>
                 </div>

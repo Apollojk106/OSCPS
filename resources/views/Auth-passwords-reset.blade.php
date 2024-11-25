@@ -39,7 +39,7 @@
     </style>
 </head>
 
-<body style="background-color: #B30000; color: white; overflow: hidden;">
+<body style="background-color: #FF161F; color: white; overflow: hidden;">
     <br>
 
     @if(session('success'))
@@ -124,7 +124,7 @@
                 <div>
                     <button
                         type="submit"
-                        class="text-black w-full p-3 text-white bg-red-700 rounded-lg hover:bg-red-800 focus:outline-none transition duration-300">
+                        class="text-black w-full p-3 text-white rounded-lg focus:outline-none transition duration-300">
                         Redefinir Senha
                     </button>
                 </div>

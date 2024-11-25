@@ -24,7 +24,7 @@
       left: 0;
       width: 250px;
       height: calc(100vh - 130px);
-      background-color: #B30000;
+      background-color: #FF161F;
       color: white;
       padding: 20px;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -107,7 +107,7 @@
         <form action="{{ route('logout') }}" method="POST" class="flex items-center">
           @csrf
           <button class="fas fa-sign-out-alt logout-icon text-3xl" title="Logout" id="logout-button"
-            style="background-color: #B30000; color: white; cursor: pointer; transition: none;">
+            style="background-color: #FF161F; color: white; cursor: pointer; transition: none;">
           </button>
         </form>
       </div>

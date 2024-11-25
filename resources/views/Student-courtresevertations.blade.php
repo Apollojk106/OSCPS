@@ -50,7 +50,7 @@
         button {
             width: 48%;
             padding: 10px;
-            background-color: #B30000;
+            background-color: #FF161F;
             color: white;
             border: none;
             border-radius: 4px;
@@ -60,7 +60,7 @@
         }
 
         button:hover {
-            background-color: #701a0e;
+            background-color: #842519;
         }
     </style>
 
