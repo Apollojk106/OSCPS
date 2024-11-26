@@ -17,14 +17,17 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
-
+    .header {
+    /* Adicionando uma sombra ao header */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
     .sidebar {
       position: fixed;
       top: 130px;
       left: 0;
       width: 250px;
       height: calc(100vh - 130px);
-      background-color: #FF161F;
+      background-color: #cc1c22;
       color: white;
       padding: 20px;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -65,7 +68,7 @@
     }
 
     /* Responsividade para a sidebar em telas pequenas */
-    @media (max-width: 768px) {
+    @media (max-width: 1240px) {
       .sidebar {
         transform: translateX(-100%);
         z-index: 1000;

@@ -1,6 +1,6 @@
 <script src="https://cdn.jsdelivr.net/npm/heroicons@1.0.5/outline.min.js"></script>
 
-<header class="header text-white p-6 min-h-[240px] fixed top-0 left-0 w-full z-50">
+<header class="header text-white p-6 min-h-[240px] fixed top-0 left-0 w-full z-50 bg-gray-800 shadow-lg">
   <div class="grid grid-cols-3 items-center justify-between gap-4">
     <!-- Coluna vazia antes do OSCPS -->
     <div></div>
@@ -26,3 +26,10 @@
     </div>
   </div>
 </header>
+
+<style>
+  .header {
+    /* Adicionando uma sombra ao header */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+</style>
