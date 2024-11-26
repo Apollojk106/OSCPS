@@ -12,11 +12,37 @@ class StudentcalledController extends Controller
 {
     public function index()
     {
-        $andares = location::all()->unique('roof');
+        $andares = Location::distinct()->get(['roof']);
 
-        $locais = $this->retornalocais();
+        // Obter os locais agrupados por andar (associar locais ao andar)
+        $locais = Location::all()->groupBy('roof');
 
-        return view('Student-called', ['andares' => $andares], compact('locais'));
+        $problem = null;
+
+        return view('Student-called', ['andares' => $andares, 'locais' => $locais, 'problem' => $problem]);
+    }
+
+    public function getlocais($roof, $problem)
+    {
+        $problemas = [
+            '1' => 'Elétricos',
+            '2' => 'Hidráulicos',
+            '3' => 'Prediais',
+            '4' => 'Maquinário',
+            '5' => 'Contenção de acidentes',
+            '6' => 'Manutenção preditiva',
+            '7' => 'Manutenção corretiva',
+        ];
+
+        $value = $problem;
+        $problem = $problemas[$problem] ?? 'Problema desconhecido';
+        $selectandar = $roof;
+
+        $andares = Location::distinct()->get(['roof']);
+
+        $locais = Location::where('roof', $roof)->get();
+
+        return view('Student-called', ['andares' => $andares, 'locais' => $locais,'value' => $value, 'problem' => $problem, 'selectandar' => $selectandar]);
     }
 
     public function retornalocais()
@@ -59,7 +85,7 @@ class StudentcalledController extends Controller
             // Salva a atualização
             $called->save();
 
-            return redirect()->back()->with('success', 'Called created successfully!');
+            return redirect()->route('student.called')->with('success', 'Called created successfully!');
         }
 
         $called = Called::create([
@@ -73,6 +99,6 @@ class StudentcalledController extends Controller
             'environment' => $request->environment, // Ambiente
         ]);
 
-        return redirect()->back()->with('success', 'Chamado criado com sucesso!');
+        return redirect()->route('student.called')->with('success', 'Chamado criado com sucesso!');
     }
 }

@@ -13,4 +13,5 @@ class location extends Model
         'roof',
         'environment'
     ];
+
 }

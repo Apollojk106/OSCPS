@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Formulário de Manutenção</title>
 
-
 </head>
 
 <body class="bg-gray-100 p-0">
@@ -36,11 +35,23 @@
             <form method="POST" action=" {{route('post.student.called')}}">
 
                 @csrf
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 <div class="space-y-4">
                     <div class="flex flex-col">
                         <label for="type_problem" class="font-semibold text-gray-800">Problema</label>
-                        <select id="type_problem" name="type_problem" class="mt-1 p-2 border border-gray-300 rounded-md" required>
+                        <select id="type_problem" name="type_problem" class="mt-1 p-2 border border-gray-300 rounded-md" required onchange="checkSelection()">
+                            @if(!empty($problem))
+                            <option value="{{$value}}">{{$problem}}</option>
+                            @endif
                             <option value="">Selecione um problema</option>
                             <option value="1">Elétricos</option>
                             <option value="2">Hidráulicos</option>
@@ -52,37 +63,46 @@
                         </select>
                     </div>
 
-                    <div class="flex flex-col mt-4"> <!-- Adiciona margem superior entre os selects -->
+                    <div class="flex flex-col mt-4">
                         <label for="andar" class="font-semibold text-gray-800">Andar</label>
-                        <select id="roof" name="roof" class="mt-1 p-2 border border-gray-300 rounded-md" required>
+                        <select id="roof" name="roof" class="mt-1 p-2 border border-gray-300 rounded-md" required onchange="checkSelection()">
+                            @if(!empty($selectandar))
+                            <option value="{{$selectandar}}">{{$selectandar}}</option>
+                            @else
                             <option value="">Selecione um andar</option>
+                            @endif
+
                             @foreach($andares as $andar)
                             <option value="{{ $andar->roof }}">{{ $andar->roof }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="flex flex-col mt-4"> <!-- Adiciona margem superior entre os selects -->
+                    <div class="flex flex-col mt-4">
                         <label for="local" class="font-semibold text-gray-800">Local</label>
                         <select id="environment" name="environment" class="mt-1 p-2 border border-gray-300 rounded-md" required>
                             <option value="">Selecione um local</option>
+                            @if(!empty($problem))
+                                @foreach($locais as $local)
+                                <option value="{{ $local->environment}}">{{ $local->environment }}</option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
+
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <button onclick="window.location='/Student/dashboard'" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <a href="{{route('student.dashboard')}}" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Retornar</div>
-                    </button>
-
-                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    </a>
+                    <button type="submit" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Enviar</div>
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
 
     <!-- JavaScript for Toggle and Zoom -->
     <script>
@@ -110,27 +130,16 @@
             mainContent.style.transform = `scale(${zoomLevel})`;
         });
 
-        const andarSelect = document.getElementById('roof');
-        const localSelect = document.getElementById('environment');
+        function checkSelection() {
+            const typeProblem = document.getElementById('type_problem').value;
+            const roof = document.getElementById('roof').value;
 
-        const localOptions = <?php echo json_encode($locais); ?>;
-
-        andarSelect.addEventListener('change', function() {
-            const selectedAndar = andarSelect.value;
-
-            // Limpar as opções do combo box de local
-            localSelect.innerHTML = '<option value="">Selecione um local</option>';
-
-            // Se houver locais para o andar selecionado
-            if (localOptions[selectedAndar]) {
-                localOptions[selectedAndar].forEach(function(local) {
-                    const option = document.createElement('option');
-                    option.value = local;
-                    option.textContent = local;
-                    localSelect.appendChild(option);
-                });
+            // Verifica se ambos os campos estão selecionados
+            if (typeProblem && roof) {
+                // Redireciona para a rota GET com os parâmetros
+                window.location.href = `/Student/called/${roof}/${typeProblem}`;
             }
-        });
+        }
     </script>
 </body>
 

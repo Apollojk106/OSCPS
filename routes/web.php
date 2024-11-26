@@ -37,7 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [StudentdashboardController::class, 'index'])->name('student.dashboard');
 
     Route::get('/Student/called', [StudentcalledController::class, 'index'])->name('student.called');
+    Route::get('/Student/called/{roof}/{problem}', [StudentcalledController::class, 'getlocais'])->name('student.called.roof');
     Route::post('/Student/called', [StudentcalledController::class, 'store'])->name('post.student.called');
+   
+
 
     Route::get('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'index'])->name('student.courtresevertations');
     Route::post('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'store'])->name('post.student.courtresevertations');
