@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Formulário de Manutenção</title>
+    <style>
+        a:hover{
+            background-color: #FF161F;
+        }
+    </style>
 
 </head>
 
@@ -93,10 +98,10 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <a href="{{route('student.dashboard')}}" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <a href="{{route('student.dashboard')}}" style="background-color: #FF161F;" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Retornar</div>
                     </a>
-                    <button type="submit" class="bg-red-800 text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Enviar</div>
                     </button>
                 </div>
