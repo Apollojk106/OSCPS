@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-black text-white"> <!-- Cor de fundo preta e texto branco -->
     <!-- Cabeçalho -->
-    <x-header />
+    <x-header class="bg-black" /> <!-- Garantir que o cabeçalho tenha fundo escuro -->
 
     @if(session('success'))
         <script>
@@ -29,18 +29,18 @@
     <!-- Seção de Cartões -->
     <main class="cards-section px-4 py-6">
         <!-- Grid de Cards Responsivos -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
-            <a href="/Student/called" class="card maintenance bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <a href="/Student/called" class="card maintenance bg-gray-700 p-4 rounded-lg shadow-md">
                 <i class="fas fa-tools text-3xl mb-2"></i>
                 <p>Aviso de Manutenção</p>
             </a>
 
-            <a href="/Student/courtresevertations" class="card sports bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300">
+            <a href="/Student/courtresevertations" class="card sports bg-gray-700 p-4 rounded-lg shadow-md">
                 <i class="fas fa-futbol text-3xl mb-2"></i>
                 <p>Solicitação de Uso <br> Quadra Poliesportiva</p>
             </a>
 
-            <a href="/Student/contacts" class="card contact bg-gray-200 p-4 rounded-lg shadow-md hover:bg-gray-300">
+            <a href="/Student/contacts" class="card contact bg-gray-700 p-4 rounded-lg shadow-md">
                 <i class="fas fa-phone text-3xl mb-2"></i>
                 <p>Contatos</p>
             </a>

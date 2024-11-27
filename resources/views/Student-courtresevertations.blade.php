@@ -50,7 +50,7 @@
         button {
             width: 48%;
             padding: 10px;
-            background-color: #FF161F;
+            background-color: #cc1c22;
             color: white;
             border: none;
             border-radius: 4px;
@@ -95,9 +95,9 @@
     </script>
     @endif
 
-    <div class="min-h-screen bg-gray-100 flex justify-center items-start w-30">
+    <div class="max-h-sm max-w-lg bg-gray-100 flex justify-center items-start w-30">
         <!-- Aumenta a largura do contêiner do formulário em 30% -->
-        <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 mt-40">
+        <div class="w-[130%] max-w-md bg-white p-6 rounded-lg shadow-lg grid gap-6 relative top-16 sm:top-30">
 
             <form action="{{ route('post.student.courtresevertations') }}" method="POST">
                 @csrf

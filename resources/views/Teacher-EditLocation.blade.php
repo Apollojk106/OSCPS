@@ -20,7 +20,7 @@
             <h2 class="text-2xl font-semibold mb-4">Editar Dados</h2>
             <form id="editForm" action="{{route('location.update', $Location->id)}}" method="POST">
                 @csrf
-                <div >
+                <div>
                     <label class="block mb-2">Telhado:</label>
                     <textarea name="roof" id="roof" class="w-full mb-4 p-2 border rounded-md" required>{{$Location->roof}}</textarea>
                     <label class="block mb-2">Ambiente:</label>
@@ -33,5 +33,31 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const toggle = document.querySelector('.toggle');
+        const body = document.body;
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            toggle.classList.toggle('fa-sun');
+            toggle.classList.toggle('fa-moon');
+        });
+
+        let zoomLevel = 1;
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const mainContent = document.querySelector('.max-w-lg');
+
+        zoomInButton.addEventListener('click', () => {
+            zoomLevel += 0.1;
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+
+        zoomOutButton.addEventListener('click', () => {
+            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+    </script>
 
 </body>

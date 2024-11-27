@@ -75,7 +75,7 @@ body {
 
 .label {
     width: 100%;
-    background-color: #FF161F;
+    background-color: #cc1c22;
     color: white;
     padding: 12px;
     font-size: 14px;
@@ -89,14 +89,14 @@ body {
 }
 
 .label:hover {
-    background-color: #FF161F;
+    background-color: #842519;
 }
 
 /* Additional text styling */
 .administrativo-secretaria {
     margin-top: 12px;
     font-size: 12px;
-    color: #FF161F;
+    color: #842519;
     text-decoration: underline;
 }
 
@@ -128,8 +128,7 @@ body {
 body.dark-mode {
     background-color: #121212;
     /* Background dark */
-    color: white;
-    /* Text color white */
+    
 }
 
 /* Header */
@@ -152,7 +151,7 @@ body.dark-mode {
 }
 
 body.dark-mode .header {
-    background-color: #FF161F;
+    background-color: #cc1c22;
     /* Header background dark */
 }
 
@@ -197,7 +196,7 @@ body.dark-mode .header-icons i {
 .card {
     width: 320px;
     height: 420px;
-    background-color: #FF161F;
+    background-color: #cc1c22;
     /* Card background light */
     border-radius: 16px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -264,8 +263,8 @@ body.dark-mode .toggle {
 button {
     width: 48%;
     padding: 10px;
-    background-color: #FF161F;
-    color: #FF161F;
+    background-color: #cc1c22;
+    color: #cc1c22;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -278,7 +277,7 @@ button:hover {
 
 
 .bg-red-600 {
-    color: #FF161F;
+    color: #cc1c22;
     /* Darker text color */
 }
 

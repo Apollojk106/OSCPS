@@ -21,7 +21,7 @@
             <h2 class="text-2xl font-semibold mb-4">Editar Dados</h2>
             <form id="editForm" action="{{  route('secretary.update', $Secretary->id)  }}" method="POST">
                 @csrf
-                <div >
+                <div>
                     <label class="block mb-2">Nome:</label>
                     <input type="text" name="name" id="name" class="w-full mb-4 p-2 border rounded-md" value="{{$Secretary->name}}" required>
                     <label class="block mb-2">E-mail:</label>
@@ -38,5 +38,31 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const toggle = document.querySelector('.toggle');
+        const body = document.body;
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            toggle.classList.toggle('fa-sun');
+            toggle.classList.toggle('fa-moon');
+        });
+
+        let zoomLevel = 1;
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const mainContent = document.querySelector('.max-w-lg');
+
+        zoomInButton.addEventListener('click', () => {
+            zoomLevel += 0.1;
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+
+        zoomOutButton.addEventListener('click', () => {
+            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+    </script>
 
 </body>

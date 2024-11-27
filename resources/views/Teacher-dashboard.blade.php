@@ -83,7 +83,7 @@
                     label: 'Reservas',
                     data: ['{{$pendetReserve}}', '{{$AndamentoReserve}}', '{{$ConcluidoReserve}}'],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(255, 99, 132, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
                         'rgba(255, 159, 64, 0.2)'
                     ],
@@ -99,6 +99,33 @@
 
             createChart('myChartChamados', 'bar', chamadosData);
             createChart('myChartReservas', 'bar', reservasData);
+
+
+            const toggle = document.querySelector('.toggle');
+            const body = document.body;
+
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                toggle.classList.toggle('fa-sun');
+                toggle.classList.toggle('fa-moon');
+            });
+
+            let zoomLevel = 1;
+            const zoomInButton = document.getElementById('zoom-in');
+            const zoomOutButton = document.getElementById('zoom-out');
+            const mainContent = document.querySelector('.max-w-lg');
+
+            zoomInButton.addEventListener('click', () => {
+                zoomLevel += 0.1;
+                mainContent.style.transform = `scale(${zoomLevel})`;
+            });
+
+            zoomOutButton.addEventListener('click', () => {
+                zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+                mainContent.style.transform = `scale(${zoomLevel})`;
+            });
         </script>
+
+        
 
 </html>

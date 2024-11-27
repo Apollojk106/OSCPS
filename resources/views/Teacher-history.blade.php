@@ -31,7 +31,7 @@
                 <option value="accepted" {{ request('status') == 'accepted' ? 'selected' : '' }}>Reserva Aceita</option>
                 <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Reserva Recusada</option>
             </select>
-            <button type="submit" class="bg-[#FF161F] p-2 text-white rounded">Filtrar</button>
+            <button type="submit" class="bg-[#cc1c22] p-2 text-white rounded">Filtrar</button>
         </form>
 
         <div class="flex justify-center itens ">
@@ -99,6 +99,32 @@
         </div>
 
     </div>
+
+    <script>
+        const toggle = document.querySelector('.toggle');
+        const body = document.body;
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            toggle.classList.toggle('fa-sun');
+            toggle.classList.toggle('fa-moon');
+        });
+
+        let zoomLevel = 1;
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const mainContent = document.querySelector('.max-w-lg');
+
+        zoomInButton.addEventListener('click', () => {
+            zoomLevel += 0.1;
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+
+        zoomOutButton.addEventListener('click', () => {
+            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
+    </script>
 
 </body>
 

@@ -110,7 +110,7 @@
         <form action="{{ route('logout') }}" method="POST" class="flex items-center">
           @csrf
           <button class="fas fa-sign-out-alt logout-icon text-3xl" title="Logout" id="logout-button"
-            style="background-color: #FF161F; color: white; cursor: pointer; transition: none;">
+            style="background-color: #cc1c22; color: white; cursor: pointer; transition: none;">
           </button>
         </form>
       </div>

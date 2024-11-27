@@ -12,7 +12,7 @@
     <title>Formulário de Manutenção</title>
     <style>
         a:hover{
-            background-color: #FF161F;
+            background-color: #842519;
         }
     </style>
 
@@ -98,10 +98,10 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <a href="{{route('student.dashboard')}}" style="background-color: #FF161F;" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <a href="{{route('student.dashboard')}}" style="background-color: #cc1c22;" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
                         <div class="font-bold text-sm">Retornar</div>
                     </a>
-                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
+                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#842519] ">
                         <div class="font-bold text-sm">Enviar</div>
                     </button>
                 </div>
