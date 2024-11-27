@@ -48,7 +48,7 @@
         <div class="flex-container flex flex-col items-center gap-4">
 
             <!-- Seção de Estudantes -->
-            <div class="bg-gray-200 p-2 sm:p-3 rounded shadow mb-4 ml-[5%] max-w-full sm:max-w-4xl">
+            <div class="bg-gray-200 p-2 sm:p-3 rounded shadow mb-4  max-w-full sm:max-w-4xl">
                 <h2 class="text-lg sm:text-xl font-medium text-center">Estudantes</h2>
 
                 <!-- Importar Formulário -->
