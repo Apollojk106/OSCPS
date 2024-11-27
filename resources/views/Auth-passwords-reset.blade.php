@@ -96,7 +96,7 @@
                         type="email"
                         name="email"
                         placeholder="E-mail"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
+                        class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
                         required>
                 </div>
 
@@ -106,7 +106,7 @@
                         type="password"
                         name="password"
                         placeholder="Nova Senha"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
+                        class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
                         required>
                 </div>
 
@@ -116,7 +116,7 @@
                         type="password"
                         name="password_confirmation"
                         placeholder="Confirmar Senha"
-                        class="text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
+                        class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700"
                         required>
                 </div>
 

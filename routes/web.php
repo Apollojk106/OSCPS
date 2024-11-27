@@ -39,8 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/Student/called/{roof}/{problem}', [StudentcalledController::class, 'getlocais'])->name('student.called.roof');
     Route::post('/Student/called', [StudentcalledController::class, 'store'])->name('post.student.called');
    
-
-
     Route::get('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'index'])->name('student.courtresevertations');
     Route::post('/Student/courtresevertations', [StudentcourtresevertationsController::class, 'store'])->name('post.student.courtresevertations');
 
@@ -70,7 +68,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/Adm/config', [TeacherconfigController::class, 'index'])->name('teacher.config');
     Route::post('/Adm/config/filter', [TeacherconfigController::class, 'filter'])->name('teacher.config.filter');
-    Route::post('/Adm/config/delete-class', [TeacherconfigController::class, 'deleteClass'])->name('teacher.config.delete_class');
+    Route::get('/Adm/config/delete-class/{class}', [TeacherconfigController::class, 'GetdeleteClass'])->name('teacher.config.delete_class.get');
+    Route::post('/Adm/config/delete-class', [TeacherconfigController::class, 'deleteClass'])->name('teacher.config.delete_class.post');
 
     Route::post('/location/{id}/update', [TeacherconfigController::class, 'updateLocation'])->name('location.update');
     Route::get('/location/{id}/delete', [TeacherconfigController::class, 'destroyLocation'])->name('location.destroy');

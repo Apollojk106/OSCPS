@@ -30,15 +30,15 @@
             <br>
             <div class="text">
                 Status atual:
-                <span class="font-bold 
-                    @if($reservation->status == 2)
+                <span class="font-bold
+                    @if($reservation->status == 'accepted')
                         text-green-600  <!-- Para status 'aceito' -->
-                    @elseif($reservation->status == 3)
+                    @elseif($reservation->status == 'rejected')
                         text-red-600    <!-- Para status 'recusado' -->
                     @endif">
-                    @if($reservation->status == 2)
+                    @if($reservation->status == 'accepted')
                     Aceito
-                    @elseif($reservation->status == 3)
+                    @elseif($reservation->status == 'rejected')
                     Recusado
                     @endif
                 </span>

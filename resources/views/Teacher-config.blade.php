@@ -88,19 +88,19 @@
                 </form>
 
                 <!-- Deletar Classe -->
-                <form action="{{ route('teacher.config.delete_class') }}" method="POST" class="mb-4 ml-auto max-w-xl">
+                <div class="mb-4 ml-auto max-w-xl">
                     @csrf
                     <div class="flex items-center justify-between space-x-2">
                         <h2 class="text-lg sm:text-xl font-medium">Deletar Classe:</h2>
-                        <select name="class" id="class" class="form-select text-xs sm:text-sm rounded-md border-gray-300 px-2 py-1">
+                        <select name="class" id="selectedclass" class="form-select text-xs sm:text-sm rounded-md border-gray-300 px-2 py-1">
                             <option value="">Selecione uma classe</option>
                             @foreach($classes as $class)
                             <option value="{{ $class }}">{{ $class }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="bg-[#cc1c22] text-white px-3 py-1 rounded-md hover:bg-red-800 transition-colors duration-300">Deletar Classe</button>
+                        <button type="button" onclick="GetDelete()" class="bg-[#cc1c22] text-white px-3 py-1 rounded-md hover:bg-red-800 transition-colors duration-300">Deletar Classe</button>
                     </div>
-                </form>
+                </div>
             </div>
 
             <!-- Tabela de Estudantes -->
@@ -201,7 +201,7 @@
 
             <!-- Seção de Secretaria -->
             <div class="bg-gray-200 p-2 rounded shadow mb-3 max-w-full">
-                <h2 class="text-md font-medium text-center">Secretaria</h2>
+                <h2 class="text-lg font-medium text-center">Secretaria</h2>
 
                 <div class="hidden sm:block">
                     <table class="min-w-full table-auto mt-2 bg-white">
@@ -424,6 +424,18 @@
 
 
     <script>
+        function GetDelete() {
+            const classSelect = document.getElementById('selectedclass');
+            const selectedClass = classSelect.value;
+
+            if (selectedClass === "") {
+                alert("Por favor, selecione uma classe para excluir.");
+                return;
+            }
+            // Redirecionar para a rota de exclusão com a classe selecionada
+            window.location.href = `/Adm/config/delete-class/${selectedClass}`;
+        }
+        //script antigo
         // Função para abrir o modal de edição de aluno
         function openStudentEditModal(id, RM, name, class_) {
             document.getElementById('editModal').classList.remove('hidden');

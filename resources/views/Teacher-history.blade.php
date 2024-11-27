@@ -42,7 +42,7 @@
 
                 @if($calleds->isNotEmpty())
                 <div>
-                    <h2 class="font-semibold text-lg mb-4 text-center">Chamados</h2>
+                    <h2 class="font-semibold text-lg mb-4 text-center bg-gray-200 p-4 rounded shadow mb-4">Chamados</h2>
                     @endif
                     @foreach($calleds as $called)
                     <div class="bg-gray-200 p-4 rounded shadow mb-4">
@@ -69,7 +69,7 @@
 
                 @if($reservations->isNotEmpty())
                 <div>
-                    <h2 class="font-semibold text-lg mb-4 text-center">Reservas</h2>
+                    <h2 class="font-semibold text-lg mb-4 text-center bg-gray-200 p-4 rounded shadow mb-4">Reservas</h2>
                     @endif
                     @foreach($reservations as $reservation)
                     <div class="bg-gray-200 p-4 rounded shadow mb-4">

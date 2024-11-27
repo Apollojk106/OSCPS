@@ -34,6 +34,7 @@ class CourtresevertationsRequest extends FormRequest
         return [
             'class.required' => 'O campo Turma é obrigatório.',
             'date.required' => 'O campo Data é obrigatório.',
+            'date.after' => 'A data deve ser no futuro.',
             'time.required' => 'O campo Horário é obrigatório.',
             'integrantes.required' => 'O campo Integrantes é obrigatório.',
         ];

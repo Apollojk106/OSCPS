@@ -73,6 +73,11 @@ class TeacherconfigController extends Controller
         return view('Teacher-EditLocation', ['Location' => $Location]);
     }
 
+    public function GetdeleteClass($class)
+    { 
+        return view('Teacher-DelClass', ['class' => $class]);
+    }
+
     public function deleteClass(Request $request)
     {
         if (Auth::check() && Auth::user()->role !== 'admin') {

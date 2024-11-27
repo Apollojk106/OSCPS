@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourtresevertationsRequest;
 use App\Models\reservation;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -12,7 +13,9 @@ class StudentcourtresevertationsController extends Controller
 {
     public function index()
     {
-        return view('Student-courtresevertations');
+        $classes = Student::distinct()->get(['class']);;
+
+        return view('Student-courtresevertations', ["classes" => $classes]);
     }
 
     public function store(CourtresevertationsRequest $request)

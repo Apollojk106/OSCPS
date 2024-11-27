@@ -53,7 +53,7 @@
             <!-- Chamados com status 1 -->
             <div>
                 @if($calledsStatus1->isNotEmpty())
-                <h2 class="font-semibold text-lg mb-4">Chamados Pendentes</h2>
+                <h2 class="font-semibold text-lg mb-4 text-center bg-gray-200 p-4 rounded shadow mb-4">Chamados Pendentes</h2>
                 @endif
                 @foreach($calledsStatus1 as $called)
                 <div class="bg-gray-200 p-4 rounded shadow mb-4">
@@ -84,7 +84,7 @@
             <!-- Chamados com status 2 -->
             <div>
                 @if($calledsStatus2->isNotEmpty())
-                <h2 class="font-semibold text-lg mb-4">Chamados Em Andamento</h2>
+                <h2 class="font-semibold text-lg mb-4 text-center bg-gray-200 p-4 rounded shadow mb-4">Chamados Em Andamento</h2>
                 @endif
 
                 @foreach($calledsStatus2 as $called)
@@ -111,7 +111,7 @@
 
         <div class="flex flex-col items-center">
             @if($reservations->isNotEmpty())
-            <h2 class="font-semibold text-lg mb-4">Reservas Pendentes</h2>
+            <h2 class="font-semibold text-lg mb-4 text-center bg-gray-200 p-4 rounded shadow mb-4">Reservas Pendentes</h2>
             @endif
 
             @foreach($reservations as $reservation)

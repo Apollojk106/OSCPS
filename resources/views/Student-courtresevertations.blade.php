@@ -62,6 +62,33 @@
         button:hover {
             background-color: #842519;
         }
+
+        .swal-btn {
+            padding: 14px 40px !important;
+            /* Ajusta o tamanho do botão */
+            font-size: 18px !important;
+            /* Ajusta o tamanho da fonte */
+            border-radius: 8px !important;
+            /* Bordas arredondadas */
+            width: 100% !important;
+            /* Faz o botão ocupar 100% da largura do pop-up */
+            box-sizing: border-box !important;
+            /* Garantir que o padding seja incluído na largura */
+        }
+
+        /* Ajusta a largura do pop-up para que o conteúdo e o botão se ajustem */
+        .swal2-popup {
+            min-width: 300px !important;
+            /* Definindo uma largura mínima */
+            width: auto !important;
+            /* Ajuste a largura automaticamente */
+        }
+
+        /* Ajusta a largura do conteúdo para que o botão acompanhe */
+        .swal2-html-container {
+            max-width: 100% !important;
+            /* Ajusta a largura máxima do conteúdo */
+        }
     </style>
 
 </head>
@@ -83,14 +110,18 @@
     </script>
     @endif
 
-    @if(session('errors'))
+    @if($errors->any())
     <script>
         Swal.fire({
-            position: "center",
-            icon: 'error', // Define o ícone como "error"
-            title: 'Oops...', // Título da mensagem
-            text: "{{ session('error') }}", // A mensagem de erro vinda da sessão
-            showConfirmButton: false, // Não mostra o botão de confirmação
+            position: "center", // Centraliza o alerta
+            icon: 'error', // Ícone de erro
+            title: 'Oops...', // Título do alerta
+            html: '<ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>', // Lista de erros
+            showConfirmButton: true, // Mostra o botão de confirmação
+            confirmButtonText: 'OK', // Texto do botão
+            customClass: {
+                confirmButton: 'swal-btn' // Classe customizada para o botão
+            }
         });
     </script>
     @endif
@@ -107,9 +138,9 @@
                         <label for="class" class="block text-gray-700 font-semibold mb-2">Turma</label>
                         <select id="class" name="class" required class="w-full p-3 border border-gray-300 rounded-md">
                             <option value="">Selecione uma turma</option>
-                            <option value="turma1">Turma 1</option>
-                            <option value="turma2">Turma 2</option>
-                            <option value="turma3">Turma 3</option>
+                            @foreach($classes as $class)
+                            <option value="{{$class->class}}">{{$class->class}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -146,7 +177,7 @@
                         Retornar
                     </button>
 
-                    
+
                 </div>
 
             </form>
