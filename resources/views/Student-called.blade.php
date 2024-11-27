@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Formulário de Manutenção</title>
     <style>
-        a:hover{
+        a:hover {
             background-color: #842519;
         }
     </style>
@@ -88,9 +88,9 @@
                         <select id="environment" name="environment" class="mt-1 p-2 border border-gray-300 rounded-md" required>
                             <option value="">Selecione um local</option>
                             @if(!empty($problem))
-                                @foreach($locais as $local)
-                                <option value="{{ $local->environment}}">{{ $local->environment }}</option>
-                                @endforeach
+                            @foreach($locais as $local)
+                            <option value="{{ $local->environment}}">{{ $local->environment }}</option>
+                            @endforeach
                             @endif
                         </select>
                     </div>
@@ -98,15 +98,17 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <a href="{{route('student.dashboard')}}" style="background-color: #cc1c22;" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer">
-                        <div class="font-bold text-sm">Retornar</div>
-                    </a>
-                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#842519] ">
+                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
                         <div class="font-bold text-sm">Enviar</div>
                     </button>
-                </div>
             </form>
+            <button type="button" onclick="window.location.href='/Student/dashboard'" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
+                <div class="font-bold text-sm hover:bg-[#842519]">Retornar</div>
+            </button>
+
         </div>
+
+    </div>
     </div>
 
     <!-- JavaScript for Toggle and Zoom -->
