@@ -16,8 +16,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 //rotas basicas
 Route::group(['middleware' => ['guest']], function () {
-    Route::post('/login/student', [LoginController::class, 'Studentlogin'])->name('studentlogin');
-    Route::post('/login/teacher', [LoginController::class, 'Teacherlogin'])->name('teacherlogin');
+    Route::post('/login', [LoginController::class, 'login'])->name('post.login');
     Route::get('/login', [LoginController::class, 'Getlogin'])->name('login');
     Route::get('/', [LoginController::class, 'Getlogin'])->name('login');
 
