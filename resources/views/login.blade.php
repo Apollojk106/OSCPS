@@ -76,17 +76,17 @@
     </div>
 
     <div class="container">
-        <form action="{{route('studentlogin')}}" class="form active" id="admin-form" method="POST">
+        <form action="{{route('post.login')}}" class="form active" id="admin-form" method="POST">
             @csrf
             <div class="sign-up">
                 <div class="title">
-                    <div class="text">Log-in Alunos</div>
+                    <div class="text">Log-in</div>
                 </div>
                 <div class="subtitle">
                     <div class="text">Use seu RM ou email corporativo.</div>
                 </div>
                 <div class="text-field-outlined">
-                    <input type="email" name="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
+                    <input type="text" name="login" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
                 </div>
                 <div class="text-field-outlined-error">
                     <input type="password" name="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
@@ -100,44 +100,6 @@
 
             </div>
         </form>
-
-        <form action="{{route('teacherlogin')}}" class="form" id="teacher-form" method="POST" style="display:none;">
-            @csrf
-            <div class="sign-up">
-                <div class="title ">
-                    <div class="text">Log-in Corpo Docente</div>
-                </div>
-                <div class="subtitle">
-                    <div class="text">Use seu email corporativo.</div>
-                </div>
-                @if ($errors->any())
-                <div class="bg-red-600 text-black p-4 mb-4 rounded-md">
-                    <strong>Atenção!</strong>
-                    <ul class="mt-2">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                <div class="text-field-outlined">
-                    <input type="email" name="email" id="email" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Usuário" required>
-                </div>
-                <div class="text-field-outlined-error">
-                    <input type="password" name="password" id="password" class="input-text w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-700" placeholder="Senha" required>
-                </div>
-                <div class="contained-button">
-                    <button type="submit" class="text-white w-full p-3  rounded-md flex items-center justify-center cursor-pointer hover:text-white transition-colors duration-300">
-                        Entre no Site
-                    </button>
-                </div>
-
-                <a href="#" id="toggle-admin" class="administrativo-secretaria hover:underline hover:text-red-300 transition duration-300 mt-4 block text-center">
-                    Trocar para Administrativo/Secretaria
-                </a>
-            </div>
-        </form>
-
     </div>
 
     <script>
