@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
 
     Route::get('/Adm/history', [TeacherhistoryController::class, 'index'])->name('teacher.history');
+    Route::get('/Adm/history/filter', [TeacherhistoryController::class, 'index'])->name('teacher.history.filter');
     Route::get('/Adm/history/filter', [TeacherhistoryController::class, 'filter'])->name('teacher.history.filter');
 
     Route::get('/Adm/notification', [TeachernotificationController::class, 'index'])->name('teacher.notification');
