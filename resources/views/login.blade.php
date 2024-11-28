@@ -40,7 +40,7 @@
 
 </head>
 
-<body style="background-color: #FF161F; color: white;">
+<body style="background-color: #cc1c22; color: white;">
 
     @if(session('success'))
     <script>
