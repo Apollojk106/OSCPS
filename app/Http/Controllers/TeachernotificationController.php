@@ -8,6 +8,7 @@ use App\Models\reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\ReservationStatusChanged;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 
 class TeachernotificationController extends Controller
@@ -88,6 +89,11 @@ class TeachernotificationController extends Controller
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'aceita'));
 
+        Log::info('Reserva aceita com sucesso.', [
+            'reservation_id' => $reservation->id,
+            'new_status' => "aceito",
+        ]);
+
         return redirect()->back()->with('success', 'Reserva aceita com sucesso!');
     }
 
@@ -102,6 +108,11 @@ class TeachernotificationController extends Controller
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'recusada'));
 
+        Log::info('Reserva recusada com sucesso.', [
+            'reservation_id' => $reservation->id,
+            'new_status' => "rejeitado",
+        ]);
+
         return redirect()->back()->with('success', 'Reserva recusada!');
     }
 
@@ -113,6 +124,13 @@ class TeachernotificationController extends Controller
 
         $status = $request->input('status'); // Recebe o valor do status enviado pelo formulário
 
+        Log::info('Atualizando status do chamado.', [
+            'called_id' => $called->id,
+            'user_rm' => Auth::user()->RM,
+            'current_status' => $called->status,
+            'new_status' => $status,
+        ]);
+
         if ($status == 'Em andamento') {
             $called->status = '2'; // Atualiza para "Em Andamento"
         } elseif ($status == 'Concluído') {
@@ -122,6 +140,11 @@ class TeachernotificationController extends Controller
         Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado'));
 
         $called->save();
+
+        Log::info('Status do chamado atualizado com sucesso.', [
+            'called_id' => $called->id,
+            'new_status' => $called->status,
+        ]);
 
         return redirect()->back()->with('success', 'Status do chamado atualizado com sucesso!');
     }

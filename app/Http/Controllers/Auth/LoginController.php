@@ -7,9 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StudentRegisterRequest;
-use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
-use App\Models\Student;
 
 class LoginController extends Controller
 {
@@ -35,9 +34,15 @@ class LoginController extends Controller
 
     public function RMlogin($RM , $password)
     {
+
         if (Auth::attempt(['RM' => $RM, 'password' => $password])) {     
             
             $user = Auth::user();
+
+            Log::info('Login realizado com sucesso via RM.', [
+                'RM' => $RM,
+                'role' => $user->role,
+            ]);
 
             if(strtolower($user->role) !== 'admin')
             {
@@ -60,6 +65,11 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])) {     
             
             $user = Auth::user();
+
+            Log::info('Login realizado com sucesso via email.', [
+                'email' => $email,
+                'role' => $user->role,
+            ]);
 
             if(strtolower($user->role) !== 'admin')
             {

@@ -78,7 +78,7 @@
                         <span class="block text-sm font-medium">RM Solicitante: {{ $reservation->RM }}</span>
 
                         @if($reservation->status == 1)
-                        <span class="block text-sm font-medium text-yellow-500">Status: Pendente</span>
+                        <span class="block text-sm font-medium text-red-500">Status: Pendente</span>
                         @elseif($reservation->status == "accepted")
                         <span class="block text-sm font-medium text-green-500">Status:Aceito</span>
                         @else

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\CourtresevertationsRequest;
 use App\Models\reservation;
 use App\Models\Student;
@@ -30,6 +31,14 @@ class StudentcourtresevertationsController extends Controller
                 'class'       => $request->class,
                 'date'        => Carbon::parse($request->date . ' ' . $request->time),   
                 'integrantes' => $request->integrantes,  
+            ]);
+
+            Log::info('Tentando criar reserva.', [
+                'RM' => $user->RM,
+                'email' => $user->email,
+                'class' => $request->class,
+                'date' => Carbon::parse($request->date . ' ' . $request->time),
+                'integrantes' => $request->integrantes,
             ]);
                       
             return redirect()->back()->with('success', 'Reserva criada com sucesso!');

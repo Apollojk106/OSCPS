@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\location;
 use App\Models\called;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class StudentcalledController extends Controller
 {
@@ -85,6 +86,12 @@ class StudentcalledController extends Controller
             // Salva a atualização
             $called->save();
 
+            Log::info('Rechamado com os parâmetros fornecidos.', [
+                'roof' => $request->roof,
+                'environment' => $request->environment,
+                'type_problem' => $request->type_problem
+            ]);
+
             return redirect()->route('student.called')->with('success', 'Called created successfully!');
         }
 
@@ -97,6 +104,12 @@ class StudentcalledController extends Controller
             'email' => $user->email, // E-mail do usuário autenticado
             'roof' => $request->roof, // Local
             'environment' => $request->environment, // Ambiente
+        ]);
+
+        Log::info('Criando chamado com os parâmetros fornecidos.', [
+            'roof' => $request->roof,
+            'environment' => $request->environment,
+            'type_problem' => $request->type_problem
         ]);
 
         return redirect()->route('student.called')->with('success', 'Chamado criado com sucesso!');
