@@ -17,7 +17,7 @@
       <i class="fas fa-sun text-2xl toggle" title="Toggle Theme"></i>
 
       <!-- Formulário de logout -->
-      <form action="{{ route('logout') }}" method="POST" class="flex items-center">
+      <form action="{{ route('logout.student') }}" method="POST" class="flex items-center">
         @csrf
         <button class="fas fa-sign-out-alt logout-icon text-3xl" title="Logout" id="logout-button"
           style="background-color: #cc1c22; color: white; cursor: pointer; transition: none;">

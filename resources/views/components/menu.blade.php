@@ -107,7 +107,7 @@
         <i class="fas fa-sun text-2xl toggle" title="Toggle Theme"></i>
 
         <!-- Formulário de logout -->
-        <form action="{{ route('logout') }}" method="POST" class="flex items-center">
+        <form action="{{ route('logout.adm') }}" method="POST" class="flex items-center">
           @csrf
           <button class="fas fa-sign-out-alt logout-icon text-3xl" title="Logout" id="logout-button"
             style="background-color: #cc1c22; color: white; cursor: pointer; transition: none;">
@@ -140,7 +140,7 @@
       <span>Configurações</span>
       <i class="fa-solid fa-gear text-2xl"></i>
     </a>
-    <a href="/logout" class="flex items-center justify-between space-x-2">
+    <a href="/Adm/logout" class="flex items-center justify-between space-x-2">
       <span>Logout</span>
       <i class="fas fa-sign-out-alt logout-icon text-2xl"></i>
     </a>

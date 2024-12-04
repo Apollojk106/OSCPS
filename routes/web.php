@@ -45,8 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/Student/contacts', [StudentcontactsController::class, 'index'])->name('student.contacts');
 
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/Student/logout', [LoginController::class, 'logout'])->name('logout.student');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout.student');
 });
 
 //rotas  da sesão de admin
@@ -86,6 +86,6 @@ Route::group(['middleware' => ['auth', CheckAdminRole::class]], function () {
     Route::get('/secretary/{id}/delete', [TeacherconfigController::class, 'destroySecretary'])->name('secretary.destroy');
     Route::post('/secretary/store', [TeacherconfigController::class, 'storeSecretary'])->name('secretaries.store');
 
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/Adm/logout', [LoginController::class, 'logout'])->name('logout.adm');
+    Route::post('/Adm/logout', [LoginController::class, 'logout'])->name('logout.adm');
 });
