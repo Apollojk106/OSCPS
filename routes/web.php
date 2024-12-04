@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', CheckAdminRole::class]], function () {
     Route::post('/secretary/Edit', [TeacherconfigController::class, 'EditSecretary'])->name('Secretary.Edit');
 
     Route::get('/Adm/config', [TeacherconfigController::class, 'index'])->name('teacher.config');
+    Route::get('/Adm/config/filter', [TeacherconfigController::class, 'filter'])->name('teacher.config.filter');
     Route::post('/Adm/config/filter', [TeacherconfigController::class, 'filter'])->name('teacher.config.filter');
     Route::get('/Adm/config/delete-class/{class}', [TeacherconfigController::class, 'GetdeleteClass'])->name('teacher.config.delete_class.get');
     Route::post('/Adm/config/delete-class', [TeacherconfigController::class, 'deleteClass'])->name('teacher.config.delete_class.post');

@@ -107,6 +107,12 @@ class TeacherconfigController extends Controller
             'RM' => 'required|unique:students,RM|regex:/^\d{11}$/',
             'name' => 'required|string|max:255',
             'class' => 'required|string|max:50',
+        ], [
+            'RM.required' => 'O campo RM é obrigatório.',
+            'name.required' => 'O campo Nome é obrigatorio',
+            'class.required' => 'O campo Turma é obrigatorio',
+            'RM.unique' => 'O RM informado já está registrado no sistema.',
+            'RM.regex' => 'O RM deve conter exatamente 11 dígitos numéricos.',
         ]);
 
         Log::info('Criando estudante.', [
