@@ -13,6 +13,7 @@ use App\Http\Controllers\TeacherhistoryController;
 use App\Http\Controllers\TeachernotificationController;
 use App\Http\Controllers\TeacherconfigController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Middleware\CheckAdminRole;
 
 //rotas basicas
 Route::group(['middleware' => ['guest']], function () {
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //rotas  da sesão de admin
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', CheckAdminRole::class]], function () {
     Route::get('/Adm/dashboard', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
     Route::get('/Adm', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');
     Route::get('/', [TeacherdashboardController::class, 'index'])->name('teacher.dashboard');

@@ -8,16 +8,13 @@ use App\Models\reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\ReservationStatusChanged;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 
 class TeachernotificationController extends Controller
 {
     public function index()
     {
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            return redirect()->route('student.dashboard');
-        }
-
         $messages = [];
 
         $calleds = Called::whereIn('status', ['1', '2'])
@@ -79,39 +76,44 @@ class TeachernotificationController extends Controller
 
     public function accept(Reservation $reservation)
     {
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            return redirect()->route('student.dashboard');
-        }
-
         $reservation->status = 'accepted'; // Supondo que o status "accepted" indique que a reserva foi aceita
         $reservation->save();
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'aceita'));
+
+        Log::info('Reserva aceita com sucesso.', [
+            'reservation_id' => $reservation->id,
+            'new_status' => "aceito",
+        ]);
 
         return redirect()->back()->with('success', 'Reserva aceita com sucesso!');
     }
 
     public function reject(Reservation $reservation)
     {
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            return redirect()->route('student.dashboard');
-        }
-
         $reservation->status = 'rejected'; // Supondo que o status "rejected" indica que a reserva foi recusada
         $reservation->save();
 
         Mail::to($reservation->name_email)->send(new ReservationStatusChanged($reservation, null, null, 'recusada'));
+
+        Log::info('Reserva recusada com sucesso.', [
+            'reservation_id' => $reservation->id,
+            'new_status' => "rejeitado",
+        ]);
 
         return redirect()->back()->with('success', 'Reserva recusada!');
     }
 
     public function updateStatus(Called $called, Request $request)
     {
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            return redirect()->route('student.dashboard');
-        }
-
         $status = $request->input('status'); // Recebe o valor do status enviado pelo formulário
+
+        Log::info('Atualizando status do chamado.', [
+            'called_id' => $called->id,
+            'user_rm' => Auth::user()->RM,
+            'current_status' => $called->status,
+            'new_status' => $status,
+        ]);
 
         if ($status == 'Em andamento') {
             $called->status = '2'; // Atualiza para "Em Andamento"
@@ -122,6 +124,11 @@ class TeachernotificationController extends Controller
         Mail::to($called->email)->send(new ReservationStatusChanged(null, $called, $status, 'atualizado'));
 
         $called->save();
+
+        Log::info('Status do chamado atualizado com sucesso.', [
+            'called_id' => $called->id,
+            'new_status' => $called->status,
+        ]);
 
         return redirect()->back()->with('success', 'Status do chamado atualizado com sucesso!');
     }
