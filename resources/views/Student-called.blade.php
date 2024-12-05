@@ -116,10 +116,31 @@
         const toggle = document.querySelector('.toggle');
         const body = document.body;
 
+        // Função para aplicar o modo escuro com base na preferência armazenada
+        function applyDarkMode() {
+            const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+            if (darkModeEnabled) {
+                body.classList.add('dark-mode');
+                toggle.classList.add('fa-sun');
+                toggle.classList.remove('fa-moon');
+            } else {
+                body.classList.remove('dark-mode');
+                toggle.classList.remove('fa-sun');
+                toggle.classList.add('fa-moon');
+            }
+        }
+
+        // Chama a função ao carregar a página
+        applyDarkMode();
+
         toggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             toggle.classList.toggle('fa-sun');
             toggle.classList.toggle('fa-moon');
+
+            // Armazena a preferência no localStorage
+            const darkModeEnabled = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', darkModeEnabled);
         });
 
         let zoomLevel = 1;

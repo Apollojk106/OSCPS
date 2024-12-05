@@ -543,28 +543,58 @@
         const toggle = document.querySelector('.toggle');
         const body = document.body;
 
+        // Função para aplicar o modo escuro com base na preferência armazenada
+        function applyDarkMode() {
+            const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+            if (darkModeEnabled) {
+                body.classList.add('dark-mode');
+                toggle.classList.add('fa-sun');
+                toggle.classList.remove('fa-moon');
+            } else {
+                body.classList.remove('dark-mode');
+                toggle.classList.remove('fa-sun');
+                toggle.classList.add('fa-moon');
+            }
+        }
+
+        // Chama a função ao carregar a página
+        applyDarkMode();
+
         toggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             toggle.classList.toggle('fa-sun');
             toggle.classList.toggle('fa-moon');
+
+            // Armazena a preferência no localStorage
+            const darkModeEnabled = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', darkModeEnabled);
         });
 
         let zoomLevel = 1;
-        //const zoomInButton = document.getElementById('zoom-in');
-        //const zoomOutButton = document.getElementById('zoom-out');
-        //const mainContent = document.querySelector('.max-w-lg');
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const mainContent = document.querySelector('.max-w-lg');
 
-        //zoomInButton.addEventListener('click', () => {
-            //zoomLevel += 0.1;
-            //botão de zoom 
-            //mainContent.style.transform = `scale(${zoomLevel})`;
-        //});
+        zoomInButton.addEventListener('click', () => {
+            zoomLevel += 0.1;
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
 
-        //zoomOutButton.addEventListener('click', () => {
-            //zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-            //mainContent.style.transform = `scale(${zoomLevel})`;
-       // });
+        zoomOutButton.addEventListener('click', () => {
+            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            mainContent.style.transform = `scale(${zoomLevel})`;
+        });
 
+        function checkSelection() {
+            const typeProblem = document.getElementById('type_problem').value;
+            const roof = document.getElementById('roof').value;
+
+            // Verifica se ambos os campos estão selecionados
+            if (typeProblem && roof) {
+                // Redireciona para a rota GET com os parâmetros
+                window.location.href = `/Student/called/${roof}/${typeProblem}`;
+            }
+        }
     </script>
 
 

@@ -102,9 +102,9 @@
 
       <!-- Ícones de navegação e Logout -->
       <div class="header-icons flex flex-wrap justify-center items-center space-x-4 mt-16 md:mt-0">
-        <i class="fas fa-search-plus text-2xl" title="Zoom In"></i>
-        <i class="fas fa-search-minus text-2xl" title="Zoom Out"></i>
-        <i class="fas fa-sun text-2xl toggle" title="Toggle Theme"></i>
+        <!-- <i class="fas fa-search-plus text-2xl" title="Zoom In"></i>
+         <i class="fas fa-search-minus text-2xl" title="Zoom Out"></i> --> 
+        <i class="fas fa-sun text-2xl toggle" title="Toggle Theme"></i> 
 
         <!-- Formulário de logout -->
         <form action="{{ route('logout.adm') }}" method="POST" class="flex items-center">
