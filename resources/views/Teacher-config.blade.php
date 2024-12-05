@@ -550,19 +550,21 @@
         });
 
         let zoomLevel = 1;
-        const zoomInButton = document.getElementById('zoom-in');
-        const zoomOutButton = document.getElementById('zoom-out');
-        const mainContent = document.querySelector('.max-w-lg');
+        //const zoomInButton = document.getElementById('zoom-in');
+        //const zoomOutButton = document.getElementById('zoom-out');
+        //const mainContent = document.querySelector('.max-w-lg');
 
-        zoomInButton.addEventListener('click', () => {
-            zoomLevel += 0.1;
-            mainContent.style.transform = `scale(${zoomLevel})`;
-        });
+        //zoomInButton.addEventListener('click', () => {
+            //zoomLevel += 0.1;
+            //botão de zoom 
+            //mainContent.style.transform = `scale(${zoomLevel})`;
+        //});
 
-        zoomOutButton.addEventListener('click', () => {
-            zoomLevel = Math.max(0.5, zoomLevel - 0.1);
-            mainContent.style.transform = `scale(${zoomLevel})`;
-        });
+        //zoomOutButton.addEventListener('click', () => {
+            //zoomLevel = Math.max(0.5, zoomLevel - 0.1);
+            //mainContent.style.transform = `scale(${zoomLevel})`;
+       // });
+
     </script>
 
 

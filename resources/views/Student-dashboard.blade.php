@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-black text-white"> <!-- Cor de fundo preta e texto branco -->
+    <!--<body class="bg-black text-white">  Cor de fundo preta e texto branco -->
     <!-- Cabeçalho -->
-    <x-header class="bg-black" /> <!-- Garantir que o cabeçalho tenha fundo escuro -->
+    <x-header class="bg-black" /> <!-- Garantir que o cabeçalho tenha fundo preto -->
 
     @if(session('success'))
         <script>
@@ -49,28 +49,26 @@
 
     <!-- JavaScript para Toggle e Zoom -->
     <script>
-        const toggle = document.querySelector('.toggle');
+         const toggle = document.querySelector('.toggle');
         const body = document.body;
-        document.getElementById('botão-logout').addEventListener('clique', function() {
-            document.getElementById('formulário-logout').submit();
-        });
-        toggle.addEventListener('clique', () => {
-            body.classList.toggle('modo-escuro');
-            toggle.classList.toggle('fa-sol');
-            toggle.classList.toggle('fa-lua');
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            toggle.classList.toggle('fa-sun');
+            toggle.classList.toggle('fa-moon');
         });
 
         let zoomLevel = 1;
-        const zoomInButton = document.getElementById('aumentar o zoom');
-        const zoomOutButton = document.getElementById('diminuir o zoom');
-        const mainContent = document.querySelector('.cards-section');
+        const zoomInButton = document.getElementById('zoom-in');
+        const zoomOutButton = document.getElementById('zoom-out');
+        const mainContent = document.querySelector('.max-w-lg');
 
-        zoomInButton.addEventListener('clique', () => {
+        zoomInButton.addEventListener('click', () => {
             zoomLevel += 0.1;
             mainContent.style.transform = `scale(${zoomLevel})`;
         });
 
-        zoomOutButton.addEventListener('clique', () => {
+        zoomOutButton.addEventListener('click', () => {
             zoomLevel = Math.max(0.5, zoomLevel - 0.1);
             mainContent.style.transform = `scale(${zoomLevel})`;
         });
