@@ -17,6 +17,7 @@ class called extends Model
         'RM',
         'email',
         'roof',
+        'obs',
         'environment',
     ];
 

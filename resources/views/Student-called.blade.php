@@ -95,6 +95,12 @@
                         </select>
                     </div>
 
+                    <div class="mb-4">
+                        <label for="integrantes" class="block text-gray-700 font-semibold mb-2">Observações</label>
+                        <textarea id="obs" name="obs" rows="4" placeholder="Insira os detalhes" required maxlength="100" required
+                            class="w-full p-3 border border-gray-300 rounded-md"></textarea>
+                    </div>
+
                 </div>
 
                 <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->

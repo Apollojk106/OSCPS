@@ -24,7 +24,7 @@ class CalledRequest extends FormRequest
         return [
             'type_problem' => 'required|integer',
             'roof' => 'required|string|exists:locations,roof',
-            'environment' => 'required|string|exists:locations,environment',
+            'environment' => 'required|string|exists:locations,environment',          
         ];
     }
 

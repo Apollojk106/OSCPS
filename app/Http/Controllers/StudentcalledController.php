@@ -89,7 +89,8 @@ class StudentcalledController extends Controller
             Log::info('Rechamado com os parâmetros fornecidos.', [
                 'roof' => $request->roof,
                 'environment' => $request->environment,
-                'type_problem' => $request->type_problem
+                'type_problem' => $request->type_problem,
+                'obs' => $request->obs,
             ]);
 
             return redirect()->route('student.called')->with('success', 'Called created successfully!');
@@ -104,12 +105,14 @@ class StudentcalledController extends Controller
             'email' => $user->email, // E-mail do usuário autenticado
             'roof' => $request->roof, // Local
             'environment' => $request->environment, // Ambiente
+            'obs' => $request->obs,
         ]);
 
         Log::info('Criando chamado com os parâmetros fornecidos.', [
             'roof' => $request->roof,
             'environment' => $request->environment,
-            'type_problem' => $request->type_problem
+            'type_problem' => $request->type_problem,
+            'obs' => $request->obs,
         ]);
 
         return redirect()->route('student.called')->with('success', 'Chamado criado com sucesso!');

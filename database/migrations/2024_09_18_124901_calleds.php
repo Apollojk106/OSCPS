@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('type_problem', ['1','2','3','4','5','6','7']);
             $table->string('RM');
             $table->string('email');
+            $table->text('obs')->nullable();
             $table->string('roof');
             $table->string('environment');
         });

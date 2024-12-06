@@ -64,6 +64,9 @@
                     <span class="block text-sm font-medium">Problema: {{ $called->type_problem }}</span>
                     <span class="block text-sm font-medium">LUGAR: {{ $called->roof }}</span>
                     <span class="block text-sm font-medium">ANDAR: {{ $called->environment }}</span>
+                    @if($called->obs != "")
+                        <span class="block text-sm font-medium w-48 break-words">Observação: {{ $called->obs }}</span>
+                    @endif
                     <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }} Rechamados {{ $called->recalled }}</span>
                     <form action="{{ route('called.updateStatus', $called->id) }}" method="POST" class="mt-4">
                         @csrf
@@ -96,6 +99,11 @@
                     <span class="block text-sm font-medium">Problema: {{ $called->type_problem }}</span>
                     <span class="block text-sm font-medium">LUGAR: {{ $called->roof }}</span>
                     <span class="block text-sm font-medium">ANDAR: {{ $called->environment }}</span>
+
+                    @if($called->obs != "")
+                        <span class="block text-sm font-medium w-48 break-words">Observação: {{ $called->obs }}</span>
+                    @endif
+
                     <span class="block text-sm font-medium">RM Solicitante: {{ $called->RM }} Rechamados {{ $called->recalled }}</span>
                     <form action="{{ route('called.updateStatus', $called->id) }}" method="POST" class="mt-4">
                         @csrf
