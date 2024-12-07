@@ -90,7 +90,7 @@ class StudentcalledController extends Controller
                 'roof' => $request->roof,
                 'environment' => $request->environment,
                 'type_problem' => $request->type_problem,
-                'obs' => $request->obs,
+                'obs' => $request->obs
             ]);
 
             return redirect()->route('student.called')->with('success', 'Called created successfully!');
@@ -112,7 +112,7 @@ class StudentcalledController extends Controller
             'roof' => $request->roof,
             'environment' => $request->environment,
             'type_problem' => $request->type_problem,
-            'obs' => $request->obs,
+            'obs' => $request->obs
         ]);
 
         return redirect()->route('student.called')->with('success', 'Chamado criado com sucesso!');

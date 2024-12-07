@@ -11,7 +11,19 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Formulário de Manutenção</title>
     <style>
-        a:hover {
+        button {
+            width: 48%;
+            padding: 10px;
+            background-color: #cc1c22;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+
+        }
+
+        button:hover {
             background-color: #842519;
         }
     </style>
@@ -35,7 +47,7 @@
     @endif
 
     <div class="cards-section">
-        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6 mt-5"> <!-- Adiciona margem superior -->
+        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6 space-y-6"> 
             <h2 class="form-title font-bold text-gray-800 text-center">Formulário de Manutenção</h2>
             <form method="POST" action=" {{route('post.student.called')}}">
 
@@ -50,8 +62,24 @@
                 </div>
                 @endif
 
-                <div class="space-y-4">
-                    <div class="flex flex-col">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 space-y-4">
+
+                    <div class="flex flex-col mt-4">
+                        <label for="andar" class="font-semibold text-gray-800">Andar</label>
+                        <select id="roof" name="roof" class="mt-1 p-2 border border-gray-300 rounded-md" required onchange="checkSelection()">
+                            @if(!empty($selectandar))
+                            <option value="{{$selectandar}}">{{$selectandar}}</option>
+                            @else
+                            <option value="">Selecione um andar</option>
+                            @endif
+
+                            @foreach($andares as $andar)
+                            <option value="{{ $andar->roof }}">{{ $andar->roof }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col mt-4">
                         <label for="type_problem" class="font-semibold text-gray-800">Problema</label>
                         <select id="type_problem" name="type_problem" class="mt-1 p-2 border border-gray-300 rounded-md" required onchange="checkSelection()">
                             @if(!empty($problem))
@@ -68,20 +96,7 @@
                         </select>
                     </div>
 
-                    <div class="flex flex-col mt-4">
-                        <label for="andar" class="font-semibold text-gray-800">Andar</label>
-                        <select id="roof" name="roof" class="mt-1 p-2 border border-gray-300 rounded-md" required onchange="checkSelection()">
-                            @if(!empty($selectandar))
-                            <option value="{{$selectandar}}">{{$selectandar}}</option>
-                            @else
-                            <option value="">Selecione um andar</option>
-                            @endif
 
-                            @foreach($andares as $andar)
-                            <option value="{{ $andar->roof }}">{{ $andar->roof }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
                     <div class="flex flex-col mt-4">
                         <label for="local" class="font-semibold text-gray-800">Local</label>
@@ -101,17 +116,19 @@
                             class="w-full p-3 border border-gray-300 rounded-md"></textarea>
                     </div>
 
-                </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
+                            <div class="font-bold text-sm">Enviar</div>
+                        </button>
+                    </div>
 
-                <div class="flex space-x-4 mt-6"> <!-- Adiciona espaçamento entre os botões -->
-                    <button type="submit" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
-                        <div class="font-bold text-sm">Enviar</div>
-                    </button>
+                    <div class="flex justify-center gap-4">
+                        <button type="button" onclick="window.location.href='/Student/dashboard'" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
+                            <div class="font-bold text-sm hover:bg-[#842519]">Retornar</div>
+                        </button>
+                    </div>
+
             </form>
-            <button type="button" onclick="window.location.href='/Student/dashboard'" class="text-white w-32 h-10 rounded-md flex items-center justify-center cursor-pointer ">
-                <div class="font-bold text-sm hover:bg-[#842519]">Retornar</div>
-            </button>
-
         </div>
 
     </div>
